@@ -1,0 +1,103 @@
+{
+  "catalog_name": "moex_bank_report_sources",
+  "universe": "MOEX public banking and financial issuers for equity analysis V1",
+  "generated_at": "2026-05-13",
+  "scope_note": "V1 covers public MOEX banks/financial issuers, not all Russian credit institutions.",
+  "trust_policy": {
+    "preferred_sources": [
+      "E-Disclosure consolidated financial statements type=4",
+      "official issuer investor relations / financial results pages",
+      "E-Disclosure accounting financial statements type=3",
+      "E-Disclosure annual reports type=2"
+    ],
+    "manual_upload_policy": "Manual upload remains lower-trust and must pass validation before table extraction.",
+    "cbr_role": "CBR regulatory forms are a future separate banking-regulatory module, not the IFRS equity-analysis source in V1."
+  },
+  "companies": [
+    {
+      "ticker": "SBER",
+      "company_name": "Sberbank",
+      "issuer_name_ru": "ПАО Сбербанк",
+      "sector": "financials",
+      "subsector": "bank",
+      "is_bank": true,
+      "edisclosure_id": "3043",
+      "issuer_website": "https://www.sberbank.com",
+      "investor_relations_url": "https://www.sberbank.com/ru/investor-relations",
+      "files_type_4_url": "https://e-disclosure.ru/portal/files.aspx?id=3043&type=4",
+      "files_type_3_url": "https://e-disclosure.ru/portal/files.aspx?id=3043&type=3",
+      "files_type_2_url": "https://e-disclosure.ru/portal/files.aspx?id=3043&type=2",
+      "source_status": "known_edisclosure_id",
+      "preferred_document_type": "consolidated_financial_statements",
+      "manual_upload_hint": "Для полного анализа сначала скачайте type=4 Консолидированная отчетность; годовой отчет type=2 используйте как fallback, если внутри есть финансовая отчетность."
+    },
+    {
+      "ticker": "VTBR",
+      "company_name": "VTB Bank",
+      "issuer_name_ru": "Банк ВТБ (ПАО)",
+      "sector": "financials",
+      "subsector": "bank",
+      "is_bank": true,
+      "edisclosure_id": null,
+      "issuer_website": "https://www.vtb.com",
+      "investor_relations_url": "https://www.vtb.com/ir/financial-results/ifrs-financial-results/",
+      "files_type_4_url": null,
+      "files_type_3_url": null,
+      "files_type_2_url": null,
+      "source_status": "needs_edisclosure_id_resolution",
+      "preferred_document_type": "ifrs_financial_results_or_consolidated_financial_statements",
+      "manual_upload_hint": "Используйте официальную страницу IFRS Financial Results или найдите эмитента в E-Disclosure по полному русскому названию."
+    },
+    {
+      "ticker": "BSPB",
+      "company_name": "Bank Saint Petersburg",
+      "issuer_name_ru": "ПАО Банк Санкт-Петербург",
+      "sector": "financials",
+      "subsector": "bank",
+      "is_bank": true,
+      "edisclosure_id": "3935",
+      "issuer_website": "https://www.bspb.ru",
+      "investor_relations_url": "https://www.bspb.ru/en/investors/",
+      "files_type_4_url": "https://e-disclosure.ru/portal/files.aspx?id=3935&type=4",
+      "files_type_3_url": "https://e-disclosure.ru/portal/files.aspx?id=3935&type=3",
+      "files_type_2_url": "https://e-disclosure.ru/portal/files.aspx?id=3935&type=2",
+      "source_status": "known_edisclosure_id_from_public_message",
+      "preferred_document_type": "consolidated_financial_statements",
+      "manual_upload_hint": "Сначала используйте type=4 Консолидированная отчетность; type=3 подходит для РСБУ/публикуемых форм."
+    },
+    {
+      "ticker": "CBOM",
+      "company_name": "Credit Bank of Moscow",
+      "issuer_name_ru": "ПАО Московский кредитный банк",
+      "sector": "financials",
+      "subsector": "bank",
+      "is_bank": true,
+      "edisclosure_id": null,
+      "issuer_website": "https://mkb.ru",
+      "investor_relations_url": "https://mkb.ru/en/investor-relations",
+      "files_type_4_url": null,
+      "files_type_3_url": null,
+      "files_type_2_url": null,
+      "source_status": "needs_edisclosure_id_resolution",
+      "preferred_document_type": "consolidated_financial_statements",
+      "manual_upload_hint": "Найдите эмитента в E-Disclosure по полному русскому названию и скачайте type=4, если доступно."
+    },
+    {
+      "ticker": "MOEX",
+      "company_name": "Moscow Exchange",
+      "issuer_name_ru": "ПАО Московская Биржа",
+      "sector": "financials",
+      "subsector": "exchange",
+      "is_bank": false,
+      "edisclosure_id": null,
+      "issuer_website": "https://www.moex.com",
+      "investor_relations_url": "https://www.moex.com/s1167",
+      "files_type_4_url": null,
+      "files_type_3_url": null,
+      "files_type_2_url": null,
+      "source_status": "financial_non_bank_needs_policy",
+      "preferred_document_type": "issuer_ifrs_financial_statements",
+      "manual_upload_hint": "Это финансовая инфраструктура, но не банк; банковские ratios к MOEX не применяются автоматически."
+    }
+  ]
+}

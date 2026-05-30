@@ -1,0 +1,57 @@
+{
+  "company_ticker": "LKOH",
+  "period": "2021Q4",
+  "reporting_standard": "IFRS",
+  "input_file": "C:\\Users\\Lenovo\\Documents\\New project\\tests\\runtime_manual_debug\\L KOH FY report.pdf",
+  "stored_document_path": "C:\\Users\\Lenovo\\Documents\\New project\\tests\\runtime_manual_debug\\data\\raw\\manual_uploads\\LKOH\\IFRS\\2021Q4\\df645df4085da017730cdfa322fc1bd267a558466528c4cde0c691420bb14869_tmp_debug_manual.pdf",
+  "report_document_id": 236,
+  "duplicate_detected": true,
+  "sha256": "df645df4085da017730cdfa322fc1bd267a558466528c4cde0c691420bb14869",
+  "file_size_bytes": 141,
+  "content_type": "application/pdf",
+  "manual_upload_reason": "manual_test",
+  "source_trust_bucket": "manual_upload_validated",
+  "official_source_verified": false,
+  "source_package_ready_contribution": false,
+  "document_validation_status": "pass",
+  "detected_document_role": "financial_statements",
+  "statement_tables_extracted": 0,
+  "statement_coverage": {},
+  "dataframe_artifacts": [],
+  "fact_parse_status": "not_invoked",
+  "canonical_fact_candidates": 0,
+  "db_persisted": false,
+  "warnings": [
+    "duplicate_manual_upload_detected",
+    "Source URL domain is not trusted by report source allowlist."
+  ],
+  "blockers": [],
+  "status": "INGESTED",
+  "validation_result": {
+    "validation_status": "pass",
+    "confidence_score": 0.85,
+    "detected_document_role": "financial_statements",
+    "detected_reporting_standard": "IFRS",
+    "detected_period": "2021Q4",
+    "marker_results": {
+      "company_marker": true,
+      "ifrs_marker": true,
+      "consolidated_financial_statements_marker": true,
+      "annual_report_marker": false,
+      "ras_marker": false,
+      "press_release_marker": false,
+      "primary_statements_marker": true,
+      "notes_marker": false,
+      "period_marker": true,
+      "auditor_marker": false
+    },
+    "warnings": [
+      "Source URL domain is not trusted by report source allowlist."
+    ],
+    "sha256": "df645df4085da017730cdfa322fc1bd267a558466528c4cde0c691420bb14869",
+    "trusted_domain": false,
+    "file_exists": true,
+    "expected_file_type_ok": true
+  },
+  "fact_parse_report": null
+}

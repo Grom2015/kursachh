@@ -1,0 +1,93 @@
+INFO:     Started server process [37516]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:49950 - "GET /app HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55446 - "GET /app HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55446 - "GET /app/assets/control-center.css HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:61702 - "GET /app/assets/control-center.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61702 - "GET /report-sources/LKOH HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63539 - "GET /report-sources/SBER HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63686 - "GET /report-sources/SBER HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50080 - "GET /app HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50083 - "GET /app HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53837 - "GET /app/assets/control-center.js?v=4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56840 - "GET /app HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56840 - "GET /app/assets/control-center.js?v=4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56840 - "GET /pipeline/status?ticker=LKOH&period_from=2021Q1&period_to=2021Q4&reporting_standard=IFRS HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56840 - "GET /report-sources/LKOH HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65470 - "GET /report-sources/SBER HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62586 - "GET /report-sources/SBER HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49207 - "POST /pipeline/demo-run HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49207 - "GET /pipeline/status?ticker=SBER&period_from=2025Q1&period_to=2025Q4&reporting_standard=IFRS HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49207 - "GET /report-sources/SBER HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63048 - "POST /pipeline/full-run HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63048 - "GET /pipeline/jobs/ceefd61c-363b-44ba-9f59-8d3b5566b0aa/events HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63048 - "GET /pipeline/jobs/ceefd61c-363b-44ba-9f59-8d3b5566b0aa/events HTTP/1.1" 200 OK
+2026-05-12 23:51:57,095 INFO httpx HTTP Request: GET https://iss.moex.com/iss/securities.json?q=SBER&iss.meta=off&limit=10 "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63048 - "GET /pipeline/jobs/ceefd61c-363b-44ba-9f59-8d3b5566b0aa/events HTTP/1.1" 200 OK
+2026-05-12 23:51:57,985 INFO httpx HTTP Request: GET https://iss.moex.com/iss/securities.json?q=SBER&iss.meta=off&limit=10 "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:63048 - "GET /pipeline/jobs/ceefd61c-363b-44ba-9f59-8d3b5566b0aa/events HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63048 - "GET /pipeline/status?ticker=SBER&period_from=2025Q1&period_to=2025Q4&reporting_standard=IFRS HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63048 - "GET /report-sources/SBER HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59460 - "GET /app HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59460 - "GET /app/assets/control-center.js?v=5 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59460 - "GET /pipeline/status?ticker=SBER&period_from=2025Q1&period_to=2025Q4&reporting_standard=IFRS HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59460 - "GET /report-sources/SBER HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59460 - "POST /pipeline/full-run HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59460 - "GET /pipeline/jobs/846ee0db-ac05-45c4-b929-3bf51a5316d4/events HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59460 - "GET /pipeline/jobs/846ee0db-ac05-45c4-b929-3bf51a5316d4/events HTTP/1.1" 200 OK
+2026-05-12 23:55:36,513 INFO httpx HTTP Request: GET https://iss.moex.com/iss/securities.json?q=SBER&iss.meta=off&limit=10 "HTTP/1.1 200 OK"
+2026-05-12 23:55:37,418 INFO httpx HTTP Request: GET https://iss.moex.com/iss/securities.json?q=SBER&iss.meta=off&limit=10 "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:59460 - "GET /pipeline/jobs/846ee0db-ac05-45c4-b929-3bf51a5316d4/events HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59460 - "GET /pipeline/status?ticker=SBER&period_from=2025Q1&period_to=2025Q4&reporting_standard=IFRS HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59460 - "GET /report-sources/SBER HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59019 - "GET /app HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59019 - "GET /app/assets/control-center.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55592 - "GET /app/assets/control-center.js?v=5 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55592 - "GET /pipeline/status?ticker=SBER&period_from=2025Q1&period_to=2025Q4&reporting_standard=IFRS HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55592 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:55592 - "GET /report-sources/SBER HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55592 - "POST /pipeline/full-run HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55592 - "GET /pipeline/jobs/490a22fd-0f25-4f1c-8613-390cef5cbb90/events HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55592 - "GET /pipeline/jobs/490a22fd-0f25-4f1c-8613-390cef5cbb90/events HTTP/1.1" 200 OK
+2026-05-12 23:55:50,682 INFO httpx HTTP Request: GET https://iss.moex.com/iss/securities.json?q=SBER&iss.meta=off&limit=10 "HTTP/1.1 200 OK"
+2026-05-12 23:55:51,590 INFO httpx HTTP Request: GET https://iss.moex.com/iss/securities.json?q=SBER&iss.meta=off&limit=10 "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55592 - "GET /pipeline/jobs/490a22fd-0f25-4f1c-8613-390cef5cbb90/events HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55592 - "GET /pipeline/jobs/490a22fd-0f25-4f1c-8613-390cef5cbb90/events HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55592 - "GET /pipeline/status?ticker=SBER&period_from=2025Q1&period_to=2025Q4&reporting_standard=IFRS HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55592 - "GET /report-sources/SBER HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55612 - "POST /pipeline/full-run HTTP/1.1" 200 OK
+2026-05-12 23:56:13,855 INFO httpx HTTP Request: GET https://iss.moex.com/iss/securities.json?q=SBER&iss.meta=off&limit=10 "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:55614 - "GET /pipeline/jobs/eb318aa3-7cd4-469c-a929-24fdc53b48a1/events HTTP/1.1" 200 OK
+2026-05-12 23:56:14,594 INFO httpx HTTP Request: GET https://iss.moex.com/iss/securities.json?q=SBER&iss.meta=off&limit=10 "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:50472 - "GET /app HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54886 - "GET /app HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54886 - "GET /app/assets/control-center.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65514 - "GET /app/assets/control-center.js?v=6 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65514 - "GET /pipeline/status?ticker=SBER&period_from=2025Q1&period_to=2025Q4&reporting_standard=IFRS HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65514 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:65514 - "GET /report-sources/SBER HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60423 - "POST /pipeline/full-run HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60423 - "GET /pipeline/jobs/1baeec23-64e7-4ef0-83e1-95c4d0414cda/events HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60423 - "GET /pipeline/jobs/1baeec23-64e7-4ef0-83e1-95c4d0414cda/events HTTP/1.1" 200 OK
+2026-05-12 23:57:08,542 INFO httpx HTTP Request: GET https://iss.moex.com/iss/securities.json?q=SBER&iss.meta=off&limit=10 "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60423 - "GET /pipeline/jobs/1baeec23-64e7-4ef0-83e1-95c4d0414cda/events HTTP/1.1" 200 OK
+2026-05-12 23:57:09,502 INFO httpx HTTP Request: GET https://iss.moex.com/iss/securities.json?q=SBER&iss.meta=off&limit=10 "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60423 - "GET /pipeline/jobs/1baeec23-64e7-4ef0-83e1-95c4d0414cda/events HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60423 - "GET /pipeline/status?ticker=SBER&period_from=2025Q1&period_to=2025Q4&reporting_standard=IFRS HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60423 - "GET /report-sources/SBER HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60423 - "POST /pipeline/full-run HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60423 - "GET /pipeline/jobs/282a65d8-fe7e-4be6-a189-85b796be02c9/events HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60423 - "GET /pipeline/jobs/282a65d8-fe7e-4be6-a189-85b796be02c9/events HTTP/1.1" 200 OK
+2026-05-12 23:57:16,098 INFO httpx HTTP Request: GET https://iss.moex.com/iss/securities.json?q=SBER&iss.meta=off&limit=10 "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60423 - "GET /pipeline/jobs/282a65d8-fe7e-4be6-a189-85b796be02c9/events HTTP/1.1" 200 OK
+2026-05-12 23:57:17,390 INFO httpx HTTP Request: GET https://iss.moex.com/iss/securities.json?q=SBER&iss.meta=off&limit=10 "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:60423 - "GET /pipeline/jobs/282a65d8-fe7e-4be6-a189-85b796be02c9/events HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60423 - "GET /pipeline/status?ticker=SBER&period_from=2025Q1&period_to=2025Q4&reporting_standard=IFRS HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60423 - "GET /report-sources/SBER HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57130 - "POST /pipeline/full-run HTTP/1.1" 200 OK
+2026-05-12 23:57:53,647 INFO httpx HTTP Request: GET https://iss.moex.com/iss/securities.json?q=SBER&iss.meta=off&limit=10 "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57132 - "GET /pipeline/jobs/d63b24b5-d98d-4b34-be05-69c5752fca15/events HTTP/1.1" 200 OK
+2026-05-12 23:57:54,411 INFO httpx HTTP Request: GET https://iss.moex.com/iss/securities.json?q=SBER&iss.meta=off&limit=10 "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57134 - "GET /pipeline/jobs/d63b24b5-d98d-4b34-be05-69c5752fca15/events HTTP/1.1" 200 OK

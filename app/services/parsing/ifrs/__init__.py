@@ -1,0 +1,1 @@
+"""IFRS semantic extraction helpers."""

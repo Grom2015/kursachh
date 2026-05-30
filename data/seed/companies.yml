@@ -1,0 +1,68 @@
+companies:
+  - ticker: LKOH
+    aliases: ["лукойл", "lukoil", "lkoh"]
+    short_name: "ЛУКОЙЛ"
+    full_name: "ПАО \"ЛУКОЙЛ\""
+    sector: oil_and_gas
+    subsector: integrated_oil_and_gas
+    board: TQBR
+    isin:
+    inn:
+    ir_url:
+    disclosure_id:
+  - ticker: ROSN
+    aliases: ["роснефть", "rosneft", "rosn"]
+    short_name: "Роснефть"
+    full_name: "ПАО \"НК Роснефть\""
+    sector: oil_and_gas
+    subsector: integrated_oil_and_gas
+    board: TQBR
+    isin:
+    inn:
+    ir_url:
+    disclosure_id:
+  - ticker: SIBN
+    aliases: ["газпром нефть", "gazprom neft", "sibn"]
+    short_name: "Газпром нефть"
+    full_name: "ПАО \"Газпром нефть\""
+    sector: oil_and_gas
+    subsector: integrated_oil_and_gas
+    board: TQBR
+    isin:
+    inn:
+    ir_url:
+    disclosure_id:
+  - ticker: TATN
+    aliases: ["татнефть", "tatneft", "tatn"]
+    short_name: "Татнефть"
+    full_name: "ПАО \"Татнефть\""
+    sector: oil_and_gas
+    subsector: integrated_oil_and_gas
+    board: TQBR
+    isin:
+    inn:
+    ir_url:
+    disclosure_id:
+  - ticker: NVTK
+    aliases: ["новатэк", "novatek", "nvtk"]
+    short_name: "НОВАТЭК"
+    full_name: "ПАО \"НОВАТЭК\""
+    sector: oil_and_gas
+    subsector: gas
+    board: TQBR
+    isin:
+    inn:
+    ir_url:
+    disclosure_id:
+  - ticker: GAZP
+    aliases: ["газпром", "gazprom", "gazp"]
+    short_name: "Газпром"
+    full_name: "ПАО \"Газпром\""
+    sector: oil_and_gas
+    subsector: gas
+    board: TQBR
+    isin:
+    inn:
+    ir_url:
+    disclosure_id:
+

@@ -1,0 +1,1274 @@
+{
+  "catalog_name": "moex_top50_report_sources",
+  "universe": "MOEX public companies suitable for Russian equity analysis",
+  "generated_at": "2026-05-12",
+  "selection_note": "Curated top-50 public MOEX issuer universe; ranking is a practical market-analysis ordering, not a live market-cap calculation.",
+  "trust_policy": {
+    "trusted_primary_sources": [
+      "official issuer IR/reporting pages",
+      "official issuer disclosure pages"
+    ],
+    "trusted_fallback_sources": [
+      "regulated disclosure portals such as SKRIN/E-Disclosure search pages"
+    ],
+    "excluded_as_trusted_sources": [
+      "random aggregators",
+      "blogs",
+      "fixture data",
+      "unverified mirrors"
+    ],
+    "moex_iss_role": "company identity and market metadata only, not financial statement source"
+  },
+  "acquisition_policy": {
+    "direct_page_status_is_not_enough": true,
+    "document_must_pass_validation": true,
+    "manual_upload_is_lower_trust_fallback": true,
+    "no_fact_persistence_in_catalog_check": true
+  },
+  "companies_count": 50,
+  "companies": [
+    {
+      "rank": 1,
+      "ticker": "SBER",
+      "company_name": "Sberbank",
+      "sector": "financials",
+      "issuer_website": "https://www.sberbank.com",
+      "investor_relations_url": "https://www.sberbank.com/investor-relations",
+      "reports_url": "https://www.sberbank.com/investor-relations/reports-and-publications",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=SBER",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Official IR reports page plus regulated disclosure fallback.",
+      "source_page_status": "reachable_no_static_direct_links",
+      "preferred_acquisition_method": "issuer_specific_js_or_embedded_json_adapter"
+    },
+    {
+      "rank": 2,
+      "ticker": "GAZP",
+      "company_name": "Gazprom",
+      "sector": "oil_and_gas",
+      "issuer_website": "https://www.gazprom.com",
+      "investor_relations_url": "https://www.gazprom.com/investors/",
+      "reports_url": "https://www.gazprom.com/investors/disclosure/reports/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=GAZP",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Official disclosure reports page; current parser may need OCR for image-only statements.",
+      "source_page_status": "tls_or_certificate_blocked",
+      "preferred_acquisition_method": "disclosure_provider_or_tls_diagnostics"
+    },
+    {
+      "rank": 3,
+      "ticker": "LKOH",
+      "company_name": "LUKOIL",
+      "sector": "oil_and_gas",
+      "issuer_website": "https://www.lukoil.com",
+      "investor_relations_url": "https://www.lukoil.com/InvestorAndShareholderCenter",
+      "reports_url": "https://www.lukoil.com/InvestorAndShareholderCenter/ReportsAndPresentations/FinancialReports",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=LKOH",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "verified_known_pipeline_source",
+      "notes": "Used by current LKOH statement pipeline.",
+      "source_page_status": "stale_or_needs_update",
+      "preferred_acquisition_method": "update_source_page_then_direct_download"
+    },
+    {
+      "rank": 4,
+      "ticker": "ROSN",
+      "company_name": "Rosneft",
+      "sector": "oil_and_gas",
+      "issuer_website": "https://www.rosneft.com",
+      "investor_relations_url": "https://www.rosneft.com/Investors/",
+      "reports_url": "https://www.rosneft.com/Investors/statements_and_presentations/FinancialStatements/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=ROSN",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Official financial statements page.",
+      "source_page_status": "stale_or_needs_update",
+      "preferred_acquisition_method": "update_source_page_then_direct_download"
+    },
+    {
+      "rank": 5,
+      "ticker": "NVTK",
+      "company_name": "NOVATEK",
+      "sector": "oil_and_gas",
+      "issuer_website": "https://www.novatek.ru",
+      "investor_relations_url": "https://www.novatek.ru/en/investors/",
+      "reports_url": "https://www.novatek.ru/en/investors/reports/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=NVTK",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Official investor reports page.",
+      "source_page_status": "stale_or_needs_update",
+      "preferred_acquisition_method": "update_source_page_then_direct_download"
+    },
+    {
+      "rank": 6,
+      "ticker": "GMKN",
+      "company_name": "Nornickel",
+      "sector": "metals_and_mining",
+      "issuer_website": "https://www.nornickel.com",
+      "investor_relations_url": "https://www.nornickel.com/investors/",
+      "reports_url": "https://www.nornickel.com/investors/reports-and-results/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=GMKN",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Official reports and results page.",
+      "source_page_status": "reachable_no_static_direct_links",
+      "preferred_acquisition_method": "issuer_specific_js_or_embedded_json_adapter"
+    },
+    {
+      "rank": 7,
+      "ticker": "TATN",
+      "company_name": "Tatneft",
+      "sector": "oil_and_gas",
+      "issuer_website": "https://www.tatneft.ru",
+      "investor_relations_url": "https://www.tatneft.ru/investors/?lang=en",
+      "reports_url": "https://www.tatneft.ru/investors/reporting/?lang=en",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=TATN",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Official reporting page; FY source acquisition still needs pipeline work.",
+      "source_page_status": "stale_or_needs_update",
+      "preferred_acquisition_method": "update_source_page_then_direct_download"
+    },
+    {
+      "rank": 8,
+      "ticker": "SIBN",
+      "company_name": "Gazprom Neft",
+      "sector": "oil_and_gas",
+      "issuer_website": "https://www.gazprom-neft.com",
+      "investor_relations_url": "https://ir.gazprom-neft.com",
+      "reports_url": "https://ir.gazprom-neft.com/reports-and-results/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=SIBN",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Official IR reports and results page.",
+      "source_page_status": "timeout_or_slow_source",
+      "preferred_acquisition_method": "issuer_specific_adapter_or_manual_upload"
+    },
+    {
+      "rank": 9,
+      "ticker": "SNGS",
+      "company_name": "Surgutneftegas",
+      "sector": "oil_and_gas",
+      "issuer_website": "https://www.surgutneftegas.ru",
+      "investor_relations_url": "https://www.surgutneftegas.ru/investors/",
+      "reports_url": "https://www.surgutneftegas.ru/investors/reports/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=SNGS",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Issuer reports page should be manually checked for period coverage.",
+      "source_page_status": "tls_or_certificate_blocked",
+      "preferred_acquisition_method": "disclosure_provider_or_tls_diagnostics"
+    },
+    {
+      "rank": 10,
+      "ticker": "PLZL",
+      "company_name": "Polyus",
+      "sector": "metals_and_mining",
+      "issuer_website": "https://polyus.com",
+      "investor_relations_url": "https://polyus.com/en/investors/",
+      "reports_url": "https://polyus.com/en/investors/reports-and-results/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=PLZL",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Official investor reports page.",
+      "source_page_status": "stale_or_needs_update",
+      "preferred_acquisition_method": "update_source_page_then_direct_download"
+    },
+    {
+      "rank": 11,
+      "ticker": "YDEX",
+      "company_name": "Yandex",
+      "sector": "technology",
+      "issuer_website": "https://yandex.com",
+      "investor_relations_url": "https://ir.yandex",
+      "reports_url": "https://ir.yandex",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=YDEX",
+      "reporting_standards": [
+        "IFRS"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "IR site is official; report archive structure requires manual review after redomiciliation.",
+      "source_page_status": "reachable_no_static_direct_links",
+      "preferred_acquisition_method": "issuer_specific_js_or_embedded_json_adapter"
+    },
+    {
+      "rank": 12,
+      "ticker": "MGNT",
+      "company_name": "Magnit",
+      "sector": "retail",
+      "issuer_website": "https://www.magnit.com",
+      "investor_relations_url": "https://www.magnit.com/en/shareholders-and-investors/",
+      "reports_url": "https://www.magnit.com/en/shareholders-and-investors/results-and-reports/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=MGNT",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Official results and reports page.",
+      "source_page_status": "reachable_no_static_direct_links",
+      "preferred_acquisition_method": "issuer_specific_js_or_embedded_json_adapter"
+    },
+    {
+      "rank": 13,
+      "ticker": "FIVE",
+      "company_name": "X5 Group",
+      "sector": "retail",
+      "issuer_website": "https://www.x5.ru",
+      "investor_relations_url": "https://www.x5.ru/en/investors/",
+      "reports_url": "https://www.x5.ru/en/investors/reporting/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=FIVE",
+      "reporting_standards": [
+        "IFRS"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Official investor reporting page; issuer structure should be checked.",
+      "source_page_status": "stale_or_needs_update",
+      "preferred_acquisition_method": "update_source_page_then_direct_download"
+    },
+    {
+      "rank": 14,
+      "ticker": "MOEX",
+      "company_name": "Moscow Exchange",
+      "sector": "financials",
+      "issuer_website": "https://www.moex.com",
+      "investor_relations_url": "https://www.moex.com/s1167",
+      "reports_url": "https://www.moex.com/s1167",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=MOEX",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "MOEX issuer IR reports page; MOEX ISS itself is market/identity only.",
+      "source_page_status": "reachable_no_static_direct_links",
+      "preferred_acquisition_method": "issuer_specific_js_or_embedded_json_adapter"
+    },
+    {
+      "rank": 15,
+      "ticker": "VTBR",
+      "company_name": "VTB Bank",
+      "sector": "financials",
+      "issuer_website": "https://www.vtb.com",
+      "investor_relations_url": "https://www.vtb.com/ir/",
+      "reports_url": "https://www.vtb.com/ir/financial-results/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=VTBR",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Official financial results page.",
+      "source_page_status": "reachable_no_static_direct_links",
+      "preferred_acquisition_method": "issuer_specific_js_or_embedded_json_adapter"
+    },
+    {
+      "rank": 16,
+      "ticker": "ALRS",
+      "company_name": "ALROSA",
+      "sector": "metals_and_mining",
+      "issuer_website": "https://www.alrosa.ru",
+      "investor_relations_url": "https://www.alrosa.ru/en/investors/",
+      "reports_url": "https://www.alrosa.ru/en/investors/results-and-presentations/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=ALRS",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Official investor results page.",
+      "source_page_status": "stale_or_needs_update",
+      "preferred_acquisition_method": "update_source_page_then_direct_download"
+    },
+    {
+      "rank": 17,
+      "ticker": "NLMK",
+      "company_name": "NLMK",
+      "sector": "metals_and_mining",
+      "issuer_website": "https://nlmk.com",
+      "investor_relations_url": "https://nlmk.com/en/ir/",
+      "reports_url": "https://nlmk.com/en/ir/results-and-reports/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=NLMK",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Official results and reports page.",
+      "source_page_status": "stale_or_needs_update",
+      "preferred_acquisition_method": "update_source_page_then_direct_download"
+    },
+    {
+      "rank": 18,
+      "ticker": "CHMF",
+      "company_name": "Severstal",
+      "sector": "metals_and_mining",
+      "issuer_website": "https://severstal.com",
+      "investor_relations_url": "https://severstal.com/eng/ir/",
+      "reports_url": "https://severstal.com/eng/ir/results-reports/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=CHMF",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Official results/reports page.",
+      "source_page_status": "tls_or_certificate_blocked",
+      "preferred_acquisition_method": "disclosure_provider_or_tls_diagnostics"
+    },
+    {
+      "rank": 19,
+      "ticker": "MAGN",
+      "company_name": "MMK",
+      "sector": "metals_and_mining",
+      "issuer_website": "https://mmk.ru",
+      "investor_relations_url": "https://mmk.ru/en/investor/",
+      "reports_url": "https://mmk.ru/en/investor/results-and-reports/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=MAGN",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Official investor results page.",
+      "source_page_status": "stale_or_needs_update",
+      "preferred_acquisition_method": "update_source_page_then_direct_download"
+    },
+    {
+      "rank": 20,
+      "ticker": "RUAL",
+      "company_name": "UC RUSAL",
+      "sector": "metals_and_mining",
+      "issuer_website": "https://rusal.ru",
+      "investor_relations_url": "https://rusal.ru/en/investors/",
+      "reports_url": "https://rusal.ru/en/investors/reports/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=RUAL",
+      "reporting_standards": [
+        "IFRS"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Official investor reports page.",
+      "source_page_status": "stale_or_needs_update",
+      "preferred_acquisition_method": "update_source_page_then_direct_download"
+    },
+    {
+      "rank": 21,
+      "ticker": "ENPG",
+      "company_name": "En+ Group",
+      "sector": "utilities_and_metals",
+      "issuer_website": "https://www.enplusgroup.com",
+      "investor_relations_url": "https://www.enplusgroup.com/en/investors/",
+      "reports_url": "https://www.enplusgroup.com/en/investors/results-reports-and-presentations/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=ENPG",
+      "reporting_standards": [
+        "IFRS"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Official investor results/reports page.",
+      "source_page_status": "stale_or_needs_update",
+      "preferred_acquisition_method": "update_source_page_then_direct_download"
+    },
+    {
+      "rank": 22,
+      "ticker": "PHOR",
+      "company_name": "PhosAgro",
+      "sector": "chemicals",
+      "issuer_website": "https://www.phosagro.com",
+      "investor_relations_url": "https://www.phosagro.com/investors/",
+      "reports_url": "https://www.phosagro.com/investors/reports/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=PHOR",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Official investor reports page.",
+      "source_page_status": "reachable_no_static_direct_links",
+      "preferred_acquisition_method": "issuer_specific_js_or_embedded_json_adapter"
+    },
+    {
+      "rank": 23,
+      "ticker": "ACRN",
+      "company_name": "Acron",
+      "sector": "chemicals",
+      "issuer_website": "https://www.acron.ru",
+      "investor_relations_url": "https://www.acron.ru/en/investors/",
+      "reports_url": "https://www.acron.ru/en/investors/reports/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=ACRN",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Official investor reports page.",
+      "source_page_status": "tls_or_certificate_blocked",
+      "preferred_acquisition_method": "disclosure_provider_or_tls_diagnostics"
+    },
+    {
+      "rank": 24,
+      "ticker": "AFLT",
+      "company_name": "Aeroflot",
+      "sector": "transport",
+      "issuer_website": "https://www.aeroflot.ru",
+      "investor_relations_url": "https://ir.aeroflot.ru/en/",
+      "reports_url": "https://ir.aeroflot.ru/en/reporting/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=AFLT",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Official reporting page.",
+      "source_page_status": "reachable_no_static_direct_links",
+      "preferred_acquisition_method": "issuer_specific_js_or_embedded_json_adapter"
+    },
+    {
+      "rank": 25,
+      "ticker": "MTSS",
+      "company_name": "MTS",
+      "sector": "telecom",
+      "issuer_website": "https://moskva.mts.ru",
+      "investor_relations_url": "https://ir.mts.ru",
+      "reports_url": "https://ir.mts.ru/financial-center/financial-results",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=MTSS",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Official financial results page.",
+      "source_page_status": "reachable_no_static_direct_links",
+      "preferred_acquisition_method": "issuer_specific_js_or_embedded_json_adapter"
+    },
+    {
+      "rank": 26,
+      "ticker": "RTKM",
+      "company_name": "Rostelecom",
+      "sector": "telecom",
+      "issuer_website": "https://www.company.rt.ru",
+      "investor_relations_url": "https://www.company.rt.ru/en/ir/",
+      "reports_url": "https://www.company.rt.ru/en/ir/reports/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=RTKM",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Official investor reports page.",
+      "source_page_status": "stale_or_needs_update",
+      "preferred_acquisition_method": "update_source_page_then_direct_download"
+    },
+    {
+      "rank": 27,
+      "ticker": "FEES",
+      "company_name": "FGC Rosseti",
+      "sector": "utilities",
+      "issuer_website": "https://www.fsk-ees.ru",
+      "investor_relations_url": "https://www.fsk-ees.ru/eng/investors/",
+      "reports_url": "https://www.fsk-ees.ru/eng/investors/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=FEES",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Investor page; exact reports subsection requires manual review.",
+      "source_page_status": "reachable_no_static_direct_links",
+      "preferred_acquisition_method": "issuer_specific_js_or_embedded_json_adapter"
+    },
+    {
+      "rank": 28,
+      "ticker": "HYDR",
+      "company_name": "RusHydro",
+      "sector": "utilities",
+      "issuer_website": "https://www.rushydro.ru",
+      "investor_relations_url": "https://www.rushydro.ru/investors/",
+      "reports_url": "https://www.rushydro.ru/investors/reports/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=HYDR",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Official investor reports page.",
+      "source_page_status": "tls_or_certificate_blocked",
+      "preferred_acquisition_method": "disclosure_provider_or_tls_diagnostics"
+    },
+    {
+      "rank": 29,
+      "ticker": "IRAO",
+      "company_name": "Inter RAO",
+      "sector": "utilities",
+      "issuer_website": "https://www.interrao.ru",
+      "investor_relations_url": "https://www.interrao.ru/en/investors/",
+      "reports_url": "https://www.interrao.ru/en/investors/reports/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=IRAO",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Official investor reports page.",
+      "source_page_status": "timeout_or_slow_source",
+      "preferred_acquisition_method": "issuer_specific_adapter_or_manual_upload"
+    },
+    {
+      "rank": 30,
+      "ticker": "TRNFP",
+      "company_name": "Transneft",
+      "sector": "transport",
+      "issuer_website": "https://www.transneft.ru",
+      "investor_relations_url": "https://www.transneft.ru/investors/",
+      "reports_url": "https://www.transneft.ru/investors/information-disclosure/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=TRNFP",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Official investor disclosure page.",
+      "source_page_status": "reachable_no_static_direct_links",
+      "preferred_acquisition_method": "issuer_specific_js_or_embedded_json_adapter"
+    },
+    {
+      "rank": 31,
+      "ticker": "MSNG",
+      "company_name": "Mosenergo",
+      "sector": "utilities",
+      "issuer_website": "https://www.mosenergo.ru",
+      "investor_relations_url": "https://www.mosenergo.ru/en/investors/",
+      "reports_url": "https://www.mosenergo.ru/en/investors/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=MSNG",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Investor page; exact reporting subsection requires manual review.",
+      "source_page_status": "stale_or_needs_update",
+      "preferred_acquisition_method": "update_source_page_then_direct_download"
+    },
+    {
+      "rank": 32,
+      "ticker": "OGKB",
+      "company_name": "OGK-2",
+      "sector": "utilities",
+      "issuer_website": "https://www.ogk2.ru",
+      "investor_relations_url": "https://www.ogk2.ru/en/investors/",
+      "reports_url": "https://www.ogk2.ru/en/investors/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=OGKB",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Investor page; exact reporting subsection requires manual review.",
+      "source_page_status": "stale_or_needs_update",
+      "preferred_acquisition_method": "update_source_page_then_direct_download"
+    },
+    {
+      "rank": 33,
+      "ticker": "UPRO",
+      "company_name": "Unipro",
+      "sector": "utilities",
+      "issuer_website": "https://www.unipro.energy",
+      "investor_relations_url": "https://www.unipro.energy/en/investors/",
+      "reports_url": "https://www.unipro.energy/en/investors/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=UPRO",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Investor page; exact reporting subsection requires manual review.",
+      "source_page_status": "reachable_no_static_direct_links",
+      "preferred_acquisition_method": "issuer_specific_js_or_embedded_json_adapter"
+    },
+    {
+      "rank": 34,
+      "ticker": "PIKK",
+      "company_name": "PIK",
+      "sector": "real_estate",
+      "issuer_website": "https://www.pik.ru",
+      "investor_relations_url": "https://www.pik.ru/investors",
+      "reports_url": "https://www.pik.ru/investors",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=PIKK",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Investor page; report archive requires manual review.",
+      "source_page_status": "access_blocked_or_js_required",
+      "preferred_acquisition_method": "issuer_specific_js_adapter_or_disclosure_provider"
+    },
+    {
+      "rank": 35,
+      "ticker": "SMLT",
+      "company_name": "Samolet Group",
+      "sector": "real_estate",
+      "issuer_website": "https://samoletgroup.ru",
+      "investor_relations_url": "https://samoletgroup.ru/en/investors/",
+      "reports_url": "https://samoletgroup.ru/en/investors/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=SMLT",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Investor page; exact reporting subsection requires manual review.",
+      "source_page_status": "access_blocked_or_js_required",
+      "preferred_acquisition_method": "issuer_specific_js_adapter_or_disclosure_provider"
+    },
+    {
+      "rank": 36,
+      "ticker": "LSRG",
+      "company_name": "LSR Group",
+      "sector": "real_estate",
+      "issuer_website": "https://www.lsrgroup.ru",
+      "investor_relations_url": "https://www.lsrgroup.ru/en/investors-and-shareholders/",
+      "reports_url": "https://www.lsrgroup.ru/en/investors-and-shareholders/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=LSRG",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Investor page; exact reporting subsection requires manual review.",
+      "source_page_status": "stale_or_needs_update",
+      "preferred_acquisition_method": "update_source_page_then_direct_download"
+    },
+    {
+      "rank": 37,
+      "ticker": "AFKS",
+      "company_name": "Sistema",
+      "sector": "holding",
+      "issuer_website": "https://sistema.com",
+      "investor_relations_url": "https://sistema.com/investors-shareholders/",
+      "reports_url": "https://sistema.com/investors-shareholders/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=AFKS",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Investor page; exact reports subsection requires manual review.",
+      "source_page_status": "access_blocked_or_js_required",
+      "preferred_acquisition_method": "issuer_specific_js_adapter_or_disclosure_provider"
+    },
+    {
+      "rank": 38,
+      "ticker": "MVID",
+      "company_name": "M.Video-Eldorado",
+      "sector": "retail",
+      "issuer_website": "https://www.mvideoeldorado.ru",
+      "investor_relations_url": "https://www.mvideoeldorado.ru/en/shareholders-and-investors/",
+      "reports_url": "https://www.mvideoeldorado.ru/en/shareholders-and-investors/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=MVID",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Investor page; exact reporting subsection requires manual review.",
+      "source_page_status": "reachable_no_static_direct_links",
+      "preferred_acquisition_method": "issuer_specific_js_or_embedded_json_adapter"
+    },
+    {
+      "rank": 39,
+      "ticker": "OZON",
+      "company_name": "Ozon",
+      "sector": "retail_technology",
+      "issuer_website": "https://ir.ozon.com",
+      "investor_relations_url": "https://ir.ozon.com",
+      "reports_url": "https://ir.ozon.com",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=OZON",
+      "reporting_standards": [
+        "IFRS"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Official IR site; issuer structure and current report access require review.",
+      "source_page_status": "access_blocked_or_js_required",
+      "preferred_acquisition_method": "issuer_specific_js_adapter_or_disclosure_provider"
+    },
+    {
+      "rank": 40,
+      "ticker": "VKCO",
+      "company_name": "VK",
+      "sector": "technology",
+      "issuer_website": "https://vk.company",
+      "investor_relations_url": "https://vk.company/en/investors/",
+      "reports_url": "https://vk.company/en/investors/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=VKCO",
+      "reporting_standards": [
+        "IFRS"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Official investor page; current report access requires review.",
+      "source_page_status": "reachable_no_static_direct_links",
+      "preferred_acquisition_method": "issuer_specific_js_or_embedded_json_adapter"
+    },
+    {
+      "rank": 41,
+      "ticker": "POSI",
+      "company_name": "Positive Technologies",
+      "sector": "technology",
+      "issuer_website": "https://www.ptsecurity.com",
+      "investor_relations_url": "https://www.ptsecurity.com/ww-en/about/investors/",
+      "reports_url": "https://www.ptsecurity.com/ww-en/about/investors/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=POSI",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Official investor page; exact reporting subsection requires manual review.",
+      "source_page_status": "reachable_no_static_direct_links",
+      "preferred_acquisition_method": "issuer_specific_js_or_embedded_json_adapter"
+    },
+    {
+      "rank": 42,
+      "ticker": "ASTR",
+      "company_name": "Astra Group",
+      "sector": "technology",
+      "issuer_website": "https://astralinux.ru",
+      "investor_relations_url": "https://ir.astralinux.ru",
+      "reports_url": "https://ir.astralinux.ru",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=ASTR",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Official IR site; reporting archive requires manual review.",
+      "source_page_status": "needs_live_check",
+      "preferred_acquisition_method": "official_issuer_direct_or_disclosure_fallback"
+    },
+    {
+      "rank": 43,
+      "ticker": "HEAD",
+      "company_name": "HeadHunter",
+      "sector": "technology",
+      "issuer_website": "https://www.headhunter.ru",
+      "investor_relations_url": "https://ir.headhunter.com",
+      "reports_url": "https://ir.headhunter.com/financials/quarterly-results/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=HEAD",
+      "reporting_standards": [
+        "IFRS"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Official IR financials page.",
+      "source_page_status": "needs_live_check",
+      "preferred_acquisition_method": "official_issuer_direct_or_disclosure_fallback"
+    },
+    {
+      "rank": 44,
+      "ticker": "CBOM",
+      "company_name": "Credit Bank of Moscow",
+      "sector": "financials",
+      "issuer_website": "https://mkb.ru",
+      "investor_relations_url": "https://mkb.ru/en/investor-relations",
+      "reports_url": "https://mkb.ru/en/investor-relations",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=CBOM",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Official investor relations page; exact reports subsection requires manual review.",
+      "source_page_status": "reachable_no_static_direct_links",
+      "preferred_acquisition_method": "issuer_specific_js_or_embedded_json_adapter"
+    },
+    {
+      "rank": 45,
+      "ticker": "BSPB",
+      "company_name": "Bank Saint Petersburg",
+      "sector": "financials",
+      "issuer_website": "https://www.bspb.ru",
+      "investor_relations_url": "https://www.bspb.ru/en/investors/",
+      "reports_url": "https://www.bspb.ru/en/investors/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=BSPB",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Official investor page; exact reports subsection requires manual review.",
+      "source_page_status": "reachable_no_static_direct_links",
+      "preferred_acquisition_method": "issuer_specific_js_or_embedded_json_adapter"
+    },
+    {
+      "rank": 46,
+      "ticker": "RASP",
+      "company_name": "Raspadskaya",
+      "sector": "metals_and_mining",
+      "issuer_website": "https://www.raspadskaya.com",
+      "investor_relations_url": "https://www.raspadskaya.com/investors/",
+      "reports_url": "https://www.raspadskaya.com/investors/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=RASP",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Official investor page; exact reporting subsection requires manual review.",
+      "source_page_status": "reachable_no_static_direct_links",
+      "preferred_acquisition_method": "issuer_specific_js_or_embedded_json_adapter"
+    },
+    {
+      "rank": 47,
+      "ticker": "MTLR",
+      "company_name": "Mechel",
+      "sector": "metals_and_mining",
+      "issuer_website": "https://www.mechel.com",
+      "investor_relations_url": "https://www.mechel.com/shareholders/",
+      "reports_url": "https://www.mechel.com/shareholders/reporting/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=MTLR",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Official shareholder reporting page.",
+      "source_page_status": "tls_or_certificate_blocked",
+      "preferred_acquisition_method": "disclosure_provider_or_tls_diagnostics"
+    },
+    {
+      "rank": 48,
+      "ticker": "KMAZ",
+      "company_name": "KAMAZ",
+      "sector": "industrial",
+      "issuer_website": "https://kamaz.ru",
+      "investor_relations_url": "https://kamaz.ru/en/investors-and-shareholders/",
+      "reports_url": "https://kamaz.ru/en/investors-and-shareholders/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=KMAZ",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Official investor page; exact reporting subsection requires manual review.",
+      "source_page_status": "reachable_no_static_direct_links",
+      "preferred_acquisition_method": "issuer_specific_js_or_embedded_json_adapter"
+    },
+    {
+      "rank": 49,
+      "ticker": "FLOT",
+      "company_name": "Sovcomflot",
+      "sector": "transport",
+      "issuer_website": "https://www.scf-group.ru",
+      "investor_relations_url": "https://www.scf-group.ru/en/investors/",
+      "reports_url": "https://www.scf-group.ru/en/investors/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=FLOT",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Official investor page; exact reports subsection requires manual review.",
+      "source_page_status": "reachable_no_static_direct_links",
+      "preferred_acquisition_method": "issuer_specific_js_or_embedded_json_adapter"
+    },
+    {
+      "rank": 50,
+      "ticker": "NMTP",
+      "company_name": "NCSP Group",
+      "sector": "transport",
+      "issuer_website": "https://www.nmtp.info",
+      "investor_relations_url": "https://www.nmtp.info/en/investors/",
+      "reports_url": "https://www.nmtp.info/en/investors/",
+      "edisclosure_url": "https://disclosure.skrin.ru/issuers?search=NMTP",
+      "reporting_standards": [
+        "both"
+      ],
+      "document_types": [
+        "financial_statements",
+        "annual_report",
+        "issuer_report"
+      ],
+      "suitable_for_analysis": true,
+      "source_trust_level": "official issuer",
+      "last_verified_at": "2026-05-12",
+      "verification_status": "needs_manual_review",
+      "notes": "Official investor page; exact reports subsection requires manual review.",
+      "source_page_status": "timeout_or_slow_source",
+      "preferred_acquisition_method": "issuer_specific_adapter_or_manual_upload"
+    }
+  ]
+}

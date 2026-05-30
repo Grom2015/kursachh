@@ -1,0 +1,18 @@
+peer_groups:
+  LKOH:
+    - ticker: ROSN
+      peer_rank: 1
+      inclusion_reason: "Крупная российская нефтегазовая компания"
+    - ticker: SIBN
+      peer_rank: 2
+      inclusion_reason: "Крупная российская нефтегазовая компания"
+    - ticker: TATN
+      peer_rank: 3
+      inclusion_reason: "Крупная российская нефтегазовая компания"
+    - ticker: NVTK
+      peer_rank: 4
+      inclusion_reason: "Российская нефтегазовая компания, газовый фокус"
+    - ticker: GAZP
+      peer_rank: 5
+      inclusion_reason: "Крупная российская нефтегазовая компания, газовый фокус"
+

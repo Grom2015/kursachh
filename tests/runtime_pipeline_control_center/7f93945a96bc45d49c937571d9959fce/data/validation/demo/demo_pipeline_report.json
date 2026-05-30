@@ -1,0 +1,187 @@
+{
+  "generated_at": "2026-05-07T15:55:21.756739+00:00",
+  "period_from": "2021Q1",
+  "period_to": "2021Q4",
+  "reporting_standard": "IFRS",
+  "tickers": [
+    "LKOH"
+  ],
+  "executive_summary": {
+    "what_the_system_does": "Measures and demonstrates the real financial-report pipeline from company identity to scoped readiness.",
+    "what_worked": [
+      "0 company is READY in the scoped statement pipeline.",
+      "Manual upload fallback can validate and extract statement tables while remaining lower-trust.",
+      "Provider feasibility is cataloged without claiming production access."
+    ],
+    "what_is_blocked": [
+      "1 companies are blocked by source or parser limitations.",
+      "Valuation inputs are unavailable without a separate module."
+    ],
+    "what_is_not_claimed": [
+      "No universal issuer support is claimed.",
+      "No metric improvement is claimed by this report.",
+      "No provider integration is production-ready."
+    ],
+    "manual_fallback_available": false,
+    "production_ready_providers": 0
+  },
+  "company_results": [
+    {
+      "ticker": "LKOH",
+      "company_name": null,
+      "coverage_level": "UNSUPPORTED",
+      "main_status": "BLOCKED",
+      "main_blocker": "coverage_item_missing",
+      "pipeline_stage_statuses": {
+        "identity": "UNKNOWN",
+        "source_discovery": "UNKNOWN",
+        "report_discovery": "UNKNOWN",
+        "document_validation": "UNKNOWN",
+        "table_extraction": "UNKNOWN",
+        "fact_extraction": "UNKNOWN",
+        "statement_readiness": "UNKNOWN",
+        "valuation_readiness": "UNAVAILABLE"
+      },
+      "available_outputs": [
+        "peer_selection"
+      ],
+      "unavailable_outputs": [],
+      "evidence_paths": {
+        "coverage_report": "C:\\Users\\Lenovo\\Documents\\New project\\tests\\runtime_pipeline_control_center\\7f93945a96bc45d49c937571d9959fce\\data\\validation\\coverage\\moex_ifrs_2021_universal_coverage_scan.json",
+        "source_package_report": null,
+        "extraction_report": null,
+        "fact_parse_report": null,
+        "comparison_report": null,
+        "financial_ratios_report": "C:\\Users\\Lenovo\\Documents\\New project\\tests\\runtime_pipeline_control_center\\7f93945a96bc45d49c937571d9959fce\\data\\validation\\LKOH\\2021Q1_2021Q4_financial_ratios.json",
+        "llm_analysis_payload": "C:\\Users\\Lenovo\\Documents\\New project\\tests\\runtime_pipeline_control_center\\7f93945a96bc45d49c937571d9959fce\\data\\validation\\LKOH\\2021Q1_2021Q4_llm_analysis_payload.json",
+        "market_technical_report": "C:\\Users\\Lenovo\\Documents\\New project\\tests\\runtime_pipeline_control_center\\7f93945a96bc45d49c937571d9959fce\\data\\validation\\LKOH\\2021Q1_2021Q4_market_technical_report.json",
+        "peer_analysis_report": "C:\\Users\\Lenovo\\Documents\\New project\\tests\\runtime_pipeline_control_center\\7f93945a96bc45d49c937571d9959fce\\data\\validation\\PEERS\\LKOH_2021Q1_2021Q4_peer_analysis_report.json",
+        "manual_ingestion_report": null,
+        "real_validation_report": null
+      },
+      "key_numbers": {
+        "documents_count": 0,
+        "tables_count": 0,
+        "balance_sheet_count": 0,
+        "income_statement_count": 0,
+        "cash_flow_count": 0,
+        "fact_candidates_count": 0,
+        "matched_existing_facts_count": 0,
+        "conflicts_count": 0,
+        "financial_ratios_calculated_count": 0,
+        "financial_ratios_missing_count": 36,
+        "financial_ratios_unsupported_count": 4,
+        "financial_ratios_blocked_count": 0,
+        "market_candles_count": 0,
+        "market_technical_valid_count": 0,
+        "peer_count": 5,
+        "peer_metrics_compared_count": 0
+      },
+      "trust_notes": [
+        "Existing issuer-specific real facts remain primary where available."
+      ],
+      "recommended_action": "Package current official pipeline, comparison evidence, and scoped readiness for demo/API presentation.",
+      "blockers": [],
+      "financial_ratios_summary": {
+        "available": true,
+        "summary": {
+          "calculated_count": 0,
+          "missing_count": 36,
+          "unsupported_count": 4,
+          "blocked_count": 0
+        },
+        "sample_calculated_metrics": []
+      },
+      "llm_payload_available": true,
+      "llm_payload_path": "C:\\Users\\Lenovo\\Documents\\New project\\tests\\runtime_pipeline_control_center\\7f93945a96bc45d49c937571d9959fce\\data\\validation\\LKOH\\2021Q1_2021Q4_llm_analysis_payload.json",
+      "market_technical_summary": {
+        "available": false
+      },
+      "peer_analysis_summary": {
+        "available": true,
+        "peer_selection_status": "ready",
+        "comparison_data_status": "partial",
+        "comparison_readiness": "NOT_READY",
+        "valuation_status": "unavailable",
+        "peer_count": 5,
+        "metrics_compared_count": 0
+      }
+    }
+  ],
+  "cross_company_summary": {
+    "companies_count": 1,
+    "main_status_counts": {
+      "BLOCKED": 1
+    },
+    "coverage_level_counts": {
+      "UNSUPPORTED": 1
+    }
+  },
+  "blockers_summary": [],
+  "manual_fallback_summary": {
+    "included": true,
+    "available": false,
+    "documents": [],
+    "summary": "Manual upload works as lower-trust fallback and does not make source package READY."
+  },
+  "provider_strategy_summary": {
+    "included": true,
+    "providers_checked": 0,
+    "production_ready_providers": 0,
+    "ifrs_report_metadata_candidate": "E-Disclosure / Interfax",
+    "ras_financials_candidate": "FNS GIR BO",
+    "market_identity_candidate": "MOEX ISS",
+    "valuation_candidate": "Cbonds / RU Data",
+    "edisclosure_access_status": "requires_auth",
+    "notes": [
+      "No provider is production-ready until access, limits, archive depth, quality, and reuse rights are verified.",
+      "MOEX ISS is identity/market data only, not a financial statements source.",
+      "FNS GIR BO is RAS-focused, not IFRS consolidated coverage.",
+      "Commercial valuation providers require license review."
+    ],
+    "provider_roles": {}
+  },
+  "architecture_summary": {
+    "pipeline": [
+      "Company identity",
+      "Source discovery",
+      "Financial report discovery",
+      "Document validation",
+      "Statement table extraction",
+      "DataFrame artifacts",
+      "Fact candidates",
+      "Scoped readiness"
+    ],
+    "mode": "report_only_existing_artifacts",
+    "does_not_run": [
+      "downloads",
+      "metric_engine",
+      "valuation",
+      "peer_comparison",
+      "llm",
+      "fact_persistence"
+    ]
+  },
+  "limitations": [
+    "This demo report is a reporting layer, not a new analysis engine.",
+    "The system does not claim universal support across all MOEX issuers.",
+    "Valuation metrics remain unavailable without a separate valuation input module.",
+    "Manual upload is lower-trust fallback and does not make source package READY.",
+    "No OCR/table-image extraction is implemented for image-only primary statements.",
+    "No production external provider API access is verified yet."
+  ],
+  "next_steps": [
+    {
+      "priority": 3,
+      "action": "Enrich issuer identifiers for provider POC."
+    },
+    {
+      "priority": 4,
+      "action": "Build valuation input module separately from parser work."
+    }
+  ],
+  "warnings": [
+    "Report missing: C:\\Users\\Lenovo\\Documents\\New project\\tests\\runtime_pipeline_control_center\\7f93945a96bc45d49c937571d9959fce\\data\\validation\\coverage\\moex_ifrs_2021_universal_coverage_scan.json",
+    "Coverage item missing for LKOH."
+  ]
+}

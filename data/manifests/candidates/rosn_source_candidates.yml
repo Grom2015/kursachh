@@ -1,0 +1,33 @@
+company: ROSN
+company_name: "ПАО НК Роснефть"
+sector: oil_and_gas
+official_source_pages:
+  - https://www.rosneft.com/press/releases/
+coverage:
+  2021Q1:
+    source_role: press_release
+    trusted_domain: true
+    expected_file_type: html
+    confidence: medium
+    notes: "Official Rosneft releases disclose financial results, but full statement package was not verified."
+  2021Q2:
+    source_role: press_release
+    trusted_domain: true
+    expected_file_type: html
+    confidence: medium
+    notes: "Official Rosneft releases disclose financial results, but full statement package was not verified."
+  2021Q3:
+    source_role: press_release
+    trusted_domain: true
+    expected_file_type: html
+    confidence: medium
+    notes: "Official Rosneft releases disclose 3Q/9M 2021 financial results; full statement package was not verified."
+  2021Q4:
+    source_role: press_release
+    trusted_domain: true
+    expected_file_type: html
+    confidence: medium
+    notes: "Official FY results release may exist, but full FY statements source was not verified."
+blockers:
+  - Full FY/12M IFRS statements source not verified
+  - Only press release coverage in draft scan

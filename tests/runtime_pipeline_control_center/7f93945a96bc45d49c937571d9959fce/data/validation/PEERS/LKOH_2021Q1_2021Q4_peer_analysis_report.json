@@ -1,0 +1,650 @@
+{
+  "generated_at": "2026-05-07T15:55:21.740104+00:00",
+  "target_ticker": "LKOH",
+  "period_from": "2021Q1",
+  "period_to": "2021Q4",
+  "reporting_standard": "IFRS",
+  "sector": "oil_and_gas",
+  "subsector": "integrated_oil_and_gas",
+  "sector_source": "registry",
+  "peer_selection_status": "ready",
+  "comparison_data_status": "partial",
+  "valuation_status": "unavailable",
+  "comparison_readiness": "NOT_READY",
+  "selected_peers": [
+    {
+      "ticker": "ROSN",
+      "company_name": "ПАО \"НК Роснефть\"",
+      "sector": "oil_and_gas",
+      "subsector": "integrated_oil_and_gas"
+    },
+    {
+      "ticker": "SIBN",
+      "company_name": "ПАО \"Газпром нефть\"",
+      "sector": "oil_and_gas",
+      "subsector": "integrated_oil_and_gas"
+    },
+    {
+      "ticker": "TATN",
+      "company_name": "ПАО \"Татнефть\"",
+      "sector": "oil_and_gas",
+      "subsector": "integrated_oil_and_gas"
+    },
+    {
+      "ticker": "NVTK",
+      "company_name": "ПАО \"НОВАТЭК\"",
+      "sector": "oil_and_gas",
+      "subsector": "gas"
+    },
+    {
+      "ticker": "GAZP",
+      "company_name": "ПАО \"Газпром\"",
+      "sector": "oil_and_gas",
+      "subsector": "gas"
+    }
+  ],
+  "ratio_report_availability": [
+    {
+      "ticker": "LKOH",
+      "role": "target",
+      "ratios_report_path": "C:\\Users\\Lenovo\\Documents\\New project\\tests\\runtime_pipeline_control_center\\7f93945a96bc45d49c937571d9959fce\\data\\validation\\LKOH\\2021Q1_2021Q4_financial_ratios.json",
+      "exists": true,
+      "calculated_count": 0,
+      "missing_count": 36,
+      "unsupported_count": 4,
+      "blocked_count": 0,
+      "status": "available_but_low_coverage",
+      "recommended_command": null
+    },
+    {
+      "ticker": "ROSN",
+      "role": "peer",
+      "ratios_report_path": "C:\\Users\\Lenovo\\Documents\\New project\\tests\\runtime_pipeline_control_center\\7f93945a96bc45d49c937571d9959fce\\data\\validation\\ROSN\\2021Q1_2021Q4_financial_ratios.json",
+      "exists": false,
+      "calculated_count": 0,
+      "missing_count": 0,
+      "unsupported_count": 0,
+      "blocked_count": 0,
+      "status": "missing_report",
+      "recommended_command": "python -m app.tools.calculate_financial_ratios ROSN 2021Q1 2021Q4 --reporting-standard IFRS"
+    },
+    {
+      "ticker": "SIBN",
+      "role": "peer",
+      "ratios_report_path": "C:\\Users\\Lenovo\\Documents\\New project\\tests\\runtime_pipeline_control_center\\7f93945a96bc45d49c937571d9959fce\\data\\validation\\SIBN\\2021Q1_2021Q4_financial_ratios.json",
+      "exists": false,
+      "calculated_count": 0,
+      "missing_count": 0,
+      "unsupported_count": 0,
+      "blocked_count": 0,
+      "status": "missing_report",
+      "recommended_command": "python -m app.tools.calculate_financial_ratios SIBN 2021Q1 2021Q4 --reporting-standard IFRS"
+    },
+    {
+      "ticker": "TATN",
+      "role": "peer",
+      "ratios_report_path": "C:\\Users\\Lenovo\\Documents\\New project\\tests\\runtime_pipeline_control_center\\7f93945a96bc45d49c937571d9959fce\\data\\validation\\TATN\\2021Q1_2021Q4_financial_ratios.json",
+      "exists": false,
+      "calculated_count": 0,
+      "missing_count": 0,
+      "unsupported_count": 0,
+      "blocked_count": 0,
+      "status": "missing_report",
+      "recommended_command": "python -m app.tools.calculate_financial_ratios TATN 2021Q1 2021Q4 --reporting-standard IFRS"
+    },
+    {
+      "ticker": "NVTK",
+      "role": "peer",
+      "ratios_report_path": "C:\\Users\\Lenovo\\Documents\\New project\\tests\\runtime_pipeline_control_center\\7f93945a96bc45d49c937571d9959fce\\data\\validation\\NVTK\\2021Q1_2021Q4_financial_ratios.json",
+      "exists": false,
+      "calculated_count": 0,
+      "missing_count": 0,
+      "unsupported_count": 0,
+      "blocked_count": 0,
+      "status": "missing_report",
+      "recommended_command": "python -m app.tools.calculate_financial_ratios NVTK 2021Q1 2021Q4 --reporting-standard IFRS"
+    },
+    {
+      "ticker": "GAZP",
+      "role": "peer",
+      "ratios_report_path": "C:\\Users\\Lenovo\\Documents\\New project\\tests\\runtime_pipeline_control_center\\7f93945a96bc45d49c937571d9959fce\\data\\validation\\GAZP\\2021Q1_2021Q4_financial_ratios.json",
+      "exists": false,
+      "calculated_count": 0,
+      "missing_count": 0,
+      "unsupported_count": 0,
+      "blocked_count": 0,
+      "status": "missing_report",
+      "recommended_command": "python -m app.tools.calculate_financial_ratios GAZP 2021Q1 2021Q4 --reporting-standard IFRS"
+    }
+  ],
+  "comparison_table": [
+    {
+      "ticker": "LKOH",
+      "company_name": "ПАО \"ЛУКОЙЛ\"",
+      "role": "target",
+      "sector": "oil_and_gas",
+      "subsector": "integrated_oil_and_gas",
+      "row_status": "low_coverage",
+      "metrics": {
+        "roe": {
+          "value": null,
+          "display_value": null,
+          "status": "missing",
+          "reason": "missing_inputs",
+          "period": "2021Q4"
+        },
+        "roa": {
+          "value": null,
+          "display_value": null,
+          "status": "missing",
+          "reason": "missing_inputs",
+          "period": "2021Q4"
+        },
+        "operating_margin": {
+          "value": null,
+          "display_value": null,
+          "status": "missing",
+          "reason": "missing_inputs",
+          "period": "2021Q4"
+        },
+        "net_margin": {
+          "value": null,
+          "display_value": null,
+          "status": "missing",
+          "reason": "missing_inputs",
+          "period": "2021Q4"
+        },
+        "current_ratio": {
+          "value": null,
+          "display_value": null,
+          "status": "missing",
+          "reason": "missing_inputs",
+          "period": "2021Q4"
+        },
+        "fcf_margin": {
+          "value": null,
+          "display_value": null,
+          "status": "missing",
+          "reason": "missing_inputs",
+          "period": "2021Q4"
+        },
+        "debt_to_equity": {
+          "value": null,
+          "display_value": null,
+          "status": "missing",
+          "reason": "missing_inputs",
+          "period": "2021Q4"
+        },
+        "revenue_growth": {
+          "value": null,
+          "display_value": null,
+          "status": "missing",
+          "reason": "missing_inputs",
+          "period": "2021Q4"
+        },
+        "pe_ratio": {
+          "value": null,
+          "display_value": null,
+          "status": "unavailable",
+          "reason": "market_cap_or_price_inputs_missing",
+          "period": "2021Q4"
+        },
+        "ev_to_ebitda": {
+          "value": null,
+          "display_value": null,
+          "status": "unavailable",
+          "reason": "enterprise_value_or_explicit_ebitda_missing",
+          "period": "2021Q4"
+        }
+      },
+      "blockers": [
+        "low_ratio_coverage"
+      ]
+    },
+    {
+      "ticker": "ROSN",
+      "company_name": "ПАО \"НК Роснефть\"",
+      "role": "peer",
+      "sector": "oil_and_gas",
+      "subsector": "integrated_oil_and_gas",
+      "row_status": "metrics_unavailable",
+      "metrics": {
+        "roe": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "roa": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "operating_margin": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "net_margin": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "current_ratio": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "fcf_margin": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "debt_to_equity": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "revenue_growth": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "pe_ratio": {
+          "value": null,
+          "display_value": null,
+          "status": "unavailable",
+          "reason": "market_cap_or_price_inputs_missing",
+          "period": "2021Q4"
+        },
+        "ev_to_ebitda": {
+          "value": null,
+          "display_value": null,
+          "status": "unavailable",
+          "reason": "enterprise_value_or_explicit_ebitda_missing",
+          "period": "2021Q4"
+        }
+      },
+      "blockers": [
+        "peer_ratios_report_missing"
+      ]
+    },
+    {
+      "ticker": "SIBN",
+      "company_name": "ПАО \"Газпром нефть\"",
+      "role": "peer",
+      "sector": "oil_and_gas",
+      "subsector": "integrated_oil_and_gas",
+      "row_status": "metrics_unavailable",
+      "metrics": {
+        "roe": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "roa": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "operating_margin": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "net_margin": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "current_ratio": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "fcf_margin": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "debt_to_equity": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "revenue_growth": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "pe_ratio": {
+          "value": null,
+          "display_value": null,
+          "status": "unavailable",
+          "reason": "market_cap_or_price_inputs_missing",
+          "period": "2021Q4"
+        },
+        "ev_to_ebitda": {
+          "value": null,
+          "display_value": null,
+          "status": "unavailable",
+          "reason": "enterprise_value_or_explicit_ebitda_missing",
+          "period": "2021Q4"
+        }
+      },
+      "blockers": [
+        "peer_ratios_report_missing"
+      ]
+    },
+    {
+      "ticker": "TATN",
+      "company_name": "ПАО \"Татнефть\"",
+      "role": "peer",
+      "sector": "oil_and_gas",
+      "subsector": "integrated_oil_and_gas",
+      "row_status": "metrics_unavailable",
+      "metrics": {
+        "roe": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "roa": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "operating_margin": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "net_margin": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "current_ratio": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "fcf_margin": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "debt_to_equity": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "revenue_growth": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "pe_ratio": {
+          "value": null,
+          "display_value": null,
+          "status": "unavailable",
+          "reason": "market_cap_or_price_inputs_missing",
+          "period": "2021Q4"
+        },
+        "ev_to_ebitda": {
+          "value": null,
+          "display_value": null,
+          "status": "unavailable",
+          "reason": "enterprise_value_or_explicit_ebitda_missing",
+          "period": "2021Q4"
+        }
+      },
+      "blockers": [
+        "peer_ratios_report_missing"
+      ]
+    },
+    {
+      "ticker": "NVTK",
+      "company_name": "ПАО \"НОВАТЭК\"",
+      "role": "peer",
+      "sector": "oil_and_gas",
+      "subsector": "gas",
+      "row_status": "metrics_unavailable",
+      "metrics": {
+        "roe": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "roa": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "operating_margin": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "net_margin": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "current_ratio": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "fcf_margin": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "debt_to_equity": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "revenue_growth": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "pe_ratio": {
+          "value": null,
+          "display_value": null,
+          "status": "unavailable",
+          "reason": "market_cap_or_price_inputs_missing",
+          "period": "2021Q4"
+        },
+        "ev_to_ebitda": {
+          "value": null,
+          "display_value": null,
+          "status": "unavailable",
+          "reason": "enterprise_value_or_explicit_ebitda_missing",
+          "period": "2021Q4"
+        }
+      },
+      "blockers": [
+        "peer_ratios_report_missing"
+      ]
+    },
+    {
+      "ticker": "GAZP",
+      "company_name": "ПАО \"Газпром\"",
+      "role": "peer",
+      "sector": "oil_and_gas",
+      "subsector": "gas",
+      "row_status": "metrics_unavailable",
+      "metrics": {
+        "roe": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "roa": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "operating_margin": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "net_margin": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "current_ratio": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "fcf_margin": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "debt_to_equity": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "revenue_growth": {
+          "value": null,
+          "display_value": null,
+          "status": "report_missing",
+          "reason": "ratios_report_missing",
+          "period": "2021Q4"
+        },
+        "pe_ratio": {
+          "value": null,
+          "display_value": null,
+          "status": "unavailable",
+          "reason": "market_cap_or_price_inputs_missing",
+          "period": "2021Q4"
+        },
+        "ev_to_ebitda": {
+          "value": null,
+          "display_value": null,
+          "status": "unavailable",
+          "reason": "enterprise_value_or_explicit_ebitda_missing",
+          "period": "2021Q4"
+        }
+      },
+      "blockers": [
+        "peer_ratios_report_missing"
+      ]
+    }
+  ],
+  "blockers": [
+    "comparison_table_metrics_unavailable",
+    "peer_ratios_report_missing",
+    "target_ratios_low_coverage",
+    "valuation_inputs_unavailable"
+  ],
+  "recommended_next_actions": [
+    {
+      "action": "calculate_missing_peer_ratios",
+      "tickers": [
+        "ROSN",
+        "SIBN",
+        "TATN",
+        "NVTK",
+        "GAZP"
+      ],
+      "reason": "peer ratios reports are missing"
+    },
+    {
+      "action": "build_valuation_input_module",
+      "reason": "P/E and EV/EBITDA unavailable without market cap, EV and explicit EBITDA"
+    }
+  ],
+  "warnings": [],
+  "summary": {
+    "peer_count": 5,
+    "available_peer_count": 0,
+    "metrics_compared_count": 0,
+    "valuation_metrics_available": false
+  }
+}

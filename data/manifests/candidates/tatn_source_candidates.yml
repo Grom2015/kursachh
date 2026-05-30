@@ -1,0 +1,32 @@
+company: TATN
+company_name: "ПАО Татнефть"
+sector: oil_and_gas
+official_source_pages:
+  - https://old.tatneft.ru/for-shareholders/information-disclosure/consolidated-financial-statements?lang=en
+coverage:
+  2021Q1:
+    source_role: financial_statements
+    trusted_domain: true
+    expected_file_type: pdf
+    confidence: high
+    notes: "Official TATNEFT IFRS interim condensed statements; 3M/YTD."
+  2021Q2:
+    source_role: financial_statements
+    trusted_domain: true
+    expected_file_type: pdf
+    confidence: high
+    notes: "Official TATNEFT IFRS interim condensed statements; 6M/YTD."
+  2021Q3:
+    source_role: financial_statements
+    trusted_domain: true
+    expected_file_type: pdf
+    confidence: high
+    notes: "Official TATNEFT IFRS interim condensed statements; 9M/YTD."
+  2021Q4:
+    source_role: missing
+    trusted_domain: false
+    expected_file_type: unknown
+    confidence: none
+    notes: "FY/12M 2021 official IFRS source not verified."
+blockers:
+  - FY/12M source not verified

@@ -1,0 +1,308 @@
+{
+  "market": "MOEX",
+  "reporting_standard": "IFRS",
+  "period_from": "2021Q1",
+  "period_to": "2021Q4",
+  "generated_at": "2026-05-30T15:53:25.167965+00:00",
+  "scan_mode": "existing_artifacts_only",
+  "actions_executed": [],
+  "artifacts_created": false,
+  "companies_scanned": 3,
+  "summary": {
+    "companies_scanned": 3,
+    "identity_resolved_count": 3,
+    "source_ready_count": 3,
+    "report_ready_count": 0,
+    "cached_documents_ready_count": 0,
+    "statement_tables_ready_count": 0,
+    "facts_ready_count": 0,
+    "statement_scope_auto_ready_count": 0,
+    "statement_scope_auto_partial_count": 0,
+    "market_technical_ready_count": 0,
+    "valuation_unavailable_count": 3,
+    "unsupported_count": 0,
+    "coverage_level_counts": {
+      "SOURCE_BLOCKED": 3
+    }
+  },
+  "company_items": [
+    {
+      "ticker": "LKOH",
+      "company_name": "ПАО \"ЛУКОЙЛ\"",
+      "sector": "oil_and_gas",
+      "coverage_level": "SOURCE_BLOCKED",
+      "main_blocker": "missing_fy_report",
+      "identity_status": "RESOLVED",
+      "source_discovery_status": "READY",
+      "report_discovery_status": "NOT_FOUND",
+      "source_package_status": "UNKNOWN",
+      "documents_status": "NOT_CACHED",
+      "table_extraction_status": "EXTRACTION_FAILED",
+      "fact_extraction_status": "NOT_RUN",
+      "metric_scope_statuses": {
+        "statement_based_financials": "UNSUPPORTED",
+        "market_technical_analysis": "UNSUPPORTED",
+        "valuation_metrics": "UNAVAILABLE",
+        "peer_comparison": "UNSUPPORTED",
+        "raw_scope_statuses": {}
+      },
+      "blockers": [
+        "missing_fy_report",
+        "missing_period_report",
+        "no_cached_documents",
+        "no_primary_statement_tables",
+        "unavailable_valuation_inputs"
+      ],
+      "supported_outputs": [],
+      "unsupported_outputs": [
+        "financial_facts",
+        "financial_metrics",
+        "llm_payload",
+        "market_analysis",
+        "peer_comparison",
+        "valuation_metrics"
+      ],
+      "recommended_next_action": "Improve official FY/12M report discovery or source acquisition.",
+      "reports_paths": {
+        "source_package": "tests\\runtime_universal_coverage_scanner\\data\\validation\\LKOH\\2021Q1_2021Q4_source_package_report.json",
+        "statement_table_extraction": "tests\\runtime_universal_coverage_scanner\\data\\validation\\LKOH\\2021Q1_2021Q4_statement_table_extraction.json",
+        "dataframe_fact_parse": "tests\\runtime_universal_coverage_scanner\\data\\validation\\LKOH\\2021Q1_2021Q4_dataframe_statement_fact_parse.json",
+        "real_validation": "tests\\runtime_universal_coverage_scanner\\data\\validation\\LKOH\\2021Q1_2021Q4_real_validation_report.json"
+      },
+      "counts": {
+        "cached_documents": 0,
+        "manual_upload_documents": 0,
+        "statement_tables": 0,
+        "canonical_fact_candidates": 0
+      },
+      "manual_upload": {
+        "available": false,
+        "reasons": [],
+        "source_trust_buckets": [],
+        "official_source_verified": false,
+        "source_package_ready_contribution": false
+      }
+    },
+    {
+      "ticker": "TATN",
+      "company_name": "ПАО \"Татнефть\"",
+      "sector": "oil_and_gas",
+      "coverage_level": "SOURCE_BLOCKED",
+      "main_blocker": "missing_fy_report",
+      "identity_status": "RESOLVED",
+      "source_discovery_status": "READY",
+      "report_discovery_status": "NOT_FOUND",
+      "source_package_status": "UNKNOWN",
+      "documents_status": "NOT_CACHED",
+      "table_extraction_status": "EXTRACTION_FAILED",
+      "fact_extraction_status": "NOT_RUN",
+      "metric_scope_statuses": {
+        "statement_based_financials": "UNSUPPORTED",
+        "market_technical_analysis": "UNSUPPORTED",
+        "valuation_metrics": "UNAVAILABLE",
+        "peer_comparison": "UNSUPPORTED",
+        "raw_scope_statuses": {}
+      },
+      "blockers": [
+        "missing_fy_report",
+        "missing_period_report",
+        "no_cached_documents",
+        "no_primary_statement_tables",
+        "unavailable_valuation_inputs"
+      ],
+      "supported_outputs": [],
+      "unsupported_outputs": [
+        "financial_facts",
+        "financial_metrics",
+        "llm_payload",
+        "market_analysis",
+        "peer_comparison",
+        "valuation_metrics"
+      ],
+      "recommended_next_action": "Improve official FY/12M report discovery or source acquisition.",
+      "reports_paths": {
+        "source_package": "tests\\runtime_universal_coverage_scanner\\data\\validation\\TATN\\2021Q1_2021Q4_source_package_report.json",
+        "statement_table_extraction": "tests\\runtime_universal_coverage_scanner\\data\\validation\\TATN\\2021Q1_2021Q4_statement_table_extraction.json",
+        "dataframe_fact_parse": "tests\\runtime_universal_coverage_scanner\\data\\validation\\TATN\\2021Q1_2021Q4_dataframe_statement_fact_parse.json",
+        "real_validation": "tests\\runtime_universal_coverage_scanner\\data\\validation\\TATN\\2021Q1_2021Q4_real_validation_report.json"
+      },
+      "counts": {
+        "cached_documents": 0,
+        "manual_upload_documents": 0,
+        "statement_tables": 0,
+        "canonical_fact_candidates": 0
+      },
+      "manual_upload": {
+        "available": false,
+        "reasons": [],
+        "source_trust_buckets": [],
+        "official_source_verified": false,
+        "source_package_ready_contribution": false
+      }
+    },
+    {
+      "ticker": "GAZP",
+      "company_name": "ПАО \"Газпром\"",
+      "sector": "oil_and_gas",
+      "coverage_level": "SOURCE_BLOCKED",
+      "main_blocker": "missing_fy_report",
+      "identity_status": "RESOLVED",
+      "source_discovery_status": "READY",
+      "report_discovery_status": "NOT_FOUND",
+      "source_package_status": "UNKNOWN",
+      "documents_status": "NOT_CACHED",
+      "table_extraction_status": "EXTRACTION_FAILED",
+      "fact_extraction_status": "NOT_RUN",
+      "metric_scope_statuses": {
+        "statement_based_financials": "UNSUPPORTED",
+        "market_technical_analysis": "UNSUPPORTED",
+        "valuation_metrics": "UNAVAILABLE",
+        "peer_comparison": "UNSUPPORTED",
+        "raw_scope_statuses": {}
+      },
+      "blockers": [
+        "missing_fy_report",
+        "missing_period_report",
+        "no_cached_documents",
+        "no_primary_statement_tables",
+        "unavailable_valuation_inputs"
+      ],
+      "supported_outputs": [],
+      "unsupported_outputs": [
+        "financial_facts",
+        "financial_metrics",
+        "llm_payload",
+        "market_analysis",
+        "peer_comparison",
+        "valuation_metrics"
+      ],
+      "recommended_next_action": "Improve official FY/12M report discovery or source acquisition.",
+      "reports_paths": {
+        "source_package": "tests\\runtime_universal_coverage_scanner\\data\\validation\\GAZP\\2021Q1_2021Q4_source_package_report.json",
+        "statement_table_extraction": "tests\\runtime_universal_coverage_scanner\\data\\validation\\GAZP\\2021Q1_2021Q4_statement_table_extraction.json",
+        "dataframe_fact_parse": "tests\\runtime_universal_coverage_scanner\\data\\validation\\GAZP\\2021Q1_2021Q4_dataframe_statement_fact_parse.json",
+        "real_validation": "tests\\runtime_universal_coverage_scanner\\data\\validation\\GAZP\\2021Q1_2021Q4_real_validation_report.json"
+      },
+      "counts": {
+        "cached_documents": 0,
+        "manual_upload_documents": 0,
+        "statement_tables": 0,
+        "canonical_fact_candidates": 0
+      },
+      "manual_upload": {
+        "available": false,
+        "reasons": [],
+        "source_trust_buckets": [],
+        "official_source_verified": false,
+        "source_package_ready_contribution": false
+      }
+    }
+  ],
+  "blocker_summary": [
+    {
+      "blocker_code": "missing_fy_report",
+      "count": 3,
+      "tickers_sample": [
+        "LKOH",
+        "TATN",
+        "GAZP"
+      ],
+      "recommended_action": "Improve official FY/12M report discovery or source acquisition."
+    },
+    {
+      "blocker_code": "missing_period_report",
+      "count": 3,
+      "tickers_sample": [
+        "LKOH",
+        "TATN",
+        "GAZP"
+      ],
+      "recommended_action": "Improve financial report discovery for missing periods."
+    },
+    {
+      "blocker_code": "no_cached_documents",
+      "count": 3,
+      "tickers_sample": [
+        "LKOH",
+        "TATN",
+        "GAZP"
+      ],
+      "recommended_action": "Run explicit download/validation stage for trusted candidates."
+    },
+    {
+      "blocker_code": "no_primary_statement_tables",
+      "count": 3,
+      "tickers_sample": [
+        "LKOH",
+        "TATN",
+        "GAZP"
+      ],
+      "recommended_action": "Improve statement table extraction for primary statements."
+    },
+    {
+      "blocker_code": "unavailable_valuation_inputs",
+      "count": 3,
+      "tickers_sample": [
+        "LKOH",
+        "TATN",
+        "GAZP"
+      ],
+      "recommended_action": "Build a separate valuation input module; do not treat as parser work."
+    }
+  ],
+  "recommended_next_actions": [
+    {
+      "rank": 1,
+      "blocker_code": "missing_fy_report",
+      "affected_companies": 3,
+      "recommended_action": "Improve official FY/12M report discovery or source acquisition."
+    },
+    {
+      "rank": 2,
+      "blocker_code": "missing_period_report",
+      "affected_companies": 3,
+      "recommended_action": "Improve financial report discovery for missing periods."
+    },
+    {
+      "rank": 3,
+      "blocker_code": "no_cached_documents",
+      "affected_companies": 3,
+      "recommended_action": "Run explicit download/validation stage for trusted candidates."
+    },
+    {
+      "rank": 4,
+      "blocker_code": "no_primary_statement_tables",
+      "affected_companies": 3,
+      "recommended_action": "Improve statement table extraction for primary statements."
+    },
+    {
+      "rank": 5,
+      "blocker_code": "unavailable_valuation_inputs",
+      "affected_companies": 3,
+      "recommended_action": "Build a separate valuation input module; do not treat as parser work."
+    }
+  ],
+  "recommended_next_engineering_action": {
+    "blocker_code": "missing_fy_report",
+    "affected_companies": 3,
+    "tickers_sample": [
+      "LKOH",
+      "TATN",
+      "GAZP"
+    ],
+    "recommended_action": "Improve official FY/12M report discovery or source acquisition.",
+    "rationale": "Selected by blocker frequency, with valuation policy blockers separated from statement pipeline ROI."
+  },
+  "recommended_not_to_prioritize": [
+    {
+      "blocker_code": "unavailable_valuation_inputs",
+      "affected_companies": 3,
+      "reason": "Valuation inputs are a separate module and should not override statement pipeline blockers."
+    }
+  ],
+  "limitations": [
+    "Coverage scanner is report-only and does not guarantee full analysis.",
+    "Default mode reads existing artifacts only and does not create statement facts.",
+    "Valuation and EBITDA policy blockers are reported separately from parser blockers."
+  ]
+}

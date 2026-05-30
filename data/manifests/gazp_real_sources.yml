@@ -1,0 +1,39 @@
+company: GAZP
+source_type: issuer_ir_manifest
+reports:
+  - period: 2021Q1
+    reporting_standard: IFRS
+    document_type: financial_statement
+    source_role: financial_statements
+    title: "Gazprom IFRS interim condensed consolidated financial information, 3M 2021"
+    source_url: "https://www.gazprom.com/f/posts/13/041777/gazprom-ifrs-2021-03-en.pdf"
+    expected_file_type: pdf
+    language: en
+    notes: "Official Gazprom disclosure page source. 3M/YTD interim IFRS document; standalone quarter values may require derivation."
+  - period: 2021Q2
+    reporting_standard: IFRS
+    document_type: financial_statement
+    source_role: financial_statements
+    title: "Gazprom IFRS interim condensed consolidated financial information, 6M 2021"
+    source_url: "https://www.gazprom.com/f/posts/13/041777/gazprom-ifrs-2021-6mnth-en.pdf"
+    expected_file_type: pdf
+    language: en
+    notes: "Official Gazprom disclosure page source. 6M/YTD interim IFRS document; standalone Q2 values may require period differencing."
+  - period: 2021Q3
+    reporting_standard: IFRS
+    document_type: financial_statement
+    source_role: financial_statements
+    title: "Gazprom IFRS interim condensed consolidated financial information, 9M 2021"
+    source_url: "https://www.gazprom.com/f/posts/13/041777/gazprom-ifrs-2021-9mnth-en.pdf"
+    expected_file_type: pdf
+    language: en
+    notes: "Official Gazprom disclosure page source. 9M/YTD interim IFRS document; standalone Q3 values may require period differencing."
+  - period: 2021Q4
+    reporting_standard: IFRS
+    document_type: financial_statement
+    source_role: financial_statements
+    title: "Gazprom IFRS consolidated financial statements with auditor report, FY 2021"
+    source_url: "https://www.gazprom.com/f/posts/13/041777/gazprom-ifrs-2021-12mnth-en.pdf"
+    expected_file_type: pdf
+    language: en
+    notes: "Official Gazprom disclosure page source. FY/12M audited/full-year IFRS source."

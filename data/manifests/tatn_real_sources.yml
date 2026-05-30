@@ -1,0 +1,43 @@
+company: TATN
+source_type: issuer_ir_manifest
+source_page: https://old.tatneft.ru/for-shareholders/information-disclosure/consolidated-financial-statements?lang=en
+notes:
+  - Official TATNEFT disclosure page confirms 2021 IFRS interim statement PDFs.
+  - FY/12M 2021 consolidated financial statements URL was not verified on the official page during Stage 1.15.
+  - Q4/FY coverage remains incomplete; do not mark this source package READY until a trusted FY 2021 statement source is added.
+reports:
+  - period: 2021Q1
+    period_from: 2021Q1
+    period_to: 2021Q1
+    reporting_standard: IFRS
+    document_type: financial_statement
+    source_role: financial_statements
+    title: "Tatneft’s IFRS consolidated interim condensed financial statements for the first quarter of 2021, reviewed"
+    source_url: "https://old.tatneft.ru/storage/block_editor/files/9ec3dc8db0f6005c72859d6e3cb219de81da99f0.pdf"
+    expected_file_type: pdf
+    language: en
+    notes: "Official TATNEFT IFRS interim condensed statements; covers 3M 2021 YTD."
+  - period: 2021Q2
+    period_from: 2021Q1
+    period_to: 2021Q2
+    reporting_standard: IFRS
+    document_type: financial_statement
+    source_role: financial_statements
+    title: "Tatneft’s IFRS consolidated interim condensed financial statements for the three and six months ended 30 June 2021, reviewed"
+    source_url: "https://old.tatneft.ru/storage/block_editor/files/f615c1e6faacc1c7bc5a9b5efd2b4a348b7a0026.pdf"
+    expected_file_type: pdf
+    language: en
+    notes: "Official TATNEFT IFRS interim condensed statements; YTD document covers 6M 2021, not standalone Q2."
+  - period: 2021Q3
+    period_from: 2021Q1
+    period_to: 2021Q3
+    reporting_standard: IFRS
+    document_type: financial_statement
+    source_role: financial_statements
+    title: "Tatneft’s IFRS consolidated interim condensed financial statements for the three and nine months ended 30 September 2021, reviewed"
+    source_url: "https://old.tatneft.ru/storage/block_editor/files/5969b466c50dc276583aff9c7465503bdaef16d1.pdf"
+    expected_file_type: pdf
+    language: en
+    notes: "Official TATNEFT IFRS interim condensed statements; YTD document covers 9M 2021, not standalone Q3."
+  # 2021Q4 / FY 2021:
+  # Add only after verifying an official TATNEFT annual IFRS financial_statements or annual_report source URL.

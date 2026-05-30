@@ -1,0 +1,1480 @@
+{
+  "company_ticker": "LKOH",
+  "period_from": "2021Q1",
+  "period_to": "2021Q4",
+  "reporting_standard": "IFRS",
+  "facts_source": "persisted_facts",
+  "generated_at": "2026-05-07T15:55:21.707248+00:00",
+  "metrics": [
+    {
+      "metric_code": "roe",
+      "metric_name": "ROE",
+      "period": "2021Q1",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "net_income / average_total_equity",
+      "inputs_missing": [
+        "net_income"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "Do not present as exact without average equity policy."
+      ]
+    },
+    {
+      "metric_code": "roa",
+      "metric_name": "ROA",
+      "period": "2021Q1",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "net_income / average_total_assets",
+      "inputs_missing": [
+        "net_income"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "Do not present as exact without average assets policy."
+      ]
+    },
+    {
+      "metric_code": "debt_to_equity",
+      "metric_name": "Debt to equity",
+      "period": "2021Q1",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "total_debt / total_equity",
+      "inputs_missing": [
+        "total_debt",
+        "total_equity"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "Total debt derivation must avoid current portion double-counting."
+      ]
+    },
+    {
+      "metric_code": "current_ratio",
+      "metric_name": "Current ratio",
+      "period": "2021Q1",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "current_assets / current_liabilities",
+      "inputs_missing": [
+        "current_assets",
+        "current_liabilities"
+      ],
+      "warnings": [],
+      "methodology_notes": []
+    },
+    {
+      "metric_code": "fcf",
+      "metric_name": "Free cash flow",
+      "period": "2021Q1",
+      "value": null,
+      "display_value": null,
+      "unit": "currency",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "operating_cash_flow - capex",
+      "inputs_missing": [
+        "operating_cash_flow",
+        "capex"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "If segment capex is used, preserve warning that it is not cash-flow purchase of PPE."
+      ]
+    },
+    {
+      "metric_code": "fcf_margin",
+      "metric_name": "FCF margin",
+      "period": "2021Q1",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "fcf / revenue",
+      "inputs_missing": [
+        "operating_cash_flow",
+        "capex",
+        "revenue"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "If segment capex is used, preserve warning that it is not cash-flow purchase of PPE."
+      ]
+    },
+    {
+      "metric_code": "ebitda_margin",
+      "metric_name": "EBITDA margin",
+      "period": "2021Q1",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "unsupported_by_policy",
+      "reason": "explicit_ebitda_missing_no_proxy_allowed",
+      "formula": "ebitda / revenue",
+      "inputs_missing": [
+        "ebitda"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "EBITDA is non-IFRS/APM; use only explicit issuer disclosure."
+      ]
+    },
+    {
+      "metric_code": "operating_margin",
+      "metric_name": "Operating margin",
+      "period": "2021Q1",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "operating_profit / revenue",
+      "inputs_missing": [
+        "operating_profit",
+        "revenue"
+      ],
+      "warnings": [],
+      "methodology_notes": []
+    },
+    {
+      "metric_code": "net_margin",
+      "metric_name": "Net margin",
+      "period": "2021Q1",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "net_income / revenue",
+      "inputs_missing": [
+        "net_income",
+        "revenue"
+      ],
+      "warnings": [],
+      "methodology_notes": []
+    },
+    {
+      "metric_code": "revenue_growth",
+      "metric_name": "Revenue growth",
+      "period": "2021Q1",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "(revenue - previous_revenue) / previous_revenue",
+      "inputs_missing": [
+        "revenue"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "Do not compare standalone quarter with YTD/FY revenue."
+      ]
+    },
+    {
+      "metric_code": "roe",
+      "metric_name": "ROE",
+      "period": "2021Q2",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "net_income / average_total_equity",
+      "inputs_missing": [
+        "net_income"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "Do not present as exact without average equity policy."
+      ]
+    },
+    {
+      "metric_code": "roa",
+      "metric_name": "ROA",
+      "period": "2021Q2",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "net_income / average_total_assets",
+      "inputs_missing": [
+        "net_income"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "Do not present as exact without average assets policy."
+      ]
+    },
+    {
+      "metric_code": "debt_to_equity",
+      "metric_name": "Debt to equity",
+      "period": "2021Q2",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "total_debt / total_equity",
+      "inputs_missing": [
+        "total_debt",
+        "total_equity"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "Total debt derivation must avoid current portion double-counting."
+      ]
+    },
+    {
+      "metric_code": "current_ratio",
+      "metric_name": "Current ratio",
+      "period": "2021Q2",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "current_assets / current_liabilities",
+      "inputs_missing": [
+        "current_assets",
+        "current_liabilities"
+      ],
+      "warnings": [],
+      "methodology_notes": []
+    },
+    {
+      "metric_code": "fcf",
+      "metric_name": "Free cash flow",
+      "period": "2021Q2",
+      "value": null,
+      "display_value": null,
+      "unit": "currency",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "operating_cash_flow - capex",
+      "inputs_missing": [
+        "operating_cash_flow",
+        "capex"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "If segment capex is used, preserve warning that it is not cash-flow purchase of PPE."
+      ]
+    },
+    {
+      "metric_code": "fcf_margin",
+      "metric_name": "FCF margin",
+      "period": "2021Q2",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "fcf / revenue",
+      "inputs_missing": [
+        "operating_cash_flow",
+        "capex",
+        "revenue"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "If segment capex is used, preserve warning that it is not cash-flow purchase of PPE."
+      ]
+    },
+    {
+      "metric_code": "ebitda_margin",
+      "metric_name": "EBITDA margin",
+      "period": "2021Q2",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "unsupported_by_policy",
+      "reason": "explicit_ebitda_missing_no_proxy_allowed",
+      "formula": "ebitda / revenue",
+      "inputs_missing": [
+        "ebitda"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "EBITDA is non-IFRS/APM; use only explicit issuer disclosure."
+      ]
+    },
+    {
+      "metric_code": "operating_margin",
+      "metric_name": "Operating margin",
+      "period": "2021Q2",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "operating_profit / revenue",
+      "inputs_missing": [
+        "operating_profit",
+        "revenue"
+      ],
+      "warnings": [],
+      "methodology_notes": []
+    },
+    {
+      "metric_code": "net_margin",
+      "metric_name": "Net margin",
+      "period": "2021Q2",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "net_income / revenue",
+      "inputs_missing": [
+        "net_income",
+        "revenue"
+      ],
+      "warnings": [],
+      "methodology_notes": []
+    },
+    {
+      "metric_code": "revenue_growth",
+      "metric_name": "Revenue growth",
+      "period": "2021Q2",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "(revenue - previous_revenue) / previous_revenue",
+      "inputs_missing": [
+        "revenue"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "Do not compare standalone quarter with YTD/FY revenue."
+      ]
+    },
+    {
+      "metric_code": "roe",
+      "metric_name": "ROE",
+      "period": "2021Q3",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "net_income / average_total_equity",
+      "inputs_missing": [
+        "net_income"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "Do not present as exact without average equity policy."
+      ]
+    },
+    {
+      "metric_code": "roa",
+      "metric_name": "ROA",
+      "period": "2021Q3",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "net_income / average_total_assets",
+      "inputs_missing": [
+        "net_income"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "Do not present as exact without average assets policy."
+      ]
+    },
+    {
+      "metric_code": "debt_to_equity",
+      "metric_name": "Debt to equity",
+      "period": "2021Q3",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "total_debt / total_equity",
+      "inputs_missing": [
+        "total_debt",
+        "total_equity"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "Total debt derivation must avoid current portion double-counting."
+      ]
+    },
+    {
+      "metric_code": "current_ratio",
+      "metric_name": "Current ratio",
+      "period": "2021Q3",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "current_assets / current_liabilities",
+      "inputs_missing": [
+        "current_assets",
+        "current_liabilities"
+      ],
+      "warnings": [],
+      "methodology_notes": []
+    },
+    {
+      "metric_code": "fcf",
+      "metric_name": "Free cash flow",
+      "period": "2021Q3",
+      "value": null,
+      "display_value": null,
+      "unit": "currency",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "operating_cash_flow - capex",
+      "inputs_missing": [
+        "operating_cash_flow",
+        "capex"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "If segment capex is used, preserve warning that it is not cash-flow purchase of PPE."
+      ]
+    },
+    {
+      "metric_code": "fcf_margin",
+      "metric_name": "FCF margin",
+      "period": "2021Q3",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "fcf / revenue",
+      "inputs_missing": [
+        "operating_cash_flow",
+        "capex",
+        "revenue"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "If segment capex is used, preserve warning that it is not cash-flow purchase of PPE."
+      ]
+    },
+    {
+      "metric_code": "ebitda_margin",
+      "metric_name": "EBITDA margin",
+      "period": "2021Q3",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "unsupported_by_policy",
+      "reason": "explicit_ebitda_missing_no_proxy_allowed",
+      "formula": "ebitda / revenue",
+      "inputs_missing": [
+        "ebitda"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "EBITDA is non-IFRS/APM; use only explicit issuer disclosure."
+      ]
+    },
+    {
+      "metric_code": "operating_margin",
+      "metric_name": "Operating margin",
+      "period": "2021Q3",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "operating_profit / revenue",
+      "inputs_missing": [
+        "operating_profit",
+        "revenue"
+      ],
+      "warnings": [],
+      "methodology_notes": []
+    },
+    {
+      "metric_code": "net_margin",
+      "metric_name": "Net margin",
+      "period": "2021Q3",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "net_income / revenue",
+      "inputs_missing": [
+        "net_income",
+        "revenue"
+      ],
+      "warnings": [],
+      "methodology_notes": []
+    },
+    {
+      "metric_code": "revenue_growth",
+      "metric_name": "Revenue growth",
+      "period": "2021Q3",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "(revenue - previous_revenue) / previous_revenue",
+      "inputs_missing": [
+        "revenue"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "Do not compare standalone quarter with YTD/FY revenue."
+      ]
+    },
+    {
+      "metric_code": "roe",
+      "metric_name": "ROE",
+      "period": "2021Q4",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "net_income / average_total_equity",
+      "inputs_missing": [
+        "net_income"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "Do not present as exact without average equity policy."
+      ]
+    },
+    {
+      "metric_code": "roa",
+      "metric_name": "ROA",
+      "period": "2021Q4",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "net_income / average_total_assets",
+      "inputs_missing": [
+        "net_income"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "Do not present as exact without average assets policy."
+      ]
+    },
+    {
+      "metric_code": "debt_to_equity",
+      "metric_name": "Debt to equity",
+      "period": "2021Q4",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "total_debt / total_equity",
+      "inputs_missing": [
+        "total_debt",
+        "total_equity"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "Total debt derivation must avoid current portion double-counting."
+      ]
+    },
+    {
+      "metric_code": "current_ratio",
+      "metric_name": "Current ratio",
+      "period": "2021Q4",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "current_assets / current_liabilities",
+      "inputs_missing": [
+        "current_assets",
+        "current_liabilities"
+      ],
+      "warnings": [],
+      "methodology_notes": []
+    },
+    {
+      "metric_code": "fcf",
+      "metric_name": "Free cash flow",
+      "period": "2021Q4",
+      "value": null,
+      "display_value": null,
+      "unit": "currency",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "operating_cash_flow - capex",
+      "inputs_missing": [
+        "operating_cash_flow",
+        "capex"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "If segment capex is used, preserve warning that it is not cash-flow purchase of PPE."
+      ]
+    },
+    {
+      "metric_code": "fcf_margin",
+      "metric_name": "FCF margin",
+      "period": "2021Q4",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "fcf / revenue",
+      "inputs_missing": [
+        "operating_cash_flow",
+        "capex",
+        "revenue"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "If segment capex is used, preserve warning that it is not cash-flow purchase of PPE."
+      ]
+    },
+    {
+      "metric_code": "ebitda_margin",
+      "metric_name": "EBITDA margin",
+      "period": "2021Q4",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "unsupported_by_policy",
+      "reason": "explicit_ebitda_missing_no_proxy_allowed",
+      "formula": "ebitda / revenue",
+      "inputs_missing": [
+        "ebitda"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "EBITDA is non-IFRS/APM; use only explicit issuer disclosure."
+      ]
+    },
+    {
+      "metric_code": "operating_margin",
+      "metric_name": "Operating margin",
+      "period": "2021Q4",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "operating_profit / revenue",
+      "inputs_missing": [
+        "operating_profit",
+        "revenue"
+      ],
+      "warnings": [],
+      "methodology_notes": []
+    },
+    {
+      "metric_code": "net_margin",
+      "metric_name": "Net margin",
+      "period": "2021Q4",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "net_income / revenue",
+      "inputs_missing": [
+        "net_income",
+        "revenue"
+      ],
+      "warnings": [],
+      "methodology_notes": []
+    },
+    {
+      "metric_code": "revenue_growth",
+      "metric_name": "Revenue growth",
+      "period": "2021Q4",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "(revenue - previous_revenue) / previous_revenue",
+      "inputs_missing": [
+        "revenue"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "Do not compare standalone quarter with YTD/FY revenue."
+      ]
+    }
+  ],
+  "missing_metrics": [
+    {
+      "metric_code": "roe",
+      "metric_name": "ROE",
+      "period": "2021Q1",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "net_income / average_total_equity",
+      "inputs_missing": [
+        "net_income"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "Do not present as exact without average equity policy."
+      ]
+    },
+    {
+      "metric_code": "roa",
+      "metric_name": "ROA",
+      "period": "2021Q1",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "net_income / average_total_assets",
+      "inputs_missing": [
+        "net_income"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "Do not present as exact without average assets policy."
+      ]
+    },
+    {
+      "metric_code": "debt_to_equity",
+      "metric_name": "Debt to equity",
+      "period": "2021Q1",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "total_debt / total_equity",
+      "inputs_missing": [
+        "total_debt",
+        "total_equity"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "Total debt derivation must avoid current portion double-counting."
+      ]
+    },
+    {
+      "metric_code": "current_ratio",
+      "metric_name": "Current ratio",
+      "period": "2021Q1",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "current_assets / current_liabilities",
+      "inputs_missing": [
+        "current_assets",
+        "current_liabilities"
+      ],
+      "warnings": [],
+      "methodology_notes": []
+    },
+    {
+      "metric_code": "fcf",
+      "metric_name": "Free cash flow",
+      "period": "2021Q1",
+      "value": null,
+      "display_value": null,
+      "unit": "currency",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "operating_cash_flow - capex",
+      "inputs_missing": [
+        "operating_cash_flow",
+        "capex"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "If segment capex is used, preserve warning that it is not cash-flow purchase of PPE."
+      ]
+    },
+    {
+      "metric_code": "fcf_margin",
+      "metric_name": "FCF margin",
+      "period": "2021Q1",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "fcf / revenue",
+      "inputs_missing": [
+        "operating_cash_flow",
+        "capex",
+        "revenue"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "If segment capex is used, preserve warning that it is not cash-flow purchase of PPE."
+      ]
+    },
+    {
+      "metric_code": "operating_margin",
+      "metric_name": "Operating margin",
+      "period": "2021Q1",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "operating_profit / revenue",
+      "inputs_missing": [
+        "operating_profit",
+        "revenue"
+      ],
+      "warnings": [],
+      "methodology_notes": []
+    },
+    {
+      "metric_code": "net_margin",
+      "metric_name": "Net margin",
+      "period": "2021Q1",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "net_income / revenue",
+      "inputs_missing": [
+        "net_income",
+        "revenue"
+      ],
+      "warnings": [],
+      "methodology_notes": []
+    },
+    {
+      "metric_code": "revenue_growth",
+      "metric_name": "Revenue growth",
+      "period": "2021Q1",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "(revenue - previous_revenue) / previous_revenue",
+      "inputs_missing": [
+        "revenue"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "Do not compare standalone quarter with YTD/FY revenue."
+      ]
+    },
+    {
+      "metric_code": "roe",
+      "metric_name": "ROE",
+      "period": "2021Q2",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "net_income / average_total_equity",
+      "inputs_missing": [
+        "net_income"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "Do not present as exact without average equity policy."
+      ]
+    },
+    {
+      "metric_code": "roa",
+      "metric_name": "ROA",
+      "period": "2021Q2",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "net_income / average_total_assets",
+      "inputs_missing": [
+        "net_income"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "Do not present as exact without average assets policy."
+      ]
+    },
+    {
+      "metric_code": "debt_to_equity",
+      "metric_name": "Debt to equity",
+      "period": "2021Q2",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "total_debt / total_equity",
+      "inputs_missing": [
+        "total_debt",
+        "total_equity"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "Total debt derivation must avoid current portion double-counting."
+      ]
+    },
+    {
+      "metric_code": "current_ratio",
+      "metric_name": "Current ratio",
+      "period": "2021Q2",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "current_assets / current_liabilities",
+      "inputs_missing": [
+        "current_assets",
+        "current_liabilities"
+      ],
+      "warnings": [],
+      "methodology_notes": []
+    },
+    {
+      "metric_code": "fcf",
+      "metric_name": "Free cash flow",
+      "period": "2021Q2",
+      "value": null,
+      "display_value": null,
+      "unit": "currency",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "operating_cash_flow - capex",
+      "inputs_missing": [
+        "operating_cash_flow",
+        "capex"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "If segment capex is used, preserve warning that it is not cash-flow purchase of PPE."
+      ]
+    },
+    {
+      "metric_code": "fcf_margin",
+      "metric_name": "FCF margin",
+      "period": "2021Q2",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "fcf / revenue",
+      "inputs_missing": [
+        "operating_cash_flow",
+        "capex",
+        "revenue"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "If segment capex is used, preserve warning that it is not cash-flow purchase of PPE."
+      ]
+    },
+    {
+      "metric_code": "operating_margin",
+      "metric_name": "Operating margin",
+      "period": "2021Q2",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "operating_profit / revenue",
+      "inputs_missing": [
+        "operating_profit",
+        "revenue"
+      ],
+      "warnings": [],
+      "methodology_notes": []
+    },
+    {
+      "metric_code": "net_margin",
+      "metric_name": "Net margin",
+      "period": "2021Q2",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "net_income / revenue",
+      "inputs_missing": [
+        "net_income",
+        "revenue"
+      ],
+      "warnings": [],
+      "methodology_notes": []
+    },
+    {
+      "metric_code": "revenue_growth",
+      "metric_name": "Revenue growth",
+      "period": "2021Q2",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "(revenue - previous_revenue) / previous_revenue",
+      "inputs_missing": [
+        "revenue"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "Do not compare standalone quarter with YTD/FY revenue."
+      ]
+    },
+    {
+      "metric_code": "roe",
+      "metric_name": "ROE",
+      "period": "2021Q3",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "net_income / average_total_equity",
+      "inputs_missing": [
+        "net_income"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "Do not present as exact without average equity policy."
+      ]
+    },
+    {
+      "metric_code": "roa",
+      "metric_name": "ROA",
+      "period": "2021Q3",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "net_income / average_total_assets",
+      "inputs_missing": [
+        "net_income"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "Do not present as exact without average assets policy."
+      ]
+    },
+    {
+      "metric_code": "debt_to_equity",
+      "metric_name": "Debt to equity",
+      "period": "2021Q3",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "total_debt / total_equity",
+      "inputs_missing": [
+        "total_debt",
+        "total_equity"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "Total debt derivation must avoid current portion double-counting."
+      ]
+    },
+    {
+      "metric_code": "current_ratio",
+      "metric_name": "Current ratio",
+      "period": "2021Q3",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "current_assets / current_liabilities",
+      "inputs_missing": [
+        "current_assets",
+        "current_liabilities"
+      ],
+      "warnings": [],
+      "methodology_notes": []
+    },
+    {
+      "metric_code": "fcf",
+      "metric_name": "Free cash flow",
+      "period": "2021Q3",
+      "value": null,
+      "display_value": null,
+      "unit": "currency",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "operating_cash_flow - capex",
+      "inputs_missing": [
+        "operating_cash_flow",
+        "capex"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "If segment capex is used, preserve warning that it is not cash-flow purchase of PPE."
+      ]
+    },
+    {
+      "metric_code": "fcf_margin",
+      "metric_name": "FCF margin",
+      "period": "2021Q3",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "fcf / revenue",
+      "inputs_missing": [
+        "operating_cash_flow",
+        "capex",
+        "revenue"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "If segment capex is used, preserve warning that it is not cash-flow purchase of PPE."
+      ]
+    },
+    {
+      "metric_code": "operating_margin",
+      "metric_name": "Operating margin",
+      "period": "2021Q3",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "operating_profit / revenue",
+      "inputs_missing": [
+        "operating_profit",
+        "revenue"
+      ],
+      "warnings": [],
+      "methodology_notes": []
+    },
+    {
+      "metric_code": "net_margin",
+      "metric_name": "Net margin",
+      "period": "2021Q3",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "net_income / revenue",
+      "inputs_missing": [
+        "net_income",
+        "revenue"
+      ],
+      "warnings": [],
+      "methodology_notes": []
+    },
+    {
+      "metric_code": "revenue_growth",
+      "metric_name": "Revenue growth",
+      "period": "2021Q3",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "(revenue - previous_revenue) / previous_revenue",
+      "inputs_missing": [
+        "revenue"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "Do not compare standalone quarter with YTD/FY revenue."
+      ]
+    },
+    {
+      "metric_code": "roe",
+      "metric_name": "ROE",
+      "period": "2021Q4",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "net_income / average_total_equity",
+      "inputs_missing": [
+        "net_income"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "Do not present as exact without average equity policy."
+      ]
+    },
+    {
+      "metric_code": "roa",
+      "metric_name": "ROA",
+      "period": "2021Q4",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "net_income / average_total_assets",
+      "inputs_missing": [
+        "net_income"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "Do not present as exact without average assets policy."
+      ]
+    },
+    {
+      "metric_code": "debt_to_equity",
+      "metric_name": "Debt to equity",
+      "period": "2021Q4",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "total_debt / total_equity",
+      "inputs_missing": [
+        "total_debt",
+        "total_equity"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "Total debt derivation must avoid current portion double-counting."
+      ]
+    },
+    {
+      "metric_code": "current_ratio",
+      "metric_name": "Current ratio",
+      "period": "2021Q4",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "current_assets / current_liabilities",
+      "inputs_missing": [
+        "current_assets",
+        "current_liabilities"
+      ],
+      "warnings": [],
+      "methodology_notes": []
+    },
+    {
+      "metric_code": "fcf",
+      "metric_name": "Free cash flow",
+      "period": "2021Q4",
+      "value": null,
+      "display_value": null,
+      "unit": "currency",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "operating_cash_flow - capex",
+      "inputs_missing": [
+        "operating_cash_flow",
+        "capex"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "If segment capex is used, preserve warning that it is not cash-flow purchase of PPE."
+      ]
+    },
+    {
+      "metric_code": "fcf_margin",
+      "metric_name": "FCF margin",
+      "period": "2021Q4",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "fcf / revenue",
+      "inputs_missing": [
+        "operating_cash_flow",
+        "capex",
+        "revenue"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "If segment capex is used, preserve warning that it is not cash-flow purchase of PPE."
+      ]
+    },
+    {
+      "metric_code": "operating_margin",
+      "metric_name": "Operating margin",
+      "period": "2021Q4",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "operating_profit / revenue",
+      "inputs_missing": [
+        "operating_profit",
+        "revenue"
+      ],
+      "warnings": [],
+      "methodology_notes": []
+    },
+    {
+      "metric_code": "net_margin",
+      "metric_name": "Net margin",
+      "period": "2021Q4",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "net_income / revenue",
+      "inputs_missing": [
+        "net_income",
+        "revenue"
+      ],
+      "warnings": [],
+      "methodology_notes": []
+    },
+    {
+      "metric_code": "revenue_growth",
+      "metric_name": "Revenue growth",
+      "period": "2021Q4",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "missing",
+      "reason": "missing_inputs",
+      "formula": "(revenue - previous_revenue) / previous_revenue",
+      "inputs_missing": [
+        "revenue"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "Do not compare standalone quarter with YTD/FY revenue."
+      ]
+    }
+  ],
+  "unsupported_metrics": [
+    {
+      "metric_code": "ebitda_margin",
+      "metric_name": "EBITDA margin",
+      "period": "2021Q1",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "unsupported_by_policy",
+      "reason": "explicit_ebitda_missing_no_proxy_allowed",
+      "formula": "ebitda / revenue",
+      "inputs_missing": [
+        "ebitda"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "EBITDA is non-IFRS/APM; use only explicit issuer disclosure."
+      ]
+    },
+    {
+      "metric_code": "ebitda_margin",
+      "metric_name": "EBITDA margin",
+      "period": "2021Q2",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "unsupported_by_policy",
+      "reason": "explicit_ebitda_missing_no_proxy_allowed",
+      "formula": "ebitda / revenue",
+      "inputs_missing": [
+        "ebitda"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "EBITDA is non-IFRS/APM; use only explicit issuer disclosure."
+      ]
+    },
+    {
+      "metric_code": "ebitda_margin",
+      "metric_name": "EBITDA margin",
+      "period": "2021Q3",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "unsupported_by_policy",
+      "reason": "explicit_ebitda_missing_no_proxy_allowed",
+      "formula": "ebitda / revenue",
+      "inputs_missing": [
+        "ebitda"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "EBITDA is non-IFRS/APM; use only explicit issuer disclosure."
+      ]
+    },
+    {
+      "metric_code": "ebitda_margin",
+      "metric_name": "EBITDA margin",
+      "period": "2021Q4",
+      "value": null,
+      "display_value": null,
+      "unit": "ratio",
+      "status": "unsupported_by_policy",
+      "reason": "explicit_ebitda_missing_no_proxy_allowed",
+      "formula": "ebitda / revenue",
+      "inputs_missing": [
+        "ebitda"
+      ],
+      "warnings": [],
+      "methodology_notes": [
+        "EBITDA is non-IFRS/APM; use only explicit issuer disclosure."
+      ]
+    }
+  ],
+  "warnings": [
+    "No eligible persisted statement facts found."
+  ],
+  "blockers": [],
+  "methodology_notes": [
+    "Do not compare standalone quarter with YTD/FY revenue.",
+    "Do not present as exact without average assets policy.",
+    "Do not present as exact without average equity policy.",
+    "EBITDA is non-IFRS/APM; use only explicit issuer disclosure.",
+    "If segment capex is used, preserve warning that it is not cash-flow purchase of PPE.",
+    "Total debt derivation must avoid current portion double-counting."
+  ],
+  "summary": {
+    "calculated_count": 0,
+    "missing_count": 36,
+    "unsupported_count": 4,
+    "blocked_count": 0
+  }
+}

@@ -1,0 +1,4 @@
+Alembic environment for future schema migrations. MVP can initialize schema with:
+
+python -m app.db.init_db
+

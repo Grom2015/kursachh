@@ -1,0 +1,15 @@
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.pyc
+*.pyo
+*.egg-info/
+.env
+local.db
+pytest-cache-files-*/
+tests/test_runtime.db
+tests/fallback_runtime.db
+data/raw/
+data/parsed/
+data/validation/
+data/market_cache/

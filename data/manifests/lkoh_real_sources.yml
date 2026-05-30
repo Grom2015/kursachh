@@ -1,0 +1,97 @@
+company: LKOH
+source_type: issuer_ir_manifest
+reports:
+  - period: 2021Q1
+    reporting_standard: IFRS
+    document_type: financial_statement
+    source_role: financial_statements
+    title: "LUKOIL Consolidated Financial Statements IFRS 1Q 2021"
+    source_url: "https://www.lukoil.com/FileSystem/9/546606.pdf?dl=1"
+    expected_file_type: "pdf"
+    language: "en"
+    notes: "Official LUKOIL consolidated IFRS financial statements; 3M 2021 interim document."
+  - period: 2021Q1
+    reporting_standard: IFRS
+    document_type: press_release
+    source_role: press_release
+    title: "LUKOIL announces IFRS financial results for the first quarter of 2021"
+    source_url: "https://www.lukoil.com/api/presscenter/exportpressrelease?id=546552"
+    expected_file_type: "pdf"
+    language: "en"
+    notes: "Official LUKOIL press-release export URL; 3M 2021 IFRS financial results, not full statement package."
+  - period: 2021Q2
+    reporting_standard: IFRS
+    document_type: financial_statement
+    source_role: financial_statements
+    title: "LUKOIL Consolidated Financial Statements IFRS 2Q 2021"
+    source_url: "https://www.lukoil.com/FileSystem/9/557872.pdf?dl=1"
+    expected_file_type: "pdf"
+    language: "en"
+    notes: "Official LUKOIL consolidated IFRS financial statements; YTD document covers 6M 2021, not standalone Q2; quarter values may require period differencing."
+  - period: 2021Q2
+    reporting_standard: IFRS
+    document_type: press_release
+    source_role: press_release
+    title: "LUKOIL announces IFRS financial results for the second quarter and six months of 2021"
+    source_url: "https://www.lukoil.com/PressCenter/Pressreleases/Pressrelease/lukoil-announces-ifrs-financial-results-for-the_7"
+    expected_file_type: "html"
+    language: "en"
+    notes: "Official LUKOIL press-release page; 2Q and 6M 2021 IFRS financial results. Direct export/file URL not verified, so this is HTML and may require parser support."
+  - period: 2021Q3
+    reporting_standard: IFRS
+    document_type: financial_statement
+    source_role: financial_statements
+    title: "LUKOIL Consolidated Financial Statements IFRS 3Q 2021"
+    source_url: "https://www.lukoil.com/FileSystem/9/568009.pdf?dl=1"
+    expected_file_type: "pdf"
+    language: "en"
+    notes: "Official LUKOIL consolidated IFRS financial statements; YTD document covers 9M 2021, not standalone Q3; quarter values may require period differencing."
+  - period: 2021Q3
+    reporting_standard: IFRS
+    document_type: press_release
+    source_role: press_release
+    title: "LUKOIL announces IFRS financial results for the third quarter and nine months of 2021"
+    source_url: "https://www.lukoil.com/api/presscenter/exportpressrelease?id=568000"
+    expected_file_type: "pdf"
+    language: "en"
+    notes: "Official LUKOIL press-release export URL; 3Q and 9M 2021 IFRS financial results, not full statement package."
+  - period: 2021Q4
+    reporting_standard: IFRS
+    document_type: financial_statement
+    source_role: financial_statements
+    title: "LUKOIL Consolidated Financial Statements IFRS 4Q 2021"
+    source_url: "https://www.lukoil.com/FileSystem/9/577500.pdf?dl=1"
+    expected_file_type: "pdf"
+    language: "en"
+    notes: "Official LUKOIL annual consolidated IFRS financial statements; YTD document covers 12M 2021, not standalone Q4; quarter values may require period differencing."
+  - period: 2021Q4
+    reporting_standard: IFRS
+    document_type: press_release
+    source_role: press_release
+    title: "LUKOIL releases financial results under IFRS for 2021"
+    source_url: "https://www.lukoil.com/api/presscenter/exportpressrelease?dl=1&id=577486"
+    expected_file_type: "pdf"
+    language: "en"
+    notes: "Official LUKOIL press-release export URL; 4Q and 12M 2021 IFRS financial results, not full statement package."
+
+# Direct full IFRS statement-package URLs are not committed here because LKOH IR
+# document URLs can change and were not reliably exposed by the public HTML view.
+# Replace/add full statement URLs after manual verification. Required documents
+# for a full Stage 1.7 validation:
+# - LKOH IFRS financial statement / financial results for 2021Q1
+# - LKOH IFRS financial statement / financial results for 2021Q2
+# - LKOH IFRS financial statement / financial results for 2021Q3
+# - LKOH IFRS annual or 2021Q4 financial statement / financial results
+#
+# If this manifest remains empty and LKOH_IR_REPORTS_URL is not configured,
+# data_mode=real validation will produce a controlled FAIL report.
+#
+# Example item:
+# reports:
+#   - period: 2021Q1
+#     reporting_standard: IFRS
+#     document_type: financial_statement
+#     title: "IFRS financial results 1Q 2021"
+#     source_url: "https://www.lukoil.ru/..."
+#     expected_file_type: "pdf"
+#     language: "en"

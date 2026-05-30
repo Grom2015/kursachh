@@ -1,0 +1,39 @@
+company: LKOH
+reports:
+  - period: 2021Q2
+    reporting_standard: IFRS
+    document_type: financial_statement
+    source_type: fixture
+    fixture_path: data/fixtures/lkoh_financial_facts.csv
+    status: available
+  - period: 2021Q3
+    reporting_standard: IFRS
+    document_type: financial_statement
+    source_type: fixture
+    fixture_path: data/fixtures/lkoh_financial_facts.csv
+    status: available
+  - period: 2021Q4
+    reporting_standard: IFRS
+    document_type: financial_statement
+    source_type: fixture
+    fixture_path: data/fixtures/lkoh_financial_facts.csv
+    status: available
+  - period: 2022Q1
+    reporting_standard: IFRS
+    document_type: financial_statement
+    source_type: fixture
+    fixture_path: data/fixtures/lkoh_financial_facts.csv
+    status: available
+  - period: 2025Q4
+    reporting_standard: IFRS
+    document_type: financial_statement
+    source_type: fixture
+    fixture_path: data/fixtures/lkoh_financial_facts.csv
+    status: available
+  - period: 2026Q1
+    reporting_standard: IFRS
+    document_type: financial_statement
+    source_type: fixture
+    fixture_path: data/fixtures/lkoh_financial_facts.csv
+    status: available
+

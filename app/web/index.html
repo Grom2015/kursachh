@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="app-version" content="__APP_VERSION__" />
+    <meta name="app-build-id" content="__BUILD_ID__" />
+    <title>Панель загрузки MOEX PDF</title>
+    <link rel="stylesheet" href="/app/assets/control-center.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Финансовый анализ MOEX</p>
+          <h1>Загрузите PDF и запустите анализ</h1>
+        </div>
+        <div class="trust-strip">
+          <span>Факты не записываются в БД</span>
+          <span>LLM не вызывается</span>
+          <span>Результат строится автоматически после загрузки</span>
+          <span id="backend-build-badge">Backend build: __APP_VERSION__ / __BUILD_ID__</span>
+        </div>
+      </header>
+
+      <section class="workspace">
+        <aside class="controls">
+          <section class="panel">
+            <h2>Как это работает</h2>
+            <p class="fineprint">
+              Выберите тикер, добавьте официальный PDF, дальше система сама запускает проверку документа,
+              извлечение таблиц, поиск фактов, расчет доступных коэффициентов и сборку JSON для анализа.
+            </p>
+          </section>
+
+          <section class="panel">
+            <h2>Загрузка отчета</h2>
+            <form id="safe-run-form" class="simple-upload-form">
+              <label>
+                Тикер
+                <input name="ticker" list="ticker-options" value="SBER" autocomplete="off" />
+              </label>
+              <datalist id="ticker-options">
+                <option value="SBER"></option>
+                <option value="LKOH"></option>
+                <option value="GAZP"></option>
+                <option value="MOEX"></option>
+                <option value="SIBN"></option>
+                <option value="ROSN"></option>
+                <option value="NVTK"></option>
+                <option value="TATN"></option>
+                <option value="VTBR"></option>
+                <option value="BSPB"></option>
+                <option value="CBOM"></option>
+              </datalist>
+              <input type="hidden" name="period_from" value="2025Q1" />
+              <input type="hidden" name="period_to" value="2025Q4" />
+              <input type="hidden" name="reporting_standard" value="IFRS" />
+              <button id="pick-pdf-button" type="button">Добавить PDF</button>
+            </form>
+            <p class="fineprint">
+              Поддерживаются PDF, XLSX, HTML, HTM и ZIP. После загрузки автоматически запускается полный
+              черновой анализ без записи фактов в БД.
+            </p>
+          </section>
+
+          <form id="manual-upload-form" class="hidden-upload-form">
+            <input name="file" type="file" accept=".pdf,.xlsx,.html,.htm,.zip" />
+            <input name="company_ticker" value="SBER" />
+            <input name="period" value="" />
+            <input name="reporting_standard" value="IFRS" />
+            <input name="manual_upload_reason" value="user_requested" />
+            <input name="run_table_extraction" value="true" />
+            <input name="run_dataframe_fact_parser" value="true" />
+            <input name="allow_text_fallback_semantic_gate" value="true" />
+          </form>
+        </aside>
+
+        <section class="results">
+          <section class="demo-summary-panel">
+            <div>
+              <p class="eyebrow">Demo summary</p>
+              <h2 id="demo-summary-title">Ожидание загрузки</h2>
+              <p id="demo-summary-copy">
+                Выберите тикер, загрузите отчет и дождитесь автоматического запуска безопасного draft-analysis pipeline.
+              </p>
+            </div>
+            <div id="demo-summary-badges" class="demo-badges">
+              <span>Manual upload lower-trust</span>
+              <span>Facts persisted=false</span>
+              <span>LLM not invoked</span>
+            </div>
+          </section>
+
+          <div class="summary-line">
+            <div>
+              <p class="eyebrow">Статус запуска</p>
+              <h2 id="overall-status">Ожидание</h2>
+            </div>
+            <button id="refresh-status" type="button" class="ghost">Обновить статус</button>
+          </div>
+
+          <section class="panel">
+            <h2>Этапы</h2>
+            <div id="stage-list" class="stage-list empty">Запусков еще не было.</div>
+          </section>
+
+          <section class="panel">
+            <h2>Журнал выполнения</h2>
+            <div id="event-list" class="event-list empty">Задача еще не запущена.</div>
+          </section>
+
+          <section class="panel">
+            <h2>Что произошло?</h2>
+            <div id="what-happened" class="what-happened empty">
+              Загрузите отчет, чтобы увидеть, что прошло успешно, что заблокировалось и почему.
+            </div>
+            <div id="next-actions" class="next-actions"></div>
+          </section>
+
+          <section class="panel">
+            <h2>Что сказать на защите</h2>
+            <div id="defense-notes" class="defense-notes">
+              <p>Это безопасный pipeline: загрузка отчета → проверка документа → извлечение таблиц → кандидаты фактов → коэффициенты → JSON для будущего LLM-анализа.</p>
+              <p>Если данных не хватает, система показывает blocker и причину, а не придумывает значения.</p>
+            </div>
+          </section>
+
+          <section class="panel">
+            <h2>Где скачать отчетность</h2>
+            <div id="source-links" class="source-links empty">Выберите тикер, чтобы получить ссылку на E-Disclosure или related source page.</div>
+          </section>
+
+          <section class="panel">
+            <h2>Доступность отчетов</h2>
+            <div id="report-list" class="report-list empty">Статус еще не загружен.</div>
+          </section>
+
+          <section class="panel">
+            <h2>Итог чернового анализа</h2>
+            <div id="analysis-result" class="analysis-result empty">
+              После загрузки PDF здесь появятся найденные факты, рассчитанные коэффициенты и ограничения.
+            </div>
+          </section>
+
+          <section class="panel">
+            <h2>Граница доверия ручной загрузки</h2>
+            <div id="manual-result" class="kv-grid empty">Ручной загрузки еще не было.</div>
+          </section>
+        </section>
+      </section>
+    </main>
+    <script src="/app/assets/control-center.js?v=10"></script>
+  </body>
+</html>

@@ -1,0 +1,74 @@
+period,reporting_standard,statement_type,metric_code,metric_name_original,value,currency,unit_multiplier,period_type,source_location,quality_flag,confidence_score
+2021Q2,IFRS,income_statement,revenue,Revenue,230000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=1",fixture,1.0
+2021Q2,IFRS,income_statement,ebitda,EBITDA,45000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=2",fixture,1.0
+2021Q2,IFRS,income_statement,operating_profit,Operating profit,36000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=3",fixture,1.0
+2021Q2,IFRS,income_statement,net_income,Net income,28000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=4",fixture,1.0
+2021Q2,IFRS,balance_sheet,total_assets,Total assets,620000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=5",fixture,1.0
+2021Q2,IFRS,balance_sheet,total_equity,Total equity,380000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=6",fixture,1.0
+2021Q2,IFRS,balance_sheet,total_debt,Total debt,120000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=7",fixture,1.0
+2021Q2,IFRS,balance_sheet,cash_and_equivalents,Cash and equivalents,70000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=8",fixture,1.0
+2021Q2,IFRS,balance_sheet,current_assets,Current assets,210000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=9",fixture,1.0
+2021Q2,IFRS,balance_sheet,current_liabilities,Current liabilities,105000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=10",fixture,1.0
+2021Q2,IFRS,cash_flow,operating_cash_flow,Operating cash flow,32000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=11",fixture,1.0
+2021Q2,IFRS,cash_flow,capex,Capital expenditures,11000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=12",fixture,1.0
+2021Q3,IFRS,income_statement,revenue,Revenue,245000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=13",fixture,1.0
+2021Q3,IFRS,income_statement,ebitda,EBITDA,49000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=14",fixture,1.0
+2021Q3,IFRS,income_statement,operating_profit,Operating profit,39000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=15",fixture,1.0
+2021Q3,IFRS,income_statement,net_income,Net income,30000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=16",fixture,1.0
+2021Q3,IFRS,balance_sheet,total_assets,Total assets,640000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=17",fixture,1.0
+2021Q3,IFRS,balance_sheet,total_equity,Total equity,395000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=18",fixture,1.0
+2021Q3,IFRS,balance_sheet,total_debt,Total debt,118000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=19",fixture,1.0
+2021Q3,IFRS,balance_sheet,cash_and_equivalents,Cash and equivalents,72000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=20",fixture,1.0
+2021Q3,IFRS,balance_sheet,current_assets,Current assets,225000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=21",fixture,1.0
+2021Q3,IFRS,balance_sheet,current_liabilities,Current liabilities,112000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=22",fixture,1.0
+2021Q3,IFRS,cash_flow,operating_cash_flow,Operating cash flow,35000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=23",fixture,1.0
+2021Q3,IFRS,cash_flow,capex,Capital expenditures,12000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=24",fixture,1.0
+2021Q4,IFRS,income_statement,revenue,Revenue,260000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=25",fixture,1.0
+2021Q4,IFRS,income_statement,ebitda,EBITDA,54000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=26",fixture,1.0
+2021Q4,IFRS,income_statement,operating_profit,Operating profit,43000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=27",fixture,1.0
+2021Q4,IFRS,income_statement,net_income,Net income,34000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=28",fixture,1.0
+2021Q4,IFRS,balance_sheet,total_assets,Total assets,670000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=29",fixture,1.0
+2021Q4,IFRS,balance_sheet,total_equity,Total equity,415000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=30",fixture,1.0
+2021Q4,IFRS,balance_sheet,total_debt,Total debt,116000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=31",fixture,1.0
+2021Q4,IFRS,balance_sheet,cash_and_equivalents,Cash and equivalents,78000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=32",fixture,1.0
+2021Q4,IFRS,balance_sheet,current_assets,Current assets,240000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=33",fixture,1.0
+2021Q4,IFRS,balance_sheet,current_liabilities,Current liabilities,120000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=34",fixture,1.0
+2021Q4,IFRS,cash_flow,operating_cash_flow,Operating cash flow,38000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=35",fixture,1.0
+2021Q4,IFRS,cash_flow,capex,Capital expenditures,14000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=36",fixture,1.0
+2022Q1,IFRS,income_statement,revenue,Revenue,270000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=37",fixture,1.0
+2022Q1,IFRS,income_statement,ebitda,EBITDA,56000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=38",fixture,1.0
+2022Q1,IFRS,income_statement,operating_profit,Operating profit,44500,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=39",fixture,1.0
+2022Q1,IFRS,income_statement,net_income,Net income,35000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=40",fixture,1.0
+2022Q1,IFRS,balance_sheet,total_assets,Total assets,690000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=41",fixture,1.0
+2022Q1,IFRS,balance_sheet,total_equity,Total equity,430000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=42",fixture,1.0
+2022Q1,IFRS,balance_sheet,total_debt,Total debt,130000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=43",fixture,1.0
+2022Q1,IFRS,balance_sheet,cash_and_equivalents,Cash and equivalents,80000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=44",fixture,1.0
+2022Q1,IFRS,balance_sheet,current_assets,Current assets,250000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=45",fixture,1.0
+2022Q1,IFRS,balance_sheet,current_liabilities,Current liabilities,125000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=46",fixture,1.0
+2022Q1,IFRS,cash_flow,operating_cash_flow,Operating cash flow,39000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=47",fixture,1.0
+2022Q1,IFRS,cash_flow,capex,Capital expenditures,15000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=48",fixture,1.0
+2025Q4,IFRS,income_statement,revenue,Revenue,310000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=49",fixture,1.0
+2025Q4,IFRS,income_statement,ebitda,EBITDA,65000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=50",fixture,1.0
+2025Q4,IFRS,income_statement,operating_profit,Operating profit,52000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=51",fixture,1.0
+2025Q4,IFRS,income_statement,net_income,Net income,41000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=52",fixture,1.0
+2025Q4,IFRS,balance_sheet,total_assets,Total assets,780000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=53",fixture,1.0
+2025Q4,IFRS,balance_sheet,total_equity,Total equity,500000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=54",fixture,1.0
+2025Q4,IFRS,balance_sheet,total_debt,Total debt,150000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=55",fixture,1.0
+2025Q4,IFRS,balance_sheet,cash_and_equivalents,Cash and equivalents,90000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=56",fixture,1.0
+2025Q4,IFRS,balance_sheet,current_assets,Current assets,280000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=57",fixture,1.0
+2025Q4,IFRS,balance_sheet,current_liabilities,Current liabilities,140000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=58",fixture,1.0
+2025Q4,IFRS,cash_flow,operating_cash_flow,Operating cash flow,47000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=59",fixture,1.0
+2025Q4,IFRS,cash_flow,capex,Capital expenditures,17000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=60",fixture,1.0
+2026Q1,IFRS,income_statement,revenue,Revenue,325000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=61",fixture,1.0
+2026Q1,IFRS,income_statement,ebitda,EBITDA,70000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=62",fixture,1.0
+2026Q1,IFRS,income_statement,operating_profit,Operating profit,56000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=63",fixture,1.0
+2026Q1,IFRS,income_statement,net_income,Net income,45000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=64",fixture,1.0
+2026Q1,IFRS,balance_sheet,total_assets,Total assets,800000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=65",fixture,1.0
+2026Q1,IFRS,balance_sheet,total_equity,Total equity,525000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=66",fixture,1.0
+2026Q1,IFRS,balance_sheet,total_debt,Total debt,155000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=67",fixture,1.0
+2026Q1,IFRS,balance_sheet,cash_and_equivalents,Cash and equivalents,95000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=68",fixture,1.0
+2026Q1,IFRS,balance_sheet,current_assets,Current assets,295000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=69",fixture,1.0
+2026Q1,IFRS,balance_sheet,current_liabilities,Current liabilities,145000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=70",fixture,1.0
+2026Q1,IFRS,cash_flow,operating_cash_flow,Operating cash flow,50000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=71",fixture,1.0
+2026Q1,IFRS,cash_flow,capex,Capital expenditures,18000,RUB,1000000,quarter,"fixture:sheet=financial_facts;table=demo;row=72",fixture,1.0
+

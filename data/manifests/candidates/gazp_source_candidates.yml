@@ -1,0 +1,31 @@
+company: GAZP
+company_name: "ПАО Газпром"
+sector: oil_and_gas
+official_source_pages:
+  - https://www.gazprom.com/investors/disclosure/reports/2021/
+coverage:
+  2021Q1:
+    source_role: financial_statements
+    trusted_domain: true
+    expected_file_type: pdf
+    confidence: high
+    notes: "Official Gazprom reports page lists IFRS consolidated interim condensed financial information, 31 March 2021."
+  2021Q2:
+    source_role: financial_statements
+    trusted_domain: true
+    expected_file_type: pdf
+    confidence: high
+    notes: "Official Gazprom reports page lists IFRS consolidated interim condensed financial information, 30 June 2021."
+  2021Q3:
+    source_role: financial_statements
+    trusted_domain: true
+    expected_file_type: pdf
+    confidence: high
+    notes: "Official Gazprom reports page lists IFRS consolidated interim condensed financial information, 30 September 2021."
+  2021Q4:
+    source_role: financial_statements
+    trusted_domain: true
+    expected_file_type: pdf
+    confidence: high
+    notes: "Official Gazprom reports page lists IFRS Consolidated Financial Statements with Independent Auditor's Report, 31 December 2021."
+blockers: []

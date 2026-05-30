@@ -1,0 +1,31 @@
+company: SIBN
+company_name: "ПАО Газпром нефть"
+sector: oil_and_gas
+official_source_pages: []
+coverage:
+  2021Q1:
+    source_role: missing
+    trusted_domain: false
+    expected_file_type: unknown
+    confidence: none
+    notes: "Official 2021 Q1 IFRS statement source not verified in this scan."
+  2021Q2:
+    source_role: missing
+    trusted_domain: false
+    expected_file_type: unknown
+    confidence: none
+    notes: "Official 2021 6M IFRS statement source not verified in this scan."
+  2021Q3:
+    source_role: missing
+    trusted_domain: false
+    expected_file_type: unknown
+    confidence: none
+    notes: "Official 2021 9M IFRS statement source not verified in this scan."
+  2021Q4:
+    source_role: missing
+    trusted_domain: false
+    expected_file_type: unknown
+    confidence: none
+    notes: "Official 2021 FY IFRS statement source not verified in this scan."
+blockers:
+  - Official source package not verified

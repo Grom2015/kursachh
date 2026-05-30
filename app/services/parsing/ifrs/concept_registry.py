@@ -1,0 +1,271 @@
+from dataclasses import dataclass
+
+
+@dataclass(frozen=True)
+class IFRSConcept:
+    concept_code: str
+    display_name: str
+    statement_type: str
+    allowed_statement_contexts: tuple[str, ...]
+    raw_label_patterns: tuple[str, ...]
+    excluded_label_patterns: tuple[str, ...] = ()
+    period_type_allowed: tuple[str, ...] = ("ytd", "annual", "balance_sheet_snapshot")
+    required_for_metrics: tuple[str, ...] = ()
+    is_non_ifrs_metric: bool = False
+    notes: str = ""
+
+
+CONCEPTS: dict[str, IFRSConcept] = {
+    "revenue": IFRSConcept(
+        "revenue",
+        "Revenue",
+        "income_statement",
+        ("profit_or_loss", "segment_note"),
+        (
+            r"^revenue$",
+            r"^revenues$",
+            r"^sales(?: \(including excise and export tariffs\))?$",
+            r"^sales and other operating revenues(?: on non-banking activities, net)?$",
+            r"^total sales(?: in the consolidated(?: interim condensed)? statement of comprehensive income)?$",
+        ),
+        required_for_metrics=("revenue_growth", "net_margin", "operating_margin", "fcf_margin"),
+    ),
+    "operating_profit": IFRSConcept(
+        "operating_profit",
+        "Operating profit",
+        "income_statement",
+        ("profit_or_loss",),
+        (r"^operating profit(?: on non-banking activities)?$", r"^profit from operating activities$"),
+        excluded_label_patterns=(r"financial result",),
+        required_for_metrics=("operating_margin",),
+    ),
+    "net_income": IFRSConcept(
+        "net_income",
+        "Net income",
+        "income_statement",
+        ("profit_or_loss",),
+        (r"^profit \(loss\) for the period$", r"^profit for the period$", r"^profit for the year(?: .*)?$"),
+        excluded_label_patterns=(r"attributable to", r"ordinary shareholders", r"comprehensive"),
+        required_for_metrics=("net_margin", "roe", "roa"),
+    ),
+    "total_assets": IFRSConcept(
+        "total_assets",
+        "Total assets",
+        "balance_sheet",
+        ("financial_position", "segment_note"),
+        (r"^total assets$", r"^total assets in the consolidated(?: interim condensed)? balance sheet$"),
+        period_type_allowed=("balance_sheet_snapshot",),
+        required_for_metrics=("roa",),
+    ),
+    "total_equity": IFRSConcept(
+        "total_equity",
+        "Total equity",
+        "balance_sheet",
+        ("financial_position",),
+        (r"^total equity$",),
+        period_type_allowed=("balance_sheet_snapshot",),
+        required_for_metrics=("roe", "debt_to_equity"),
+    ),
+    "current_assets": IFRSConcept(
+        "current_assets",
+        "Current assets",
+        "balance_sheet",
+        ("financial_position",),
+        (r"^total current assets$",),
+        period_type_allowed=("balance_sheet_snapshot",),
+        required_for_metrics=("current_ratio",),
+    ),
+    "current_liabilities": IFRSConcept(
+        "current_liabilities",
+        "Current liabilities",
+        "balance_sheet",
+        ("financial_position",),
+        (r"^total current liabilities$",),
+        period_type_allowed=("balance_sheet_snapshot",),
+        required_for_metrics=("current_ratio",),
+    ),
+    "cash_and_equivalents": IFRSConcept(
+        "cash_and_equivalents",
+        "Cash and cash equivalents",
+        "balance_sheet",
+        ("financial_position", "cash_note"),
+        (r"^cash and cash equivalents$", r"^total cash and cash equivalents$"),
+        period_type_allowed=("balance_sheet_snapshot",),
+    ),
+    "operating_cash_flow": IFRSConcept(
+        "operating_cash_flow",
+        "Operating cash flow",
+        "cash_flow",
+        ("cash_flow", "cash_flow_note"),
+        (r"^net cash provided by operating activities$", r"^net cash from operating activities$"),
+        required_for_metrics=("fcf", "fcf_margin"),
+    ),
+    "capex": IFRSConcept(
+        "capex",
+        "Capital expenditures",
+        "cash_flow",
+        ("cash_flow", "segment_note"),
+        (r"^capital expenditures1?$", r"^purchases of property, plant and equipment$"),
+        required_for_metrics=("fcf", "fcf_margin"),
+    ),
+    "short_term_borrowings": IFRSConcept(
+        "short_term_borrowings",
+        "Short-term borrowings",
+        "balance_sheet",
+        ("financial_position", "debt_note", "segment_note"),
+        (
+            r"^short-term borrowings and current portion of long-term debt$",
+            r"^short-term borrowings, promissory notes and current portion of long-term borrowings$",
+        ),
+        period_type_allowed=("balance_sheet_snapshot",),
+    ),
+    "long_term_borrowings": IFRSConcept(
+        "long_term_borrowings",
+        "Long-term borrowings",
+        "balance_sheet",
+        ("financial_position", "debt_note", "segment_note"),
+        (r"^long-term debt$", r"^long-term borrowings$", r"^long-term borrowings, promissory notes$"),
+        period_type_allowed=("balance_sheet_snapshot",),
+    ),
+    "total_debt": IFRSConcept(
+        "total_debt",
+        "Total debt",
+        "balance_sheet",
+        ("debt_note", "financial_risk_note"),
+        (r"^total debt$",),
+        period_type_allowed=("balance_sheet_snapshot",),
+        required_for_metrics=("debt_to_equity", "net_debt_to_ebitda"),
+        notes="May be a non-IFRS/APM disclosure depending on issuer methodology.",
+    ),
+    "ebitda": IFRSConcept(
+        "ebitda",
+        "EBITDA",
+        "income_statement",
+        ("profit_or_loss", "segment_note", "financial_risk_note"),
+        (r"^ebitda$", r"^adjusted ebitda$"),
+        required_for_metrics=("ebitda_margin", "net_debt_to_ebitda", "ev_to_ebitda"),
+        is_non_ifrs_metric=True,
+        notes="Do not derive without explicit disclosure.",
+    ),
+    "net_interest_income": IFRSConcept(
+        "net_interest_income",
+        "Net interest income",
+        "income_statement",
+        ("profit_or_loss",),
+        (r"^net interest income$", r"^чистые? процентные доходы?$"),
+        required_for_metrics=("net_interest_margin",),
+        notes="Banking-sector concept; do not map gross interest income to industrial revenue.",
+    ),
+    "interest_income": IFRSConcept(
+        "interest_income",
+        "Interest income",
+        "income_statement",
+        ("profit_or_loss",),
+        (r"^interest income$", r"^процентные доходы$"),
+        notes="Banking-sector gross income concept; do not map to industrial revenue.",
+    ),
+    "interest_expense": IFRSConcept(
+        "interest_expense",
+        "Interest expense",
+        "income_statement",
+        ("profit_or_loss",),
+        (r"^interest expenses?$", r"^процентные расходы$"),
+        notes="Banking-sector funding cost concept.",
+    ),
+    "fee_and_commission_income": IFRSConcept(
+        "fee_and_commission_income",
+        "Fee and commission income",
+        "income_statement",
+        ("profit_or_loss",),
+        (r"^fee and commission income$", r"^комиссионные доходы$"),
+        notes="Banking-sector gross fee income concept; do not map to industrial revenue.",
+    ),
+    "fee_and_commission_expense": IFRSConcept(
+        "fee_and_commission_expense",
+        "Fee and commission expense",
+        "income_statement",
+        ("profit_or_loss",),
+        (r"^fee and commission expenses?$", r"^комиссионные расходы$"),
+        notes="Banking-sector fee expense concept.",
+    ),
+    "net_fee_commission_income": IFRSConcept(
+        "net_fee_commission_income",
+        "Net fee and commission income",
+        "income_statement",
+        ("profit_or_loss",),
+        (r"^net fee and commission income$", r"^чистые? комиссионные доходы?$"),
+        notes="Banking-sector concept.",
+    ),
+    "operating_income": IFRSConcept(
+        "operating_income",
+        "Operating income",
+        "income_statement",
+        ("profit_or_loss",),
+        (r"^operating income$", r"^total operating income$", r"^итого операционные доходы?$"),
+        required_for_metrics=("cost_to_income", "net_margin_like"),
+        notes="Banking-sector income denominator; not the same as industrial revenue.",
+    ),
+    "net_trading_income": IFRSConcept(
+        "net_trading_income",
+        "Net trading income",
+        "income_statement",
+        ("profit_or_loss",),
+        (
+            r"^net trading income$",
+            r"^net gains from trading$",
+            r"^чистые доходы от торговых операций$",
+            r"^чистые доходы от операций с финансовыми инструментами$",
+        ),
+        notes="Banking-sector supporting concept; not industrial revenue.",
+    ),
+    "operating_expenses": IFRSConcept(
+        "operating_expenses",
+        "Operating expenses",
+        "income_statement",
+        ("profit_or_loss",),
+        (r"^operating expenses$", r"^administrative and other operating expenses$", r"^операционные расходы$"),
+        required_for_metrics=("cost_to_income",),
+        notes="May be disclosed as negative; banking ratios use absolute cost magnitude.",
+    ),
+    "profit_before_tax": IFRSConcept(
+        "profit_before_tax",
+        "Profit before tax",
+        "income_statement",
+        ("profit_or_loss",),
+        (r"^profit before tax$", r"^profit before income tax$", r"^прибыль до налогообложения$"),
+        notes="Banking-sector supporting concept.",
+    ),
+    "total_liabilities": IFRSConcept(
+        "total_liabilities",
+        "Total liabilities",
+        "balance_sheet",
+        ("financial_position",),
+        (r"^total liabilities$", r"^итого обязательств$"),
+        period_type_allowed=("balance_sheet_snapshot",),
+        notes="Banking-sector supporting concept.",
+    ),
+    "loans_to_customers": IFRSConcept(
+        "loans_to_customers",
+        "Loans to customers",
+        "balance_sheet",
+        ("financial_position",),
+        (r"^loans and advances to customers$", r"^loans to customers$", r"^кредиты и авансы клиентам$"),
+        period_type_allowed=("balance_sheet_snapshot",),
+        required_for_metrics=("loan_to_deposit",),
+        notes="Banking-sector concept; do not substitute total assets.",
+    ),
+    "customer_accounts": IFRSConcept(
+        "customer_accounts",
+        "Customer accounts",
+        "balance_sheet",
+        ("financial_position",),
+        (r"^amounts due to customers$", r"^customer accounts$", r"^due to customers$", r"^средства клиентов$"),
+        period_type_allowed=("balance_sheet_snapshot",),
+        required_for_metrics=("loan_to_deposit",),
+        notes="Banking-sector deposit/customer funding concept; do not substitute total liabilities.",
+    ),
+}
+
+
+def get_concept(concept_code: str) -> IFRSConcept | None:
+    return CONCEPTS.get(concept_code)

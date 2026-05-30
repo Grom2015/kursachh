@@ -1,0 +1,150 @@
+{
+  "generated_at": "2026-05-30T15:51:27.870430+00:00",
+  "provider_name": "E-Disclosure / Interfax",
+  "provider_url": "https://www.e-disclosure.ru/",
+  "sample_tickers": [
+    "TATN",
+    "NVTK",
+    "ROSN",
+    "SIBN"
+  ],
+  "year": 2021,
+  "reporting_standard": "IFRS",
+  "offline_only": true,
+  "live_public_docs_check": false,
+  "access_status": "requires_auth",
+  "api_documentation_status": "found_in_catalog",
+  "api_documentation_live_verified": false,
+  "authentication_required": true,
+  "paid_or_contract_required": "unknown",
+  "production_readiness_status": "requires_access_check",
+  "endpoints_discovered": [
+    {
+      "url": "https://www.e-disclosure.ru/",
+      "purpose": "provider_home",
+      "status": "catalog_known_not_live_verified"
+    },
+    {
+      "url": "https://www.e-disclosure.ru/api/v1/swagger/index.html",
+      "purpose": "api_docs_or_swagger",
+      "status": "catalog_known_not_live_verified"
+    },
+    {
+      "url": "https://www.e-disclosure.ru/portal/company.aspx",
+      "purpose": "issuer_company_page_template",
+      "status": "catalog_known_not_live_verified"
+    }
+  ],
+  "required_credentials": [
+    "E-Disclosure API gateway account",
+    "API key or token issued by provider",
+    "Contract or written authorization for automated access"
+  ],
+  "expected_capabilities": [
+    "2021 issuer report metadata lookup",
+    "2021 IFRS financial reporting message search",
+    "issuer/company lookup by disclosure issuer id, INN, or issuer name",
+    "report document link metadata if permitted by gateway contract",
+    "archive coverage checks for requested sample tickers"
+  ],
+  "tested_capabilities": [
+    "curated_catalog_review",
+    "local_registry_identifier_readiness"
+  ],
+  "sample_readiness": [
+    {
+      "ticker": "TATN",
+      "company_name": "ПАО \"Татнефть\"",
+      "inn_available": false,
+      "ogrn_available": false,
+      "disclosure_id_available": false,
+      "issuer_name_available": true,
+      "lookup_readiness": "missing_identifier",
+      "missing_identifiers": [
+        "inn",
+        "disclosure_id",
+        "ogrn"
+      ],
+      "recommended_identifier_source": "Enrich via local registry, MOEX identity metadata, issuer pages, or E-Disclosure company search."
+    },
+    {
+      "ticker": "NVTK",
+      "company_name": "ПАО \"НОВАТЭК\"",
+      "inn_available": false,
+      "ogrn_available": false,
+      "disclosure_id_available": false,
+      "issuer_name_available": true,
+      "lookup_readiness": "missing_identifier",
+      "missing_identifiers": [
+        "inn",
+        "disclosure_id",
+        "ogrn"
+      ],
+      "recommended_identifier_source": "Enrich via local registry, MOEX identity metadata, issuer pages, or E-Disclosure company search."
+    },
+    {
+      "ticker": "ROSN",
+      "company_name": "ПАО \"НК Роснефть\"",
+      "inn_available": false,
+      "ogrn_available": false,
+      "disclosure_id_available": false,
+      "issuer_name_available": true,
+      "lookup_readiness": "missing_identifier",
+      "missing_identifiers": [
+        "inn",
+        "disclosure_id",
+        "ogrn"
+      ],
+      "recommended_identifier_source": "Enrich via local registry, MOEX identity metadata, issuer pages, or E-Disclosure company search."
+    },
+    {
+      "ticker": "SIBN",
+      "company_name": "ПАО \"Газпром нефть\"",
+      "inn_available": false,
+      "ogrn_available": false,
+      "disclosure_id_available": false,
+      "issuer_name_available": true,
+      "lookup_readiness": "missing_identifier",
+      "missing_identifiers": [
+        "inn",
+        "disclosure_id",
+        "ogrn"
+      ],
+      "recommended_identifier_source": "Enrich via local registry, MOEX identity metadata, issuer pages, or E-Disclosure company search."
+    }
+  ],
+  "public_docs_checks": [],
+  "blockers": [
+    "requires_api_credentials",
+    "requires_contract_terms_verification",
+    "archive_coverage_unverified",
+    "document_link_access_unverified",
+    "redistribution_rights_unverified",
+    "sample_issuer_identifier_enrichment_required"
+  ],
+  "legal_access_questions": [
+    "What contract is required for API gateway access?",
+    "Are FY 2021 IFRS report metadata and document links available via the gateway?",
+    "What rate limits, archive limits, and retention terms apply?",
+    "Are automated document-link retrieval and downstream validation allowed?"
+  ],
+  "redistribution_questions": [
+    "Can metadata and report links be stored in the product database?",
+    "Can downloaded official documents be cached for validation?",
+    "Can derived facts/metrics based on provider-retrieved documents be displayed to end users?"
+  ],
+  "recommended_next_action": "add_issuer_identifier_enrichment_first",
+  "next_actions": [
+    "Request E-Disclosure API credentials and contract terms.",
+    "Verify archive/document-link access for TATN, NVTK, ROSN, SIBN FY 2021.",
+    "Enrich local issuer identifiers before authenticated POC if disclosure ids or INNs are missing.",
+    "Run a separate authenticated proof-of-metadata only after credentials and legal terms are approved."
+  ],
+  "limitations": [
+    "Catalog-known API documentation is not live verification.",
+    "API existence is not usable access.",
+    "No authenticated API calls were attempted.",
+    "No paid calls, financial PDF downloads, parser runs, metric runs, valuation, peer comparison, or LLM calls were made.",
+    "FY 2021 report metadata/document links are not proven obtainable until authenticated access is tested."
+  ]
+}
