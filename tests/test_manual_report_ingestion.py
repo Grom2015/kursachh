@@ -208,6 +208,116 @@ def test_duplicate_upload_returns_existing_document(db_session):
     assert db_session.query(ReportDocument).filter(ReportDocument.source_type == "manual_upload").count() == 1
 
 
+def test_duplicate_rejected_manual_upload_is_reprocessed_as_evidence_only(monkeypatch, db_session):
+    import app.services.reports.manual_report_ingestion as module
+
+    root = runtime_root()
+    source = fake_ifrs_pdf(root / "report.pdf", ticker="MGNT", year=2025)
+    service = ManualReportIngestionService(db_session, root=root)
+
+    first = service.ingest(
+        ManualReportIngestionRequest(
+            company_ticker="MGNT",
+            reporting_standard="IFRS",
+            period="2025Q4",
+            local_file_path=str(source),
+            run_table_extraction=False,
+            run_dataframe_fact_parser=False,
+        )
+    )
+    document = db_session.get(ReportDocument, first.report_document_id)
+    document.status = "rejected"
+    db_session.commit()
+
+    class FakeValidator:
+        def validate(self, document, expected_file_type=None, max_text_pages=None):
+            return SimpleNamespace(
+                validation_status="partial",
+                detected_document_role="financial_statements",
+                warnings=["company_marker_weak"],
+                to_dict=lambda: {
+                    "validation_status": "partial",
+                    "detected_document_role": "financial_statements",
+                    "detected_period": "2025Q4",
+                    "comparative_period": "2024Q4",
+                    "period_source": "document_text",
+                    "period_confidence": 0.9,
+                    "period_warnings": [],
+                    "warnings": ["company_marker_weak"],
+                },
+            )
+
+    class FakeExtractor:
+        def __init__(self, root=None):
+            self.root = root
+
+        def extract(self, document):
+            assert document.status == "downloaded"
+            artifact = root / "data" / "parsed" / "MGNT" / "2025Q4" / f"{document.id}_statement_tables.json"
+            artifact.parent.mkdir(parents=True, exist_ok=True)
+            payload = {
+                "document_id": document.id,
+                "statement_tables_count": 2,
+                "required_statement_tables_found": False,
+                "statement_coverage": {
+                    "balance_sheet": {"found": True, "count": 1, "periods": ["2025Q4"]},
+                    "income_statement": {"found": True, "count": 1, "periods": ["2025Q4"]},
+                    "cash_flow": {"found": False, "count": 0, "periods": []},
+                },
+                "artifact_path": str(artifact),
+                "period_resolution": {
+                    "effective_report_period": "2025Q4",
+                    "comparative_period": "2024Q4",
+                    "period_source": "table_headers",
+                    "period_confidence": 0.9,
+                    "period_warnings": [],
+                },
+                "warnings": [],
+            }
+            artifact.write_text(json.dumps(payload), encoding="utf-8")
+            return payload
+
+    class FakeParser:
+        def __init__(self, *args, **kwargs):
+            pass
+
+        def parse(self, *args, **kwargs):
+            return SimpleNamespace(
+                status="PARTIAL",
+                canonical_facts_created=1,
+                to_dict=lambda: {
+                    "status": "PARTIAL",
+                    "canonical_facts_created": 1,
+                    "structured_facts": [{"metric_code": "net_income"}],
+                    "rejected_rows": [],
+                    "unmapped_numeric_evidence": [{"raw_label": "Revenue"}],
+                    "unmapped_table_evidence": [],
+                    "llm_ready_evidence_pack": {"normalized_facts": [{"metric_code": "net_income"}]},
+                },
+            )
+
+    monkeypatch.setattr(module, "DocumentValidator", lambda: FakeValidator())
+    monkeypatch.setattr(module, "StatementTableExtractor", FakeExtractor)
+    monkeypatch.setattr(module, "DataFrameStatementParser", FakeParser)
+
+    second = service.ingest(
+        ManualReportIngestionRequest(
+            company_ticker="MGNT",
+            reporting_standard="IFRS",
+            period="2025Q4",
+            local_file_path=str(source),
+            run_dataframe_fact_parser=True,
+            allow_text_fallback_semantic_gate=True,
+        )
+    )
+
+    assert second.duplicate_detected is True
+    assert second.ingestion_status == "EVIDENCE_ONLY"
+    assert second.statement_tables_extracted == 2
+    assert second.canonical_fact_candidates == 1
+    assert second.document_classification == "evidence_only_report"
+
+
 def test_validation_failure_keeps_audit_document_and_blocks_facts(db_session):
     root = runtime_root()
     source = invalid_pdf(root / "bad.pdf")

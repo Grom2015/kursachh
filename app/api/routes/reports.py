@@ -1,10 +1,12 @@
 import json
+import mimetypes
 import tempfile
 from datetime import datetime
 from pathlib import Path
 from traceback import format_exception
 
 from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile
+from fastapi.responses import FileResponse
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
@@ -236,3 +238,23 @@ def get_statement_tables(document_id: int, db: Session = Depends(get_db)) -> dic
         "items": payload.get("statement_tables", []),
         "warnings": payload.get("warnings", []),
     }
+
+
+@router.get("/artifact/{artifact_path:path}")
+def open_artifact_file(artifact_path: str) -> FileResponse:
+    settings = get_settings()
+    root = settings.root_dir.resolve()
+    relative = Path(artifact_path)
+    if relative.is_absolute() or ".." in relative.parts:
+        raise HTTPException(status_code=400, detail="artifact_path_not_allowed")
+    full_path = (root / relative).resolve()
+    allowed_roots = [
+        (root / "data" / "validation").resolve(),
+        (root / "data" / "parsed").resolve(),
+    ]
+    if not any(full_path.is_relative_to(base) for base in allowed_roots):
+        raise HTTPException(status_code=403, detail="artifact_path_outside_allowed_roots")
+    if not full_path.exists() or not full_path.is_file():
+        raise HTTPException(status_code=404, detail="artifact_not_found")
+    media_type = mimetypes.guess_type(str(full_path))[0] or "application/octet-stream"
+    return FileResponse(full_path, media_type=media_type, filename=full_path.name)

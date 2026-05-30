@@ -1,5 +1,7 @@
 from app.db.models import ReportDocument
 from app.services.parsing.audit import audit_path, write_parse_audit
+import json
+from pathlib import Path
 
 
 def test_documents_endpoint(client, db_session):
@@ -60,3 +62,19 @@ def test_parse_audit_404(client, db_session):
         path.unlink()
     response = client.get(f"/reports/documents/{doc.id}/parse-audit")
     assert response.status_code == 404
+
+
+def test_artifact_endpoint_serves_validation_json(client):
+    path = Path("data/validation/LKOH/2021Q4_manual_report_ingestion.json")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps({"status": "ok"}), encoding="utf-8")
+
+    response = client.get("/reports/artifact/data/validation/LKOH/2021Q4_manual_report_ingestion.json")
+
+    assert response.status_code == 200
+    assert response.json()["status"] == "ok"
+
+
+def test_artifact_endpoint_rejects_path_escape(client):
+    response = client.get("/reports/artifact/../secrets.txt")
+    assert response.status_code in {400, 404}

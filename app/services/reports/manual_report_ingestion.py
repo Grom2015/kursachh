@@ -196,6 +196,7 @@ class ManualReportIngestionService:
         validation_payload = validation.to_dict()
         resolved_period = self._apply_validation_period_resolution(document, validation_payload, warnings)
         source_trust_bucket = "manual_upload_validated" if validation.validation_status == "pass" else "manual_upload_unverified"
+        self._prepare_document_for_reprocessing(document)
         document.validation_warnings_json = validation.warnings
         document.source_trust_bucket = source_trust_bucket
         document.official_source_verified = False
@@ -680,6 +681,11 @@ class ManualReportIngestionService:
     def _document_storage_path(self, document: ReportDocument) -> Path:
         path = Path(document.storage_path or "")
         return path if path.is_absolute() else self.root / path
+
+    def _prepare_document_for_reprocessing(self, document: ReportDocument) -> None:
+        if document.status in {"rejected", "failed"}:
+            document.status = "downloaded"
+            self.db.commit()
 
     def _sha256(self, path: Path) -> str:
         digest = hashlib.sha256()

@@ -217,7 +217,7 @@ function formatValue(value) {
 
 async function loadJsonReport(path) {
   if (!path) return null;
-  const response = await fetch(`/${path}`);
+  const response = await fetch(reportUrl(path));
   if (!response.ok) return null;
   return response.json();
 }
@@ -227,9 +227,16 @@ function sourcePage(item) {
   return location.page_number || location.page || location.source_location?.page || "—";
 }
 
-function reportLink(path, labelText = "Открыть отчет") {
+function reportUrl(path) {
   if (!path) return "";
-  return `<a class="report-link" href="/${path}" target="_blank" rel="noopener noreferrer">${labelText}</a>`;
+  const normalized = String(path || "").replaceAll("\\", "/").replace(/^\/+/, "");
+  return `/reports/artifact/${encodeURI(normalized)}`;
+}
+
+function reportLink(path, labelText = "Открыть отчет") {
+  const url = reportUrl(path);
+  if (!url) return "";
+  return `<a class="report-link" href="${url}" target="_blank" rel="noopener noreferrer">${labelText}</a>`;
 }
 
 function escapeAttribute(value) {
