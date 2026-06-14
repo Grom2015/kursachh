@@ -93,6 +93,7 @@ async def manual_upload_report(
                 run_dataframe_fact_parser=run_dataframe_fact_parser,
                 allow_text_fallback_semantic_gate=allow_text_fallback_semantic_gate,
                 persist_facts=False,
+                auto_fetch_market_data=True,
             )
         )
         payload = report.to_dict()

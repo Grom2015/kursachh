@@ -7,10 +7,12 @@ in fixture/demo mode without an LLM).
 
 from __future__ import annotations
 
+import base64
 import json
 import logging
 import time
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Any
 
 logger = logging.getLogger(__name__)
@@ -80,6 +82,7 @@ class LLMResponse:
 # Retry parameters
 _MAX_RETRIES = 3
 _RETRY_BACKOFF_BASE = 2.0  # seconds
+_MAX_PDF_ATTACHMENT_BYTES = 32 * 1024 * 1024
 
 
 class LLMClient:
@@ -117,6 +120,7 @@ class LLMClient:
         user_message: str,
         max_tokens: int = 8192,
         temperature: float = 0.3,
+        pdf_attachments: list[dict[str, Any]] | None = None,
     ) -> LLMResponse:
         """Send a single-turn message to Claude and return a wrapped response.
 
@@ -132,7 +136,7 @@ class LLMClient:
                     max_tokens=max_tokens,
                     temperature=temperature,
                     system=system,
-                    messages=[{"role": "user", "content": user_message}],
+                    messages=[{"role": "user", "content": self._message_content(user_message, pdf_attachments)}],
                 )
                 text_parts = [
                     block.text for block in response.content if block.type == "text"
@@ -167,3 +171,27 @@ class LLMClient:
 
         # Should never reach here, but satisfy the type-checker.
         raise last_exc  # type: ignore[misc]
+
+    def _message_content(self, user_message: str, pdf_attachments: list[dict[str, Any]] | None) -> Any:
+        blocks: list[dict[str, Any]] = []
+        for attachment in pdf_attachments or []:
+            path = Path(str(attachment.get("path") or ""))
+            if not path.exists() or not path.is_file() or path.suffix.casefold() != ".pdf":
+                continue
+            size = path.stat().st_size
+            if size <= 0 or size > _MAX_PDF_ATTACHMENT_BYTES:
+                continue
+            blocks.append(
+                {
+                    "type": "document",
+                    "source": {
+                        "type": "base64",
+                        "media_type": "application/pdf",
+                        "data": base64.b64encode(path.read_bytes()).decode("ascii"),
+                    },
+                }
+            )
+        if not blocks:
+            return user_message
+        blocks.append({"type": "text", "text": user_message})
+        return blocks

@@ -41,6 +41,7 @@ def document_to_dict(document: ReportDocument) -> dict:
         "source_role": document.source_role,
         "source_type": document.source_type,
         "source_url": document.source_url,
+        "storage_path": document.storage_path,
         "file_name": document.file_name,
         "file_hash": document.file_hash,
         "status": document.status,

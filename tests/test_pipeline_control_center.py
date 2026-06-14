@@ -524,6 +524,7 @@ def test_manual_upload_endpoint_cleans_temp_file_and_preserves_trust_boundary(cl
 
         def ingest(self, request):
             captured["temp_path"] = Path(request.local_file_path)
+            captured["auto_fetch_market_data"] = request.auto_fetch_market_data
             assert captured["temp_path"].exists()
             return SimpleNamespace(
                 to_dict=lambda: {
@@ -551,6 +552,7 @@ def test_manual_upload_endpoint_cleans_temp_file_and_preserves_trust_boundary(cl
     assert payload["db_persisted"] is False
     assert payload["official_source_verified"] is False
     assert payload["source_package_ready_contribution"] is False
+    assert captured["auto_fetch_market_data"] is True
     assert captured["temp_path"].exists() is False
 
 

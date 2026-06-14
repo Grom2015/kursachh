@@ -145,6 +145,43 @@ def _runtime_root() -> Path:
             "official_source_verified": False,
             "source_package_ready_contribution": False,
             "report_document_id": 237,
+            "stored_document_path": str(root / "data" / "raw" / "manual_uploads" / "LKOH" / "report.pdf"),
+        },
+    )
+    pdf_path = root / "data" / "raw" / "manual_uploads" / "LKOH" / "report.pdf"
+    pdf_path.parent.mkdir(parents=True, exist_ok=True)
+    pdf_path.write_bytes(b"%PDF-1.4\n%%EOF")
+    _write_json(
+        root / "data" / "validation" / "LKOH" / "2021Q1_2021Q4_market_technical_report.json",
+        {
+            "ticker": "LKOH",
+            "board": "TQBR",
+            "provider": "moex_iss",
+            "market_data_source": "MOEX ISS",
+            "market_data_mode": "live",
+            "status": "PASS",
+            "requested_date_range": {"from": "2021-01-01", "to": "2021-12-31"},
+            "actual_candle_date_range": {"from": "2021-01-04", "to": "2021-12-30"},
+            "market_period_aligned": True,
+            "coverage": {"covered_calendar_days": 361, "coverage_ratio": 0.99},
+            "summary": {"candles_count": 255, "technical_indicators_valid_count": 2},
+            "latest_summary": {"date": "2021-12-30", "close": 100.5, "rsi_14": 55.0},
+            "technical_indicators": [
+                {"indicator_code": "ma_20", "status": "valid", "value": 99.1},
+                {"indicator_code": "rsi_14", "status": "valid", "value": 55.0},
+            ],
+            "liquidity_metrics": [
+                {"metric_code": "average_daily_turnover", "status": "valid", "value": 123456.0},
+                {"metric_code": "bid_ask_spread", "status": "missing", "reason": "requires_orderbook_or_bid_ask_data"},
+            ],
+            "valuation_inputs": [
+                {
+                    "input_code": "market_cap",
+                    "status": "missing",
+                    "missing_reason": "shares_outstanding_or_market_cap_unavailable",
+                }
+            ],
+            "warnings": ["Daily candles do not contain bid/ask spread."],
         },
     )
     _write_json(
@@ -207,7 +244,14 @@ def test_builds_payload_from_existing_ratios_and_instructions():
     assert "Do not invent missing metrics." in payload["llm_instructions"]
     assert "Do not treat unresolved evidence as confirmed financial facts." in payload["llm_instructions"]
     assert payload["analysis_scope"]["peer_comparison"] is True
+    assert payload["analysis_scope"]["market_technical_analysis"] is True
     assert payload["source_documents"]["peer_analysis_report"]["comparison_readiness"] == "PARTIAL"
+    assert payload["market_technical_analysis"]["provider"] == "moex_iss"
+    assert payload["market_technical_analysis"]["summary"]["candles_count"] == 255
+    assert payload["market_technical_analysis"]["technical_indicators"][0]["indicator_code"] == "ma_20"
+    assert payload["market_technical_analysis"]["liquidity_metrics"][1]["metric_code"] == "bid_ask_spread"
+    assert payload["source_documents"]["manual_upload"]["source_pdf"]["llm_attachment_enabled"] is True
+    assert payload["source_pdf_attachments"][0]["media_type"] == "application/pdf"
     assert payload["normalized_facts"][0]["metric_code"] == "revenue"
     assert payload["derived_facts"][0]["derived_metric_code"] == "customer_accounts"
     assert payload["unresolved_numeric_evidence"][0]["not_confirmed_fact"] is True

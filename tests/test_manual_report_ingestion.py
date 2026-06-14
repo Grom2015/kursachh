@@ -87,6 +87,91 @@ def test_manual_pdf_is_copied_sha256_and_report_document_created(db_session):
     assert report.status == "INGESTED"
 
 
+def test_manual_upload_can_auto_fetch_live_market_data(monkeypatch, db_session):
+    root = runtime_root()
+    source = fake_ifrs_pdf(root / "report.pdf", ticker="LKOH", year=2021)
+
+    def fake_run_market_technical_report(**kwargs):
+        assert kwargs["ticker"] == "LKOH"
+        assert kwargs["board"] == "TQBR"
+        assert kwargs["period_from"] == "2021Q1"
+        assert kwargs["period_to"] == "2021Q4"
+        assert kwargs["mode"] == "live"
+        return {
+            "ticker": "LKOH",
+            "period_from": "2021Q1",
+            "period_to": "2021Q4",
+            "market_data_mode": "live",
+            "provider": "moex_iss",
+            "status": "PASS",
+            "summary": {"candles_count": 250},
+        }
+
+    def fake_save_market_technical_report(report):
+        path = root / "data" / "validation" / report["ticker"] / "2021Q1_2021Q4_market_technical_report.json"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(report), encoding="utf-8")
+        return path
+
+    monkeypatch.setattr(
+        "app.services.reports.manual_report_ingestion.run_market_technical_report",
+        fake_run_market_technical_report,
+    )
+    monkeypatch.setattr(
+        "app.services.reports.manual_report_ingestion.save_market_technical_report",
+        fake_save_market_technical_report,
+    )
+
+    report = ManualReportIngestionService(db_session, root=root).ingest(
+        ManualReportIngestionRequest(
+            company_ticker="LKOH",
+            reporting_standard="IFRS",
+            period="2021Q4",
+            local_file_path=str(source),
+            manual_upload_reason="manual_test",
+            run_table_extraction=False,
+            auto_fetch_market_data=True,
+        )
+    )
+
+    assert report.market_technical_status == "PASS"
+    assert report.market_data_mode == "live"
+    assert report.market_provider == "moex_iss"
+    assert report.market_candles_count == 250
+    assert report.market_technical_report_path
+
+
+def test_manual_upload_market_fetch_failure_is_non_fatal(monkeypatch, db_session):
+    root = runtime_root()
+    source = fake_ifrs_pdf(root / "report.pdf", ticker="LKOH", year=2021)
+
+    def fail_market_fetch(**kwargs):
+        raise RuntimeError("moex down")
+
+    monkeypatch.setattr(
+        "app.services.reports.manual_report_ingestion.run_market_technical_report",
+        fail_market_fetch,
+    )
+
+    report = ManualReportIngestionService(db_session, root=root).ingest(
+        ManualReportIngestionRequest(
+            company_ticker="LKOH",
+            reporting_standard="IFRS",
+            period="2021Q4",
+            local_file_path=str(source),
+            manual_upload_reason="manual_test",
+            run_table_extraction=False,
+            auto_fetch_market_data=True,
+        )
+    )
+
+    assert report.ingestion_status == "VALIDATED_FINANCIAL_STATEMENT"
+    assert report.market_technical_status == "UNAVAILABLE"
+    assert report.market_data_mode == "live"
+    assert report.market_provider == "moex_iss"
+    assert "market_live_fetch_failed_non_fatal:moex down" in report.warnings
+
+
 def test_manual_upload_overrides_default_period_from_document_text(db_session):
     root = runtime_root()
     source = fake_ifrs_pdf(root / "report.pdf", ticker="MGNT", year=2025)

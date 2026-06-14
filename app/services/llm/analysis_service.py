@@ -257,7 +257,11 @@ class LLMAnalysisService:
             data_quality=quality,
             warnings=warns,
         )
-        resp = self.client.generate(system=system, user_message=user)
+        resp = self.client.generate(
+            system=system,
+            user_message=user,
+            pdf_attachments=self._pdf_attachments_from_source_documents(docs),
+        )
         self._track(resp)
         return resp.text
 
@@ -308,6 +312,32 @@ class LLMAnalysisService:
             "LLM call: model=%s, in=%d, out=%d",
             resp.model, resp.input_tokens, resp.output_tokens,
         )
+
+    @staticmethod
+    def _pdf_attachments_from_source_documents(source_documents: Any) -> list[dict[str, Any]]:
+        attachments: list[dict[str, Any]] = []
+        if isinstance(source_documents, dict):
+            candidates = source_documents.get("source_pdf_attachments") or []
+            if isinstance(candidates, list):
+                attachments.extend(item for item in candidates if isinstance(item, dict))
+            manual_pdf = (source_documents.get("manual_upload") or {}).get("source_pdf")
+            if isinstance(manual_pdf, dict):
+                attachments.append(manual_pdf)
+            return attachments
+        if isinstance(source_documents, list):
+            for document in source_documents:
+                if not isinstance(document, dict):
+                    continue
+                path = document.get("storage_path") or document.get("stored_document_path") or document.get("path")
+                if path:
+                    attachments.append(
+                        {
+                            "path": path,
+                            "source_document_id": document.get("id") or document.get("report_document_id"),
+                            "file_name": document.get("file_name"),
+                        }
+                    )
+        return attachments
 
     @staticmethod
     def _extract_recommendation(text: str) -> str:

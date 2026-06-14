@@ -15,6 +15,7 @@ from app.core.config import get_settings
 from app.db.models import Company, ReportDocument
 from app.services.company_registry import CompanyRegistry, normalize_query
 from app.services.company_source_discovery import CompanySourceDiscoveryReport, CompanySourceDiscoveryService
+from app.services.market.market_audit import run_market_technical_report, save_market_technical_report
 from app.services.parsing.dataframe_statement_parser import DataFrameStatementParser
 from app.services.parsing.pdf_auto_parse_orchestrator import augment_statement_table_report_with_engine_candidates
 from app.services.parsing.statement_table_extractor import StatementTableExtractor
@@ -47,6 +48,7 @@ class ManualReportIngestionRequest:
     run_dataframe_fact_parser: bool = False
     allow_text_fallback_semantic_gate: bool = False
     persist_facts: bool = False
+    auto_fetch_market_data: bool = False
 
 
 @dataclass
@@ -100,6 +102,11 @@ class ManualReportIngestionReport:
     machine_report_available: bool = False
     final_status: str | None = None
     ocr_status: str | None = None
+    market_technical_report_path: str | None = None
+    market_technical_status: str | None = None
+    market_data_mode: str | None = None
+    market_candles_count: int = 0
+    market_provider: str | None = None
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
@@ -228,6 +235,8 @@ class ManualReportIngestionService:
                 identity_report_path=identity_report_path,
             )
             self._attach_machine_report(evidence_report)
+            if request.auto_fetch_market_data:
+                self._attach_market_technical_report(evidence_report, company)
             self.save_report(evidence_report)
             return evidence_report
         document.status = "validated"
@@ -335,6 +344,8 @@ class ManualReportIngestionService:
             top_structural_blockers=top_structural_blockers(fact_parse_report or {}),
         )
         self._attach_machine_report(report)
+        if request.auto_fetch_market_data:
+            self._attach_market_technical_report(report, company)
         self.save_report(report)
         return report
 
@@ -665,6 +676,46 @@ class ManualReportIngestionService:
         report.final_status = (result.payload.get("processing_status") or {}).get("final_status")
         report.ocr_status = (result.payload.get("document_classification") or {}).get("ocr_status")
         report.recommended_next_action = report.recommended_next_action or result.payload.get("recommended_next_action")
+
+    def _attach_market_technical_report(self, report: ManualReportIngestionReport, company: Company) -> None:
+        board = str(company.board or "").strip().upper()
+        if not board or board == "PENDING":
+            report.warnings.append("market_live_fetch_skipped_company_board_unresolved")
+            return
+        period_from, period_to = self._market_period_range(report.effective_report_period or report.period)
+        try:
+            market_report = run_market_technical_report(
+                ticker=company.ticker,
+                period_from=period_from,
+                period_to=period_to,
+                board=board,
+                mode="live",
+                cache_root=self.root / "data" / "market_cache",
+            )
+            path = save_market_technical_report(market_report)
+        except Exception as exc:
+            report.market_technical_status = "UNAVAILABLE"
+            report.market_data_mode = "live"
+            report.market_provider = "moex_iss"
+            report.warnings.append(f"market_live_fetch_failed_non_fatal:{exc}")
+            report.recommended_next_action = report.recommended_next_action or "retry_market_live_fetch"
+            return
+        summary = market_report.get("summary") or {}
+        report.market_technical_report_path = self._relative(path)
+        report.market_technical_status = str(market_report.get("status") or "UNKNOWN")
+        report.market_data_mode = str(market_report.get("market_data_mode") or "live")
+        report.market_provider = str(market_report.get("provider") or "moex_iss")
+        report.market_candles_count = int(summary.get("candles_count") or 0)
+        if report.market_candles_count <= 0:
+            report.warnings.append("market_live_fetch_returned_no_candles")
+
+    def _market_period_range(self, period: str) -> tuple[str, str]:
+        normalized = str(period or "").strip().upper()
+        match = re.fullmatch(r"(\d{4})Q([1-4])", normalized)
+        if match and match.group(2) == "4":
+            year = match.group(1)
+            return f"{year}Q1", f"{year}Q4"
+        return self._parser_period_range(normalized)
 
     def _save_fact_parse_report(self, fact_parse_report: dict[str, Any]) -> Path | None:
         ticker = str(fact_parse_report.get("company_ticker") or "").upper()

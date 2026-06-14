@@ -45,6 +45,8 @@ class LLMAnalysisPayload:
     unresolved_numeric_evidence: list[dict[str, Any]] = field(default_factory=list)
     unresolved_table_evidence: list[dict[str, Any]] = field(default_factory=list)
     evidence_pack_warnings: list[str] = field(default_factory=list)
+    market_technical_analysis: dict[str, Any] = field(default_factory=dict)
+    source_pdf_attachments: list[dict[str, Any]] = field(default_factory=list)
     warnings: list[str] = field(default_factory=list)
     provider_strategy: dict[str, Any] | None = None
 
@@ -125,6 +127,8 @@ class LLMAnalysisPayloadBuilder:
             unresolved_numeric_evidence=parse_evidence["unresolved_numeric_evidence"],
             unresolved_table_evidence=parse_evidence["unresolved_table_evidence"],
             evidence_pack_warnings=parse_evidence["evidence_pack_warnings"],
+            market_technical_analysis=self._market_technical_payload(market_technical),
+            source_pdf_attachments=self._source_pdf_attachments(manual),
             warnings=self.warnings,
             provider_strategy=provider,
         )
@@ -266,6 +270,7 @@ class LLMAnalysisPayloadBuilder:
                 "official_source_verified": manual.get("official_source_verified"),
                 "source_package_ready_contribution": manual.get("source_package_ready_contribution"),
                 "report_document_id": manual.get("report_document_id"),
+                "source_pdf": self._manual_source_pdf_payload(manual),
             },
             "market_technical_report": {
                 "available": bool(market_technical),
@@ -283,6 +288,60 @@ class LLMAnalysisPayloadBuilder:
             },
         }
 
+    def _manual_source_pdf_payload(self, manual: dict[str, Any]) -> dict[str, Any]:
+        stored_path = str(manual.get("stored_document_path") or "").strip()
+        if not stored_path:
+            return {"available": False, "reason": "manual_upload_pdf_path_missing"}
+        path = Path(stored_path)
+        if not path.is_absolute() and not path.exists():
+            path = self.root / path
+        is_pdf = path.suffix.casefold() == ".pdf"
+        exists = path.exists() and path.is_file()
+        return {
+            "available": bool(exists and is_pdf),
+            "path": str(path),
+            "file_name": manual.get("input_file") or path.name,
+            "source_document_id": manual.get("report_document_id"),
+            "media_type": "application/pdf" if is_pdf else None,
+            "llm_attachment_enabled": bool(exists and is_pdf),
+            "trust_warning": "manual_upload_lower_trust_fallback",
+            "reason": None if exists and is_pdf else "manual_upload_pdf_not_available_or_not_pdf",
+        }
+
+    def _source_pdf_attachments(self, manual: dict[str, Any]) -> list[dict[str, Any]]:
+        pdf = self._manual_source_pdf_payload(manual)
+        if not pdf.get("llm_attachment_enabled"):
+            return []
+        return [pdf]
+
+    def _market_technical_payload(self, market_technical: dict[str, Any]) -> dict[str, Any]:
+        if not market_technical:
+            return {"available": False}
+        return {
+            "available": True,
+            "ticker": market_technical.get("ticker"),
+            "board": market_technical.get("board"),
+            "provider": market_technical.get("provider"),
+            "market_data_source": market_technical.get("market_data_source"),
+            "market_data_mode": market_technical.get("market_data_mode"),
+            "status": market_technical.get("status"),
+            "requested_date_range": market_technical.get("requested_date_range"),
+            "actual_candle_date_range": market_technical.get("actual_candle_date_range"),
+            "market_period_aligned": market_technical.get("market_period_aligned"),
+            "coverage": market_technical.get("coverage"),
+            "summary": market_technical.get("summary") or {},
+            "latest_summary": market_technical.get("latest_summary") or {},
+            "technical_indicators": market_technical.get("technical_indicators") or [],
+            "liquidity_metrics": market_technical.get("liquidity_metrics") or [],
+            "valuation_inputs": market_technical.get("valuation_inputs") or [],
+            "warnings": market_technical.get("warnings") or [],
+            "instructions": [
+                "Use market_technical_analysis only as market context, not as financial statement facts.",
+                "Daily candles do not provide bid/ask spread unless explicitly present in liquidity_metrics.",
+                "Do not infer valuation metrics when valuation_inputs are missing.",
+            ],
+        }
+
     def _blockers(self, coverage: dict[str, Any], ratios: dict[str, Any]) -> list[str]:
         blockers = set(coverage.get("blockers") or [])
         if coverage.get("main_blocker"):
@@ -297,7 +356,7 @@ class LLMAnalysisPayloadBuilder:
         limitations = [
             "Payload is assembled from existing reports only; no ratios or facts were recalculated.",
             "Valuation metrics are not included and must not be inferred.",
-            "Peer comparison and market technical analysis are outside this payload.",
+            "Peer comparison is outside this payload unless a peer analysis report is explicitly present.",
             "Missing, unsupported, or blocked metrics must remain unavailable in downstream analysis.",
             "This payload does not claim universal issuer support.",
         ]
