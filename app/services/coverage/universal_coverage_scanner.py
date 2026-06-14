@@ -206,6 +206,8 @@ class UniversalCoverageScanner:
         table_report = self._statement_table_report(company.ticker, request)
         if request.run_missing_table_extraction and documents and not table_report:
             table_report = self._run_table_extraction(company.ticker, request)
+        if not table_report:
+            table_report = self._fallback_table_report_from_artifacts(company.ticker, request)
         table_status, table_blockers = self._table_status(table_report)
         blockers.extend(table_blockers)
 
@@ -343,6 +345,41 @@ class UniversalCoverageScanner:
         self.artifacts_created = self.artifacts_created or bool(after - before)
         return report
 
+    def _fallback_table_report_from_artifacts(self, ticker: str, request: CoverageScanRequest) -> dict[str, Any]:
+        artifact_paths = self._artifact_paths(ticker, request)
+        if not artifact_paths:
+            return {}
+        tables_extracted = 0
+        statement_tables_count = 0
+        cash_flow_tables_count = 0
+        warnings: list[str] = []
+        required_statement_tables_found = False
+        for path in artifact_paths:
+            payload = self._load_json(path)
+            tables = list(payload.get("statement_tables") or payload.get("normalized_statement_tables") or [])
+            tables_extracted += int(payload.get("tables_extracted") or len(tables))
+            statement_tables_count += int(
+                payload.get("statement_tables_count")
+                or sum(1 for table in tables if str(table.get("statement_type") or "unknown") != "unknown")
+            )
+            cash_flow_tables_count += int(
+                payload.get("cash_flow_tables_count")
+                or sum(1 for table in tables if str(table.get("statement_type") or "") == "cash_flow")
+            )
+            warnings.extend(list(payload.get("warnings") or []))
+            required_statement_tables_found = required_statement_tables_found or bool(
+                payload.get("required_statement_tables_found")
+            )
+        if statement_tables_count and not required_statement_tables_found:
+            required_statement_tables_found = True
+        return {
+            "tables_extracted": tables_extracted,
+            "statement_tables_count": statement_tables_count,
+            "cash_flow_tables_count": cash_flow_tables_count,
+            "required_statement_tables_found": required_statement_tables_found,
+            "warnings": sorted(set(warnings)),
+        }
+
     def _artifact_paths(self, ticker: str, request: CoverageScanRequest) -> list[Path]:
         root = self.root / get_settings().report_parsed_dir / ticker.upper()
         if not root.exists():
@@ -350,8 +387,14 @@ class UniversalCoverageScanner:
         return [
             path
             for path in root.glob("*/*_statement_tables.json")
-            if period_in_range(path.parent.name, request.period_from, request.period_to)
+            if self._artifact_period_in_range(path.parent.name, request)
         ]
+
+    def _artifact_period_in_range(self, period_value: str, request: CoverageScanRequest) -> bool:
+        try:
+            return period_in_range(period_value, request.period_from, request.period_to)
+        except ValueError:
+            return False
 
     def _table_status(self, report: dict[str, Any]) -> tuple[str, list[str]]:
         if not report:
@@ -386,6 +429,19 @@ class UniversalCoverageScanner:
         if canonical_facts and not conflicts:
             status = "FACTS_READY" if high_confidence == canonical_facts else "FACTS_PARTIAL"
             return status, [], {"source": "real_validation_report", "canonical_facts_count": canonical_facts}
+        existing_parse_report = self._load_json(self._dataframe_parse_report_path(company.ticker, request))
+        if existing_parse_report:
+            existing_canonical_facts = int(existing_parse_report.get("canonical_facts_created") or 0)
+            readiness = dict(existing_parse_report.get("analysis_readiness_summary") or {})
+            if existing_canonical_facts > 0 and readiness.get("facts_ready") is True:
+                return "FACTS_READY", [], existing_parse_report
+            if existing_canonical_facts > 0:
+                blockers = (
+                    ["missing_expected_statement_facts"]
+                    if existing_parse_report.get("missing_expected_facts")
+                    else []
+                )
+                return "FACTS_PARTIAL", blockers, existing_parse_report
         if not has_table_report:
             return "NOT_RUN", [], {}
         result = DataFrameStatementParser(
@@ -396,6 +452,9 @@ class UniversalCoverageScanner:
         report = result.to_dict()
         if result.canonical_facts_created == 0:
             return "NO_FACTS", ["no_safe_fact_candidates"], report
+        readiness = dict(report.get("analysis_readiness_summary") or {})
+        if readiness.get("facts_ready") is True:
+            return "FACTS_READY", [], report
         blockers = ["missing_expected_statement_facts"] if result.missing_expected_facts else []
         return ("FACTS_PARTIAL" if blockers else "FACTS_READY"), blockers, report
 
@@ -420,6 +479,8 @@ class UniversalCoverageScanner:
             return "FULL_STATEMENT_READY"
         if any(blocker in SOURCE_BLOCKERS for blocker in blockers):
             return "SOURCE_BLOCKED"
+        if table_status in {"TABLES_READY", "TABLES_PARTIAL"} and fact_status == "FACTS_READY":
+            return "FULL_STATEMENT_READY"
         if any(blocker in PARSER_BLOCKERS for blocker in blockers) or table_status in {
             "IMAGE_ONLY_PRIMARY_STATEMENTS",
             "NO_PRIMARY_STATEMENTS",

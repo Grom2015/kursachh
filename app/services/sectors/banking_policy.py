@@ -85,11 +85,74 @@ def is_financial_non_bank_ticker(ticker: str | None) -> bool:
     return str(ticker or "").upper() in FINANCIAL_NON_BANK_TICKERS
 
 
-def sector_is_banking(sector: str | None, subsector: str | None = None, ticker: str | None = None) -> bool:
+def _identity_text(*parts: object) -> str:
+    return " ".join(str(part or "") for part in parts).casefold()
+
+
+def _legacy_sector_is_banking(sector: str | None, subsector: str | None = None, ticker: str | None = None) -> bool:
     if is_banking_ticker(ticker):
         return True
     normalized = " ".join([str(sector or ""), str(subsector or "")]).casefold()
     return "bank" in normalized or "банк" in normalized
+
+
+def sector_is_banking(sector: str | None, subsector: str | None = None, ticker: str | None = None) -> bool:
+    if is_banking_ticker(ticker):
+        return True
+    normalized = _identity_text(sector, subsector)
+    return any(marker in normalized for marker in ("bank", "банк", "банков", "credit institution", "кредитн", "Р±Р°РЅРє"))
+
+
+def sector_is_financial_non_bank(
+    sector: str | None,
+    subsector: str | None = None,
+    ticker: str | None = None,
+    short_name: str | None = None,
+    full_name: str | None = None,
+) -> bool:
+    if is_financial_non_bank_ticker(ticker):
+        return True
+    if sector_is_banking(sector, subsector, ticker):
+        return False
+    normalized = _identity_text(sector, subsector, short_name, full_name)
+    return any(
+        marker in normalized
+        for marker in ("exchange", "бирж", "insurance", "страх", "leasing", "лизинг", "financial", "финанс")
+    )
+
+
+def resolve_issuer_class(
+    *,
+    ticker: str | None = None,
+    sector: str | None = None,
+    subsector: str | None = None,
+    short_name: str | None = None,
+    full_name: str | None = None,
+    aliases: list[str] | None = None,
+) -> str:
+    identity = _identity_text(sector, subsector, short_name, full_name, " ".join(aliases or []))
+    if sector_is_banking(sector, subsector, ticker) or any(
+        marker in identity for marker in ("bank", "банк", "банков", "credit institution", "кредитн", "Р±Р°РЅРє")
+    ):
+        return "bank_ifrs"
+    if sector_is_financial_non_bank(sector, subsector, ticker, short_name, full_name):
+        return "financial_non_bank_ifrs"
+    ticker_normalized = str(ticker or "").upper()
+    if ticker_normalized in {"MGNT", "X5", "FIVE"}:
+        return "industrial_ifrs_retail"
+    if ticker_normalized in {"LKOH", "GAZP", "ROSN", "SIBN", "TATN", "NVTK"}:
+        return "industrial_ifrs_oil_gas"
+    if ticker_normalized in {"GMKN", "PLZL", "CHMF", "MAGN", "PHOR"}:
+        return "industrial_ifrs_metals_mining"
+    return "industrial_ifrs_general"
+
+
+def issuer_class_is_banking(issuer_class: str | None) -> bool:
+    return str(issuer_class or "").startswith("bank")
+
+
+def issuer_class_is_financial_non_bank(issuer_class: str | None) -> bool:
+    return str(issuer_class or "").startswith("financial_non_bank")
 
 
 def bank_catalog_path(root: Path | None = None) -> Path:

@@ -97,12 +97,17 @@ def test_control_center_market_replay_cache_can_pass_without_live_fetch(db_sessi
 def test_pipeline_status_is_read_only_and_uses_relative_paths(db_session):
     root = runtime_root()
     report = root / "data" / "validation" / "LKOH" / "2021Q1_2021Q4_financial_ratios.json"
+    machine_report = root / "data" / "validation" / "LKOH" / "2021Q4_machine_report.json"
     report.parent.mkdir(parents=True, exist_ok=True)
     report.write_text('{"summary":{"calculated_count":1}}', encoding="utf-8")
+    machine_report.write_text('{"machine_report_schema_version":"1.0"}', encoding="utf-8")
     status = PipelineControlCenter(db_session, root=root).status("LKOH", "2021Q1", "2021Q4")
     ratios = next(item for item in status["reports"] if item["name"] == "financial_ratios")
+    machine = next(item for item in status["reports"] if item["name"] == "machine_report")
     assert ratios["exists"] is True
     assert ratios["path"] == "data/validation/LKOH/2021Q1_2021Q4_financial_ratios.json"
+    assert machine["exists"] is True
+    assert machine["path"] == "data/validation/LKOH/2021Q4_machine_report.json"
     assert status["safety"]["artifacts_created"] is False
     assert status["safety"]["facts_persisted"] is False
     shutil.rmtree(root, ignore_errors=True)
@@ -222,7 +227,13 @@ def test_parse_stage_exposes_v2_evidence_counts(db_session, monkeypatch):
             "structured_facts": [{"metric_code": "revenue"}, {"metric_code": "net_income"}],
             "derived_safe_facts": [{"derived_metric_code": "customer_accounts"}],
             "rejected_rows": [{"rejection_reason": "policy_blocked"}],
-            "unmapped_numeric_evidence": [{"raw_label": "Unknown line"}],
+            "unmapped_numeric_evidence": [
+                {
+                    "raw_label": "Unknown line",
+                    "source_engine": "ocr_table_structure_engine",
+                    "source_engines_involved": ["ocr_table_structure_engine"],
+                }
+            ],
             "unmapped_table_evidence": [{"table_title": "Note 12"}],
             "llm_ready_evidence_pack": {"normalized_facts": [{"metric_code": "revenue"}]},
             "analysis_readiness_summary": {"coverage_grade": "partial"},
@@ -245,6 +256,9 @@ def test_parse_stage_exposes_v2_evidence_counts(db_session, monkeypatch):
     assert stage.summary["unmapped_numeric_evidence_count"] == 1
     assert stage.summary["unmapped_table_evidence_count"] == 1
     assert stage.summary["llm_ready_evidence_pack_available"] is True
+    assert stage.summary["engine_contribution_summary"]["merged_fact_count"] == 0
+    assert stage.summary["engine_contribution_summary"]["ocr_only_fact_count"] == 0
+    assert "ocr_table_structure_engine" in stage.summary["engine_contribution_summary"]["engines_with_evidence_only_contribution"]
     shutil.rmtree(root, ignore_errors=True)
 
 

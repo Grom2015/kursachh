@@ -10,6 +10,7 @@ from app.core.config import get_settings
 from app.db.init_db import init_db
 from app.db.models import Company, ReportDocument
 from app.db.session import SessionLocal
+from app.services.parsing.pdf_auto_parse_orchestrator import augment_statement_table_report_with_engine_candidates
 from app.services.parsing.statement_table_extractor import (
     StatementTableExtractor,
     required_statement_tables_missing,
@@ -48,7 +49,22 @@ def extract_statement_tables(
         ]
         docs = _dedupe_documents(docs)
         extractor = StatementTableExtractor()
-        document_reports = [extractor.extract(document) for document in docs]
+        root = get_settings().root_dir
+        document_reports = []
+        for document in docs:
+            report = extractor.extract(document)
+            try:
+                report = augment_statement_table_report_with_engine_candidates(
+                    root=root,
+                    document=document,
+                    statement_table_report=report,
+                )
+            except Exception as exc:
+                report["warnings"] = [
+                    *list(report.get("warnings") or []),
+                    f"engine_augmentation_failed: {exc}",
+                ]
+            document_reports.append(report)
     report = build_extraction_report(ticker, period_from, period_to, reporting_standard, document_reports)
     save_extraction_report(report)
     return report
@@ -94,6 +110,9 @@ def build_extraction_report(
             1 for table in statement_tables if table.get("statement_type") == "income_statement"
         ),
         "cash_flow_tables_count": sum(1 for table in statement_tables if table.get("statement_type") == "cash_flow"),
+        "changes_in_equity_tables_count": sum(
+            1 for table in statement_tables if table.get("statement_type") == "changes_in_equity"
+        ),
         "statement_coverage": coverage,
         "required_statement_tables_found": not missing,
         "required_statement_tables_missing": missing,

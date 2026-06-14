@@ -38,6 +38,7 @@ class AnalysisResultOut(BaseModel):
     period_to: str
     result: dict[str, Any]
     llm_payload: dict[str, Any]
+    report_markdown: str | None = None
     warnings: list[str]
     disclaimer: str
 

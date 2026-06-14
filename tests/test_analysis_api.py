@@ -31,7 +31,53 @@ def test_analysis_job_and_result_flow(client, db_session):
     payload = result_response.json()
     assert payload["result"]["disclaimer"]
     assert payload["llm_payload"]["task"] == "prepare_financial_analytics_note"
+    assert "report_markdown" in payload
     assert db_session.get(AnalysisResult, job.result_id) is not None
+
+
+def test_analysis_report_endpoint_returns_sections(client, db_session):
+    job = AnalysisJob(
+        company_query="LKOH",
+        period_from="2021Q1",
+        period_to="2021Q4",
+        reporting_standard="IFRS",
+        status="succeeded",
+    )
+    db_session.add(job)
+    db_session.flush()
+
+    result = AnalysisResult(
+        job_id=job.id,
+        company_id=1,
+        period_from="2021Q1",
+        period_to="2021Q4",
+        reporting_standard="IFRS",
+        data_snapshot_json={},
+        result_json={
+            "llm_report": {
+                "fundamental_note": "fundamental",
+                "technical_note": "technical",
+                "peer_note": "peer",
+                "overall_summary": "overall",
+                "recommendation": "HOLD",
+                "llm_model": "claude-test",
+                "token_usage": {"total_tokens": 123},
+            }
+        },
+        llm_payload_json={},
+        report_markdown="# Report",
+        warnings_json=[],
+        disclaimer="demo disclaimer",
+    )
+    db_session.add(result)
+    db_session.commit()
+
+    response = client.get(f"/analysis-results/{result.id}/report")
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["report_markdown"] == "# Report"
+    assert payload["recommendation"] == "HOLD"
+    assert payload["llm_model"] == "claude-test"
 
 
 def test_invalid_period_api_error_is_clear(client):

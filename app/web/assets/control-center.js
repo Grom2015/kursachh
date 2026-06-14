@@ -1,4 +1,4 @@
-const safeRunForm = document.querySelector("#safe-run-form");
+﻿const safeRunForm = document.querySelector("#safe-run-form");
 const uploadForm = document.querySelector("#manual-upload-form");
 const pickPdfButton = document.querySelector("#pick-pdf-button");
 const refreshButton = document.querySelector("#refresh-status");
@@ -90,8 +90,8 @@ const REPORT_LABELS = {
   peer_analysis: "Сравнение с аналогами",
   llm_payload: "Payload для LLM",
   demo_report: "Демо-отчет",
+  machine_report: "Machine report",
 };
-
 const LINK_LABELS = {
   "E-Disclosure company card": "Карточка компании",
   "Consolidated financial statements": "МСФО / консолидированная отчетность",
@@ -113,6 +113,9 @@ const TRUST_LABELS = {
 
 const MANUAL_FIELD_LABELS = {
   status: "Статус",
+  ingestion_status: "Статус intake",
+  identity_status: "Статус identity",
+  document_classification: "Классификация документа",
   period: "Итоговый период",
   original_period: "Исходный период",
   effective_report_period: "Период из документа",
@@ -120,17 +123,30 @@ const MANUAL_FIELD_LABELS = {
   period_source: "Источник периода",
   period_confidence: "Уверенность в периоде",
   period_warnings: "Предупреждения по периоду",
+  final_status: "Итоговый auto-parse статус",
+  ocr_status: "OCR статус",
   report_document_id: "ID документа",
   duplicate_detected: "Дубликат найден",
   document_validation_status: "Статус проверки документа",
   statement_tables_extracted: "Извлечено таблиц",
   fact_parse_status: "Статус поиска фактов",
+  evidence_pack_available: "Evidence pack готов",
+  machine_report_available: "Machine report готов",
+  structured_facts_count: "Structured facts",
+  rejected_rows_count: "Rejected rows",
+  unmapped_numeric_evidence_count: "Unmapped numeric evidence",
+  unmapped_table_evidence_count: "Unmapped table evidence",
   db_persisted: "Записано в БД",
   source_trust_bucket: "Категория доверия источника",
   official_source_verified: "Официальный источник подтвержден",
   source_package_ready_contribution: "Учитывается в готовности source package",
+  machine_report_path: "Machine report",
+  identity_report_path: "Identity report",
+  recommended_next_action: "Рекомендованный следующий шаг",
+  top_structural_blockers: "Top blockers",
+  blockers: "Blockers",
+  warnings: "Warnings",
 };
-
 const KEY_BANK_FACTS = [
   "total_assets",
   "total_liabilities",
@@ -463,6 +479,7 @@ function renderStageSummary(stage) {
   if (stage.stage === "dataframe_fact_parse") {
     const facts = summary.fact_metric_codes || [];
     const quality = summary.banking_parser_quality || {};
+    const engineContribution = summary.engine_contribution_summary || {};
     if (!facts.length && !summary.canonical_fact_candidates) return "";
     return `
       <div class="stage-summary">
@@ -473,6 +490,16 @@ function renderStageSummary(stage) {
             : ""
         }
         ${facts.length ? `<div>Ключевые факты: ${facts.filter((item) => KEY_BANK_FACTS.includes(item)).join(", ") || facts.join(", ")}</div>` : ""}
+        ${
+          engineContribution.merged_fact_count || engineContribution.ocr_only_fact_count || engineContribution.merged_ocr_fact_count
+            ? `<div>Engine contribution: merged facts ${engineContribution.merged_fact_count ?? 0}; OCR-only facts ${engineContribution.ocr_only_fact_count ?? 0}; merged OCR facts ${engineContribution.merged_ocr_fact_count ?? 0}</div>`
+            : ""
+        }
+        ${
+          (engineContribution.engines_with_evidence_only_contribution || []).length
+            ? `<div>Evidence-only engines: ${engineContribution.engines_with_evidence_only_contribution.join(", ")}</div>`
+            : ""
+        }
       </div>
     `;
   }
@@ -863,6 +890,8 @@ function renderManual(payload) {
     ["comparative_period", payload.comparative_period],
     ["period_source", payload.period_source],
     ["period_confidence", payload.period_confidence],
+    ["final_status", payload.final_status],
+    ["ocr_status", payload.ocr_status],
     ["degraded_primary_statements_found", payload.degraded_primary_statements_found],
     ["report_document_id", payload.report_document_id],
     ["duplicate_detected", payload.duplicate_detected],
@@ -870,6 +899,7 @@ function renderManual(payload) {
     ["statement_tables_extracted", payload.statement_tables_extracted],
     ["fact_parse_status", payload.fact_parse_status],
     ["evidence_pack_available", payload.evidence_pack_available],
+    ["machine_report_available", payload.machine_report_available],
     ["structured_facts_count", payload.structured_facts_count],
     ["rejected_rows_count", payload.rejected_rows_count],
     ["unmapped_numeric_evidence_count", payload.unmapped_numeric_evidence_count],
@@ -880,6 +910,9 @@ function renderManual(payload) {
     ["source_package_ready_contribution", payload.source_package_ready_contribution],
   ];
   if (payload.identity_report_path) fields.push(["identity_report_path", payload.identity_report_path]);
+  if (payload.machine_report_path) {
+    fields.push(["machine_report_path", `${payload.machine_report_path} ${reportLink(payload.machine_report_path, "открыть")}`]);
+  }
   if (payload.recommended_next_action) fields.push(["recommended_next_action", payload.recommended_next_action]);
   if (payload.error_report_path) fields.push(["error_report_path", payload.error_report_path]);
   if (payload.period_warnings?.length) fields.push(["period_warnings", payload.period_warnings.join(", ")]);
@@ -1094,3 +1127,4 @@ function periodRangeFromUploadedPeriod(period) {
     period_to: safeRunForm.period_to.value || "2025Q4",
   };
 }
+

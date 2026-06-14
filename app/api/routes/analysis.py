@@ -90,6 +90,7 @@ def get_analysis_result(result_id: str, db: Session = Depends(get_db)) -> Analys
         period_to=result.period_to,
         result=result.result_json,
         llm_payload=result.llm_payload_json,
+        report_markdown=result.report_markdown,
         warnings=result.warnings_json or [],
         disclaimer=result.disclaimer,
     )
@@ -155,6 +156,29 @@ def analysis_history(
 @router.get("/history", response_model=HistoryResponse)
 def history_alias(company: str | None = None, limit: int = 20, db: Session = Depends(get_db)) -> HistoryResponse:
     return analysis_history(company, limit, db)
+
+
+@router.get("/analysis-results/{result_id}/report")
+def get_analysis_report(result_id: str, db: Session = Depends(get_db)) -> dict:
+    result = db.get(AnalysisResult, result_id)
+    if not result:
+        raise HTTPException(status_code=404, detail="AnalysisResult not found")
+    llm_report = (result.result_json or {}).get("llm_report") or {}
+    return {
+        "id": result.id,
+        "company": result.company.ticker,
+        "period_from": result.period_from,
+        "period_to": result.period_to,
+        "report_markdown": result.report_markdown,
+        "fundamental_note": llm_report.get("fundamental_note"),
+        "technical_note": llm_report.get("technical_note"),
+        "peer_note": llm_report.get("peer_note"),
+        "overall_summary": llm_report.get("overall_summary"),
+        "recommendation": llm_report.get("recommendation"),
+        "llm_model": llm_report.get("llm_model"),
+        "token_usage": llm_report.get("token_usage"),
+        "disclaimer": result.disclaimer,
+    }
 
 
 @router.get("/disclaimer")

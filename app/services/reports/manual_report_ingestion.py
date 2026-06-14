@@ -16,8 +16,10 @@ from app.db.models import Company, ReportDocument
 from app.services.company_registry import CompanyRegistry, normalize_query
 from app.services.company_source_discovery import CompanySourceDiscoveryReport, CompanySourceDiscoveryService
 from app.services.parsing.dataframe_statement_parser import DataFrameStatementParser
+from app.services.parsing.pdf_auto_parse_orchestrator import augment_statement_table_report_with_engine_candidates
 from app.services.parsing.statement_table_extractor import StatementTableExtractor
 from app.services.reports.document_validator import DocumentValidator
+from app.services.reports.machine_report import CanonicalMachineReportBuilder
 
 ALLOWED_EXTENSIONS = {".pdf", ".xlsx", ".html", ".htm", ".zip"}
 ZIP_ALLOWED_EXTENSIONS = {".pdf", ".xlsx", ".html", ".htm"}
@@ -94,6 +96,10 @@ class ManualReportIngestionReport:
     period_warnings: list[str] = field(default_factory=list)
     degraded_primary_statements_found: int = 0
     top_structural_blockers: list[str] = field(default_factory=list)
+    machine_report_path: str | None = None
+    machine_report_available: bool = False
+    final_status: str | None = None
+    ocr_status: str | None = None
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
@@ -156,11 +162,13 @@ class ManualReportIngestionService:
 
         duplicate = self._existing_manual_document(company, request, sha256)
         if duplicate:
+            self._purge_superseded_manual_uploads(company, keep_document_id=duplicate.id)
             document = duplicate
             duplicate_detected = True
             stored_path = self._document_storage_path(document)
             warnings.append("duplicate_manual_upload_detected")
         else:
+            self._purge_superseded_manual_uploads(company)
             stored_path.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(source_path, stored_path)
             document = ReportDocument(
@@ -219,6 +227,7 @@ class ManualReportIngestionService:
                 identity_status=identity_status,
                 identity_report_path=identity_report_path,
             )
+            self._attach_machine_report(evidence_report)
             self.save_report(evidence_report)
             return evidence_report
         document.status = "validated"
@@ -232,6 +241,17 @@ class ManualReportIngestionService:
         status = "INGESTED"
         if request.run_table_extraction:
             table_report = StatementTableExtractor(root=self.root).extract(document)
+            try:
+                table_report = augment_statement_table_report_with_engine_candidates(
+                    root=self.root,
+                    document=document,
+                    statement_table_report=table_report,
+                )
+            except Exception as exc:
+                table_report["warnings"] = [
+                    *list(table_report.get("warnings") or []),
+                    f"engine_augmentation_failed: {exc}",
+                ]
             resolved_period = self._apply_table_period_resolution(document, table_report, resolved_period, warnings)
             statement_tables_extracted = int(table_report.get("statement_tables_count") or 0)
             coverage = table_report.get("statement_coverage") or {}
@@ -261,6 +281,7 @@ class ManualReportIngestionService:
                 document_ids=[document.id],
             )
             fact_parse_report = result.to_dict()
+            self._save_fact_parse_report(fact_parse_report)
             fact_parse_status = result.status
             canonical_fact_candidates = result.canonical_facts_created
             if result.status not in {"SUCCESS"}:
@@ -313,6 +334,7 @@ class ManualReportIngestionService:
             degraded_primary_statements_found=int((table_report or {}).get("degraded_primary_statement_count") or 0),
             top_structural_blockers=top_structural_blockers(fact_parse_report or {}),
         )
+        self._attach_machine_report(report)
         self.save_report(report)
         return report
 
@@ -496,6 +518,17 @@ class ManualReportIngestionService:
         try:
             extractor = StatementTableExtractor(root=self.root)
             table_report = extractor.extract(document)
+            try:
+                table_report = augment_statement_table_report_with_engine_candidates(
+                    root=self.root,
+                    document=document,
+                    statement_table_report=table_report,
+                )
+            except Exception as exc:
+                table_report["warnings"] = [
+                    *list(table_report.get("warnings") or []),
+                    f"evidence_only_engine_augmentation_failed: {exc}",
+                ]
             resolved_period = self._evidence_only_table_period(table_report, resolved_period)
             if resolved_period:
                 parser_period_from, parser_period_to = self._parser_period_range(resolved_period)
@@ -514,6 +547,7 @@ class ManualReportIngestionService:
                 document_ids=[document.id],
             )
             fact_parse_report = fact_parse.to_dict()
+            self._save_fact_parse_report(fact_parse_report)
         except Exception as exc:
             fact_parse_report = {
                 "status": "NO_EVIDENCE_PACK",
@@ -622,6 +656,28 @@ class ManualReportIngestionService:
             top_structural_blockers=top_structural_blockers(fact_parse_report),
         )
 
+    def _attach_machine_report(self, report: ManualReportIngestionReport) -> None:
+        if not report.report_document_id or not report.stored_document_path:
+            return
+        result = CanonicalMachineReportBuilder(root=self.root).build_from_manual_ingestion(report)
+        report.machine_report_path = self._relative(result.path)
+        report.machine_report_available = True
+        report.final_status = (result.payload.get("processing_status") or {}).get("final_status")
+        report.ocr_status = (result.payload.get("document_classification") or {}).get("ocr_status")
+        report.recommended_next_action = report.recommended_next_action or result.payload.get("recommended_next_action")
+
+    def _save_fact_parse_report(self, fact_parse_report: dict[str, Any]) -> Path | None:
+        ticker = str(fact_parse_report.get("company_ticker") or "").upper()
+        period_from = fact_parse_report.get("period_from")
+        period_to = fact_parse_report.get("period_to")
+        if not (ticker and period_from and period_to):
+            return None
+        root = self.root / "data" / "validation" / ticker
+        root.mkdir(parents=True, exist_ok=True)
+        path = root / f"{period_from}_{period_to}_dataframe_statement_fact_parse.json"
+        path.write_text(json.dumps(fact_parse_report, ensure_ascii=False, indent=2, default=str), encoding="utf-8")
+        return path
+
     def _validate_input_file(self, value: str) -> Path:
         path = Path(value).expanduser().resolve()
         if not path.exists():
@@ -681,6 +737,49 @@ class ManualReportIngestionService:
     def _document_storage_path(self, document: ReportDocument) -> Path:
         path = Path(document.storage_path or "")
         return path if path.is_absolute() else self.root / path
+
+    def _purge_superseded_manual_uploads(self, company: Company, keep_document_id: int | None = None) -> None:
+        stale_documents = self.db.scalars(
+            select(ReportDocument).where(
+                ReportDocument.company_id == company.id,
+                ReportDocument.source_type == "manual_upload",
+            )
+        ).all()
+        for document in stale_documents:
+            if keep_document_id is not None and document.id == keep_document_id:
+                continue
+            storage_path = self._document_storage_path(document)
+            if storage_path.exists():
+                self._safe_remove_path(storage_path)
+            self.db.delete(document)
+        self.db.commit()
+        self._safe_remove_path(self.root / "data" / "parsed" / company.ticker.upper())
+        self._safe_remove_path(self.root / "data" / "validation" / company.ticker.upper())
+        if keep_document_id is None:
+            self._safe_remove_path(self.root / "data" / "raw" / "manual_uploads" / company.ticker.upper())
+        else:
+            self._prune_empty_manual_upload_dirs(company.ticker.upper())
+
+    def _prune_empty_manual_upload_dirs(self, ticker: str) -> None:
+        raw_root = self.root / "data" / "raw" / "manual_uploads" / ticker.upper()
+        current = raw_root
+        while current.exists() and current != self.root:
+            try:
+                current.rmdir()
+            except OSError:
+                break
+            current = current.parent
+
+    def _safe_remove_path(self, path: Path) -> None:
+        resolved = path.resolve()
+        if not resolved.exists():
+            return
+        if not resolved.is_relative_to(self.root):
+            raise ValueError("manual_upload_cleanup_path_escape")
+        if resolved.is_dir():
+            shutil.rmtree(resolved)
+        else:
+            resolved.unlink()
 
     def _prepare_document_for_reprocessing(self, document: ReportDocument) -> None:
         if document.status in {"rejected", "failed"}:

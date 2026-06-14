@@ -253,6 +253,54 @@ def run_full_pipeline_job(job_id: str) -> None:
         PIPELINE_JOB_STORE.add_event(job_id, "full_pipeline", "BLOCKED", "Full company pipeline failed.", reason=str(exc))
 
 
+def summarize_engine_contribution(report: dict[str, Any]) -> dict[str, Any]:
+    structured_facts = list(report.get("structured_facts") or [])
+    rejected_rows = list(report.get("rejected_rows") or [])
+    unmapped_numeric_evidence = list(report.get("unmapped_numeric_evidence") or [])
+    unmapped_table_evidence = list(report.get("unmapped_table_evidence") or [])
+    fact_contribution_by_engine = contribution_counts(structured_facts)
+    evidence_items = [*rejected_rows, *unmapped_numeric_evidence, *unmapped_table_evidence]
+    evidence_contribution_by_engine = contribution_counts(evidence_items)
+    return {
+        "merged_fact_count": sum(1 for fact in structured_facts if fact.get("fusion_status") == "merged_engines"),
+        "ocr_only_fact_count": sum(1 for fact in structured_facts if is_ocr_only_item(fact)),
+        "merged_ocr_fact_count": sum(
+            1
+            for fact in structured_facts
+            if fact.get("fusion_status") == "merged_engines"
+            and any("ocr" in str(engine) for engine in list(fact.get("source_engines_involved") or []))
+        ),
+        "fact_contribution_by_engine": fact_contribution_by_engine,
+        "evidence_contribution_by_engine": evidence_contribution_by_engine,
+        "engines_with_evidence_only_contribution": sorted(
+            engine
+            for engine in evidence_contribution_by_engine
+            if engine not in fact_contribution_by_engine
+        ),
+    }
+
+
+def contribution_counts(items: list[dict[str, Any]]) -> dict[str, int]:
+    counts: dict[str, int] = {}
+    for item in items:
+        engines = list(item.get("source_engines_involved") or [])
+        if not engines and item.get("source_engine"):
+            engines = [str(item.get("source_engine"))]
+        for engine in engines:
+            normalized = str(engine or "").strip()
+            if not normalized:
+                continue
+            counts[normalized] = counts.get(normalized, 0) + 1
+    return counts
+
+
+def is_ocr_only_item(item: dict[str, Any]) -> bool:
+    engines = list(item.get("source_engines_involved") or [])
+    if not engines and item.get("source_engine"):
+        engines = [str(item.get("source_engine"))]
+    return bool(engines) and all("ocr" in str(engine) for engine in engines)
+
+
 class PipelineControlCenter:
     def __init__(self, db: Session, root: Path | None = None):
         self.db = db
@@ -670,6 +718,7 @@ class PipelineControlCenter:
     def status(self, ticker: str, period_from: str, period_to: str, reporting_standard: str = "IFRS") -> dict[str, Any]:
         ticker = ticker.upper()
         paths = {
+            "machine_report": self.root / "data" / "validation" / ticker / f"{period_to}_machine_report.json",
             "financial_ratios": self._company_report_path(ticker, period_from, period_to, "financial_ratios"),
             "market_technical": self._company_report_path(ticker, period_from, period_to, "market_technical_report"),
             "peer_analysis": self.root
@@ -1152,6 +1201,7 @@ class PipelineControlCenter:
                 ),
                 "banking_parser_quality": report.get("banking_parser_quality") or {},
                 "analysis_readiness_summary": report.get("analysis_readiness_summary") or {},
+                "engine_contribution_summary": summarize_engine_contribution(report),
                 "db_persisted": False,
             },
             warnings=report.get("warnings") or [],

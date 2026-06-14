@@ -297,6 +297,23 @@ def test_cash_flow_gate_extracts_operating_cash_flow():
     assert result.accepted_rows[0].value == 1_126_614_000_000
 
 
+def test_cash_flow_gate_extracts_russian_operating_cash_flow_variant():
+    table = _fallback_table(
+        "cash_flow",
+        "Консолидированный отчет о движении денежных средств",
+        [
+            "Консолидированный отчет о движении денежных средств",
+            "2025 2024",
+            "Чистый приток денежных средств от операционной деятельности 72,114 64,220",
+        ],
+    )
+
+    result = evaluate_text_fallback_table(table, "IFRS", "LKOH", "2025Q4", "cash_flow")
+
+    assert result.accepted_rows[0].metric_code == "operating_cash_flow"
+    assert result.accepted_rows[0].value == 72_114_000_000
+
+
 def test_income_gate_extracts_revenue_from_sales_and_other_operating_revenues():
     table = _fallback_table(
         "income_statement",
@@ -312,6 +329,71 @@ def test_income_gate_extracts_revenue_from_sales_and_other_operating_revenues():
 
     assert result.accepted_rows[0].metric_code == "revenue"
     assert result.accepted_rows[0].value == 2_285_161_000_000
+
+
+def test_income_gate_uses_structured_fallback_rows_when_values_are_separate_columns():
+    table = _fallback_table(
+        "income_statement",
+        "Consolidated Statement of Profit or Loss and Other Comprehensive Income",
+        [
+            "Consolidated Statement of Profit or Loss and Other Comprehensive Income",
+            "Note 2025 2024",
+            "Revenue",
+        ],
+    )
+    table["period"] = "2025Q4"
+    table["columns"] = ["line", "2025Q4", "2024Q4"]
+    table["rows"] = [
+        {"line": "Consolidated Statement of Profit or Loss and Other Comprehensive Income"},
+        {"line": "Note 2025 2024"},
+        {
+            "line": "Revenue",
+            "2025Q4": "2 285 161",
+            "2024Q4": "1 934 320",
+            "source_line": "Revenue 2 285 161 1 934 320",
+            "inline_value_recovered": True,
+        },
+    ]
+    table["dataframe_json"] = {"orientation": "records", "data": table["rows"]}
+
+    result = evaluate_text_fallback_table(table, "IFRS", "LKOH", "2025Q4", "income_statement")
+
+    assert result.accepted_rows[0].metric_code == "revenue"
+    assert result.accepted_rows[0].value == 2_285_161_000_000
+    assert result.accepted_rows[0].source_line == "Revenue 2 285 161 1 934 320"
+
+
+def test_income_gate_accepts_structured_stitched_fallback_row():
+    table = _fallback_table(
+        "income_statement",
+        "Consolidated Statement of Profit or Loss and Other Comprehensive Income",
+        [
+            "Consolidated Statement of Profit or Loss and Other Comprehensive Income",
+            "Note 2025 2024",
+            "Sales and other operating revenues",
+        ],
+    )
+    table["period"] = "2025Q4"
+    table["columns"] = ["line", "2025Q4", "2024Q4"]
+    table["rows"] = [
+        {"line": "Consolidated Statement of Profit or Loss and Other Comprehensive Income"},
+        {"line": "Note 2025 2024"},
+        {
+            "line": "Sales and other operating revenues",
+            "2025Q4": "2 285 161",
+            "2024Q4": "1 934 320",
+            "source_line": "Sales and other operating revenues 2 285 161 1 934 320",
+            "stitched_from_rows": [2, 3],
+            "stitch_warning": "text_fallback_adjacent_line_cluster_stitched",
+        },
+    ]
+    table["dataframe_json"] = {"orientation": "records", "data": table["rows"]}
+
+    result = evaluate_text_fallback_table(table, "IFRS", "LKOH", "2025Q4", "income_statement")
+
+    assert result.accepted_rows[0].metric_code == "revenue"
+    assert result.accepted_rows[0].value == 2_285_161_000_000
+    assert result.accepted_rows[0].source_lines == ["Sales and other operating revenues 2 285 161 1 934 320"]
 
 
 def test_income_gate_extracts_net_income_and_operating_profit():
@@ -499,6 +581,27 @@ def test_ebitda_and_debt_are_rejected_in_fallback_stage():
 
     assert result.accepted_rows == []
     assert {row.reason for row in result.rejected_rows} == {"unsupported_metric_for_text_fallback"}
+
+
+def test_text_fallback_uses_explicit_header_columns_for_period_order():
+    table = _fallback_table(
+        "income_statement",
+        "Consolidated Statement of Profit or Loss",
+        [
+            "Consolidated Statement of Profit or Loss",
+            "Revenue 5,6 807,186 703,741",
+            "Profit for the year 38,637 31,519",
+        ],
+    )
+    table["columns"] = ["line", "2025Q4", "2024Q4"]
+    table["header_columns"] = ["line", "2025Q4", "2024Q4"]
+
+    result = evaluate_text_fallback_table(table, "IFRS", "LKOH", "2025Q4", "income_statement")
+
+    accepted_by_metric = {row.metric_code: row for row in result.accepted_rows}
+    assert accepted_by_metric["revenue"].period == "2025Q4"
+    assert accepted_by_metric["revenue"].value == 807_186_000_000
+    assert accepted_by_metric["net_income"].value == 38_637_000_000
 
 
 def test_cli_gate_does_not_mutate_without_persist(db_session, monkeypatch):

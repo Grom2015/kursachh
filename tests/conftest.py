@@ -1,9 +1,8 @@
-from pathlib import Path
-
 import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.pool import NullPool
 
 from app.api.deps import get_db
 from app.db.base import Base
@@ -12,11 +11,14 @@ from app.main import app
 
 
 @pytest.fixture()
-def db_session():
-    db_path = Path(__file__).resolve().parent / "test_runtime.db"
-    if db_path.exists():
-        db_path.unlink()
-    engine = create_engine(f"sqlite:///{db_path}", connect_args={"check_same_thread": False})
+def db_session(tmp_path_factory):
+    db_dir = tmp_path_factory.mktemp("sqlite-db")
+    db_path = db_dir / "test_runtime.db"
+    engine = create_engine(
+        f"sqlite:///{db_path}",
+        connect_args={"check_same_thread": False},
+        poolclass=NullPool,
+    )
     Base.metadata.create_all(engine)
     TestingSession = sessionmaker(bind=engine, autoflush=False, autocommit=False, expire_on_commit=False)
     with TestingSession() as session:

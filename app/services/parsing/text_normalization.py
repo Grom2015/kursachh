@@ -31,13 +31,24 @@ def normalize_financial_text(value: str | None) -> str:
 
 def normalize_matching_text(value: str | None) -> str:
     normalized = normalize_financial_text(value).casefold().replace("ё", "е")
+    normalized = _repair_split_statement_words(normalized)
     normalized = re.sub(r"[^\w\sа-яА-Я]", " ", normalized)
     return " ".join(normalized.split())
 
 
 def contains_normalized_marker(text: str, *markers: str) -> bool:
     normalized_text = normalize_matching_text(text)
-    return any(normalize_matching_text(marker) in normalized_text for marker in markers if marker)
+    for marker in markers:
+        if not marker:
+            continue
+        normalized_marker = normalize_matching_text(marker)
+        if not normalized_marker:
+            continue
+        if not re.search(r"[0-9a-zа-я]", normalized_marker):
+            continue
+        if normalized_marker in normalized_text:
+            return True
+    return False
 
 
 def _repair_common_mojibake(text: str) -> str:
@@ -53,6 +64,17 @@ def _repair_common_mojibake(text: str) -> str:
         if repaired:
             return repaired
     return text
+
+
+def _repair_split_statement_words(text: str) -> str:
+    if not text:
+        return text
+    repaired = text
+    while True:
+        updated = re.sub(r"\b([а-я])\s+([а-я]{2,})\b", r"\1\2", repaired)
+        if updated == repaired:
+            return repaired
+        repaired = updated
 
 
 def _mojibake_score(text: str) -> int:

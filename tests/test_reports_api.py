@@ -1,7 +1,8 @@
-from app.db.models import ReportDocument
-from app.services.parsing.audit import audit_path, write_parse_audit
 import json
 from pathlib import Path
+
+from app.db.models import ReportDocument
+from app.services.parsing.audit import audit_path, write_parse_audit
 
 
 def test_documents_endpoint(client, db_session):
@@ -73,6 +74,17 @@ def test_artifact_endpoint_serves_validation_json(client):
 
     assert response.status_code == 200
     assert response.json()["status"] == "ok"
+
+
+def test_artifact_endpoint_serves_machine_report_json(client):
+    path = Path("data/validation/LKOH/2021Q4_machine_report.json")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps({"machine_report_schema_version": "1.0"}), encoding="utf-8")
+
+    response = client.get("/reports/artifact/data/validation/LKOH/2021Q4_machine_report.json")
+
+    assert response.status_code == 200
+    assert response.json()["machine_report_schema_version"] == "1.0"
 
 
 def test_artifact_endpoint_rejects_path_escape(client):

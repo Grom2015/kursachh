@@ -10,6 +10,7 @@ import pytest
 from app.db.models import MetricValue, ReportDocument, StatementFact
 from app.services.company_source_discovery import CompanySourceCandidate, CompanySourceDiscoveryReport
 from app.services.coverage.universal_coverage_scanner import CoverageScanRequest, UniversalCoverageScanner
+from app.services.reports.machine_report import CanonicalMachineReportBuilder
 from app.services.reports.manual_report_ingestion import (
     ManualReportIngestionRequest,
     ManualReportIngestionService,
@@ -112,6 +113,277 @@ def test_manual_upload_overrides_default_period_from_document_text(db_session):
     assert report.top_structural_blockers == []
 
 
+def test_safe_readable_pdf_always_emits_machine_report(db_session):
+    root = runtime_root()
+    source = fake_ifrs_pdf(root / "report.pdf", ticker="LKOH", year=2021)
+    service = ManualReportIngestionService(db_session, root=root)
+
+    report = service.ingest(
+        ManualReportIngestionRequest(
+            company_ticker="LKOH",
+            reporting_standard="IFRS",
+            period="2021Q4",
+            local_file_path=str(source),
+            run_table_extraction=False,
+            run_dataframe_fact_parser=False,
+        )
+    )
+
+    assert report.machine_report_available is True
+    assert report.machine_report_path
+    machine_report_path = root / report.machine_report_path
+    assert machine_report_path.exists()
+
+    payload = json.loads(machine_report_path.read_text(encoding="utf-8"))
+    assert payload["machine_report_schema_version"] == "1.0"
+    assert payload["pipeline_version"] == "canonical_machine_report_v1"
+    assert payload["structured_facts"] == []
+    assert payload["derived_safe_facts"] == []
+    assert payload["rejected_rows"] == []
+    assert payload["unmapped_numeric_evidence"] == []
+    assert payload["unmapped_table_evidence"] == []
+    assert payload["stage_results"]
+    assert {stage["stage_name"] for stage in payload["stage_results"]} >= {
+        "intake_identity_resolution",
+        "document_validation",
+        "fact_extraction",
+        "final_status_synthesis",
+    }
+    assert set(payload["extraction_coverage"]) == {
+        "pages_total",
+        "pages_with_text_layer",
+        "pages_with_table_candidates",
+        "pages_processed_by_native_extractor",
+        "pages_requiring_ocr",
+        "pages_ocr_skipped",
+        "pages_with_no_usable_extraction",
+    }
+    assert set(payload["source_artifact_provenance"]) == {
+        "validator",
+        "statement_table_extractor",
+        "dataframe_statement_parser",
+        "financial_ratios_report",
+        "fallback_evidence_collector",
+    }
+    assert "normalized_statement_tables" in payload["source_artifact_provenance"]["statement_table_extractor"]["blocks"]
+    assert "engine_results" in payload
+    assert "engine_cascade_order" in payload
+    assert "runtime_profiles" in payload
+    assert "recommended_next_action" in payload
+    assert "engine_fusion_summary" in payload
+    assert any(item["engine_name"] == "native_pdf_text_engine" for item in payload["engine_results"])
+    assert "word_layout_structured_recovery" in payload["recovery_actions_attempted"]
+
+
+def test_machine_report_engine_fusion_summary_exposes_ocr_contribution():
+    root = runtime_root()
+    artifact = root / "data" / "parsed" / "LKOH" / "2021Q4" / "1_statement_tables.json"
+    artifact.parent.mkdir(parents=True, exist_ok=True)
+    artifact.write_text(
+        json.dumps(
+            {
+                "document_id": 1,
+                "period": "2021Q4",
+                "statement_tables": [],
+                "normalized_statement_tables": [],
+                "engine_fusion_diagnostics": [
+                    {
+                        "page_number": 1,
+                        "statement_type": "income_statement",
+                        "row_label": "Revenue",
+                        "fusion_status": "merged_engines",
+                        "source_engines_involved": ["native_pdf_table_engine", "ocr_text_engine"],
+                    },
+                    {
+                        "page_number": 1,
+                        "statement_type": "income_statement",
+                        "row_label": "Operating profit",
+                        "fusion_status": "conflict_retained_as_evidence",
+                        "source_engines_involved": ["native_pdf_table_engine", "ocr_text_engine"],
+                    },
+                ],
+                "extraction_coverage": {"pages_total": 1, "pages_processed_by_native_extractor": 1},
+                "artifact_path": str(artifact),
+            }
+        ),
+        encoding="utf-8",
+    )
+    report = SimpleNamespace(
+        validation_result={},
+        fact_parse_report={
+            "structured_facts": [
+                {
+                    "metric_code": "revenue",
+                    "statement_type": "income_statement",
+                    "fusion_status": "merged_engines",
+                    "source_engine": "native_pdf_table_engine",
+                    "source_engines_involved": ["native_pdf_table_engine", "ocr_text_engine"],
+                },
+                {
+                    "metric_code": "net_income",
+                    "statement_type": "income_statement",
+                    "fusion_status": "single_engine",
+                    "source_engine": "ocr_text_engine",
+                    "source_engines_involved": ["ocr_text_engine"],
+                },
+            ],
+            "rejected_rows": [
+                {
+                    "source_engine": "ocr_text_engine",
+                    "source_engines_involved": ["ocr_text_engine"],
+                }
+            ],
+            "unmapped_numeric_evidence": [
+                {
+                    "source_engine": "ocr_table_structure_engine",
+                    "source_engines_involved": ["ocr_table_structure_engine"],
+                }
+            ],
+            "unmapped_table_evidence": [],
+        },
+        dataframe_artifacts=[str(artifact)],
+        warnings=[],
+        blockers=[],
+        top_structural_blockers=[],
+        company_ticker="LKOH",
+        report_document_id=1,
+        reporting_standard="IFRS",
+        input_file="report.pdf",
+        stored_document_path=str(root / "report.pdf"),
+        sha256="abc",
+        content_type="application/pdf",
+        source_trust_bucket="manual_upload_unverified",
+        official_source_verified=False,
+        source_package_ready_contribution=False,
+        ingestion_status="EVIDENCE_ONLY",
+        identity_status="resolved",
+        document_classification="evidence_only_report",
+        document_validation_status="warning",
+        detected_document_role="financial_statements",
+        effective_report_period="2021Q4",
+        period="2021Q4",
+        comparative_period="2020Q4",
+        period_source="document_text",
+        period_confidence=0.9,
+        period_warnings=[],
+        original_period=None,
+        db_persisted=False,
+        identity_report_path=None,
+        rejected_rows_count=1,
+        structured_facts_count=2,
+        unmapped_numeric_evidence_count=1,
+        unmapped_table_evidence_count=0,
+        derived_safe_facts_count=0,
+        ocr_status=None,
+    )
+    Path(report.stored_document_path).write_bytes(b"%PDF-1.4 fake")
+
+    payload = CanonicalMachineReportBuilder(root=root).build_from_manual_ingestion(report).payload
+
+    summary = payload["engine_fusion_summary"]
+    assert summary["merged_fact_count"] == 1
+    assert summary["ocr_only_fact_count"] == 1
+    assert summary["merged_ocr_fact_count"] == 1
+    assert summary["fact_contribution_by_engine"]["ocr_text_engine"] == 2
+    assert "ocr_table_structure_engine" in summary["engines_with_evidence_only_contribution"]
+
+
+def test_machine_report_prefers_fresher_dataframe_parse_artifact():
+    root = runtime_root()
+    artifact = root / "data" / "parsed" / "LKOH" / "2021Q4" / "1_statement_tables.json"
+    artifact.parent.mkdir(parents=True, exist_ok=True)
+    artifact.write_text(
+        json.dumps(
+            {
+                "document_id": 1,
+                "period": "2021Q4",
+                "statement_tables": [],
+                "normalized_statement_tables": [],
+                "extraction_coverage": {"pages_total": 1, "pages_processed_by_native_extractor": 1},
+                "artifact_path": str(artifact),
+            }
+        ),
+        encoding="utf-8",
+    )
+    parse_path = root / "data" / "validation" / "LKOH" / "2021Q4_2021Q4_dataframe_statement_fact_parse.json"
+    parse_path.parent.mkdir(parents=True, exist_ok=True)
+    parse_path.write_text(
+        json.dumps(
+            {
+                "company_ticker": "LKOH",
+                "period_from": "2021Q4",
+                "period_to": "2021Q4",
+                "status": "SUCCESS",
+                "canonical_facts_created": 2,
+                "structured_facts": [{"metric_code": "revenue"}, {"metric_code": "net_income"}],
+                "derived_safe_facts": [],
+                "rejected_rows": [],
+                "unmapped_numeric_evidence": [],
+                "unmapped_table_evidence": [],
+                "analysis_readiness_summary": {"structured_facts_count": 2},
+            }
+        ),
+        encoding="utf-8",
+    )
+    report = SimpleNamespace(
+        validation_result={},
+        fact_parse_report={
+            "company_ticker": "LKOH",
+            "period_from": "2021Q4",
+            "period_to": "2021Q4",
+            "status": "SUCCESS",
+            "canonical_facts_created": 1,
+            "structured_facts": [{"metric_code": "revenue"}],
+            "rejected_rows": [],
+            "unmapped_numeric_evidence": [],
+            "unmapped_table_evidence": [],
+        },
+        dataframe_artifacts=[str(artifact)],
+        warnings=[],
+        blockers=[],
+        top_structural_blockers=[],
+        company_ticker="LKOH",
+        report_document_id=1,
+        reporting_standard="IFRS",
+        input_file="report.pdf",
+        stored_document_path=str(root / "report.pdf"),
+        sha256="abc",
+        content_type="application/pdf",
+        source_trust_bucket="manual_upload_unverified",
+        official_source_verified=False,
+        source_package_ready_contribution=False,
+        ingestion_status="EVIDENCE_ONLY",
+        identity_status="resolved",
+        document_classification="evidence_only_report",
+        document_validation_status="warning",
+        detected_document_role="financial_statements",
+        effective_report_period="2021Q4",
+        period="2021Q4",
+        comparative_period="2020Q4",
+        period_source="document_text",
+        period_confidence=0.9,
+        period_warnings=[],
+        original_period=None,
+        db_persisted=False,
+        identity_report_path=None,
+        rejected_rows_count=0,
+        structured_facts_count=1,
+        unmapped_numeric_evidence_count=0,
+        unmapped_table_evidence_count=0,
+        derived_safe_facts_count=0,
+        ocr_status=None,
+    )
+    Path(report.stored_document_path).write_bytes(b"%PDF-1.4 fake")
+
+    payload = CanonicalMachineReportBuilder(root=root).build_from_manual_ingestion(report).payload
+
+    assert [fact["metric_code"] for fact in payload["structured_facts"]] == ["revenue", "net_income"]
+    assert payload["analysis_readiness_summary"]["structured_facts_count"] == 2
+    assert payload["legacy_artifact_links"]["dataframe_fact_parse_report"] == (
+        "data/validation/LKOH/2021Q4_2021Q4_dataframe_statement_fact_parse.json"
+    )
+
+
 def test_file_safety_rejects_bad_inputs(db_session):
     root = runtime_root()
     service = ManualReportIngestionService(db_session, root=root)
@@ -206,6 +478,50 @@ def test_duplicate_upload_returns_existing_document(db_session):
     assert second.duplicate_detected is True
     assert second.report_document_id == first.report_document_id
     assert db_session.query(ReportDocument).filter(ReportDocument.source_type == "manual_upload").count() == 1
+
+
+def test_new_manual_upload_replaces_older_company_upload_and_artifacts(db_session):
+    root = runtime_root()
+    first_source = fake_ifrs_pdf(root / "first_report.pdf", ticker="LKOH", year=2021)
+    second_source = fake_ifrs_pdf(root / "second_report.pdf", ticker="LKOH", year=2022)
+    service = ManualReportIngestionService(db_session, root=root)
+
+    first = service.ingest(
+        ManualReportIngestionRequest(
+            company_ticker="LKOH",
+            reporting_standard="IFRS",
+            period="2021Q4",
+            local_file_path=str(first_source),
+            run_table_extraction=False,
+        )
+    )
+    old_storage = Path(first.stored_document_path)
+    old_validation = root / "data" / "validation" / "LKOH" / "2021Q4_manual_report_ingestion.json"
+    old_parsed = root / "data" / "parsed" / "LKOH" / "2021Q4" / "stale_statement_tables.json"
+    old_parsed.parent.mkdir(parents=True, exist_ok=True)
+    old_parsed.write_text("{}", encoding="utf-8")
+    assert old_storage.exists()
+    assert old_validation.exists()
+    assert old_parsed.exists()
+
+    second = service.ingest(
+        ManualReportIngestionRequest(
+            company_ticker="LKOH",
+            reporting_standard="IFRS",
+            period="2022Q4",
+            local_file_path=str(second_source),
+            run_table_extraction=False,
+        )
+    )
+
+    manual_docs = db_session.query(ReportDocument).filter(ReportDocument.source_type == "manual_upload").all()
+    assert len(manual_docs) == 1
+    assert manual_docs[0].id == second.report_document_id
+    assert manual_docs[0].report_period == "2022Q4"
+    assert old_storage.exists() is False
+    assert old_validation.exists() is False
+    assert old_parsed.exists() is False
+    assert Path(second.stored_document_path).exists()
 
 
 def test_duplicate_rejected_manual_upload_is_reprocessed_as_evidence_only(monkeypatch, db_session):
@@ -316,6 +632,122 @@ def test_duplicate_rejected_manual_upload_is_reprocessed_as_evidence_only(monkey
     assert second.statement_tables_extracted == 2
     assert second.canonical_fact_candidates == 1
     assert second.document_classification == "evidence_only_report"
+    assert second.machine_report_available is True
+    assert second.machine_report_path
+    machine_report = json.loads((root / second.machine_report_path).read_text(encoding="utf-8"))
+    assert machine_report["document_classification"]["ingestion_status"] == "EVIDENCE_ONLY"
+    assert machine_report["structured_facts"][0]["metric_code"] == "net_income"
+    assert machine_report["unmapped_numeric_evidence"][0]["raw_label"] == "Revenue"
+
+
+def test_image_only_pdf_without_ocr_still_emits_machine_report(monkeypatch, db_session):
+    import app.services.reports.machine_report as machine_report_module
+    import app.services.reports.manual_report_ingestion as ingestion_module
+
+    root = runtime_root()
+    source = fake_ifrs_pdf(root / "mgnt_image_only.pdf", ticker="MGNT", year=2025)
+    service = ManualReportIngestionService(db_session, root=root)
+
+    class FakeValidator:
+        def validate(self, document, expected_file_type=None, max_text_pages=None):
+            return SimpleNamespace(
+                validation_status="partial",
+                detected_document_role="financial_statements",
+                warnings=["company_marker_weak"],
+                to_dict=lambda: {
+                    "validation_status": "partial",
+                    "detected_document_role": "financial_statements",
+                    "detected_period": "2025Q4",
+                    "comparative_period": "2024Q4",
+                    "period_source": "document_text",
+                    "period_confidence": 0.9,
+                    "period_warnings": [],
+                    "warnings": ["company_marker_weak"],
+                },
+            )
+
+    class FakeExtractor:
+        def __init__(self, root=None):
+            self.root = root
+
+        def extract(self, document):
+            artifact = root / "data" / "parsed" / "MGNT" / "2025Q4" / f"{document.id}_statement_tables.json"
+            artifact.parent.mkdir(parents=True, exist_ok=True)
+            payload = {
+                "document_id": document.id,
+                "statement_tables_count": 0,
+                "required_statement_tables_found": False,
+                "statement_coverage": {},
+                "artifact_path": str(artifact),
+                "warnings": [
+                    "primary_statement_page_image_only_or_no_extractable_text:page=1:statement_type=balance_sheet"
+                ],
+                "extraction_coverage": {
+                    "pages_total": 1,
+                    "pages_with_text_layer": 0,
+                    "pages_with_table_candidates": 0,
+                    "pages_processed_by_native_extractor": 1,
+                    "pages_requiring_ocr": 1,
+                    "pages_ocr_skipped": 0,
+                    "pages_with_no_usable_extraction": 1,
+                },
+            }
+            artifact.write_text(json.dumps(payload), encoding="utf-8")
+            return payload
+
+    class FakeParser:
+        def __init__(self, *args, **kwargs):
+            pass
+
+        def parse(self, *args, **kwargs):
+            return SimpleNamespace(
+                status="NO_EVIDENCE_PACK",
+                canonical_facts_created=0,
+                to_dict=lambda: {
+                    "status": "NO_EVIDENCE_PACK",
+                    "canonical_facts_created": 0,
+                    "structured_facts": [],
+                    "rejected_rows": [],
+                    "unmapped_numeric_evidence": [],
+                    "unmapped_table_evidence": [],
+                    "llm_ready_evidence_pack": {},
+                    "warnings": [],
+                },
+            )
+
+    monkeypatch.setattr(ingestion_module, "DocumentValidator", lambda: FakeValidator())
+    monkeypatch.setattr(ingestion_module, "StatementTableExtractor", FakeExtractor)
+    monkeypatch.setattr(ingestion_module, "DataFrameStatementParser", FakeParser)
+    monkeypatch.setattr(machine_report_module, "paddle_ocr_available", lambda: False)
+
+    report = service.ingest(
+        ManualReportIngestionRequest(
+            company_ticker="MGNT",
+            reporting_standard="IFRS",
+            period="2025Q4",
+            local_file_path=str(source),
+            run_table_extraction=True,
+            run_dataframe_fact_parser=True,
+        )
+    )
+
+    assert report.machine_report_available is True
+    assert report.ocr_status in {"OCR_UNAVAILABLE", "OCR_ATTEMPTED"}
+    payload = json.loads((root / report.machine_report_path).read_text(encoding="utf-8"))
+    assert payload["document_classification"]["ocr_status"] in {"OCR_UNAVAILABLE", "OCR_ATTEMPTED"}
+    assert payload["processing_status"]["final_status"] == "AUTO_PARSE_BLOCKED"
+    assert payload["structured_facts"] == []
+    assert payload["unmapped_numeric_evidence"] == []
+    assert payload["unmapped_table_evidence"] == []
+    assert any(
+        blocker
+        in {
+            "ocr_unavailable_for_image_only_or_weak_pages",
+            "ocr_required_pages_attempted_without_confirmed_candidates",
+        }
+        for blocker in payload["top_blockers"]
+    )
+    assert "required OCR" in payload["parser_diagnostics"]["ocr_limitation"]
 
 
 def test_validation_failure_keeps_audit_document_and_blocks_facts(db_session):

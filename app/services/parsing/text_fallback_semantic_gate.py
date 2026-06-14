@@ -2,6 +2,7 @@ import re
 from dataclasses import dataclass, field
 from typing import Any
 
+from app.services.parsing.text_normalization import contains_normalized_marker
 from app.services.sectors.banking_policy import is_banking_ticker
 
 CAUTION_WARNING = "derived_from_raw_text_table_requires_extra_caution"
@@ -347,7 +348,13 @@ LABELS = {
             "чистые денежные средства полученные от операционной деятельности",
             "денежные средства полученные от операционной деятельности",
         ],
-        "capex": ["capital expenditures", "purchase of property plant and equipment"],
+        "capex": [
+            "capital expenditures",
+            "purchase of property plant and equipment",
+            "acquisition of property plant and equipment and intangible assets",
+            "РїСЂРёРѕР±СЂРµС‚РµРЅРёРµ РѕСЃРЅРѕРІРЅС‹С… СЃСЂРµРґСЃС‚РІ",
+            "РїСЂРёРѕР±СЂРµС‚РµРЅРёРµ РѕСЃРЅРѕРІРЅС‹С… СЃСЂРµРґСЃС‚РІ Рё РЅРµРјР°С‚РµСЂРёР°Р»СЊРЅС‹С… Р°РєС‚РёРІРѕРІ",
+        ],
     },
 }
 
@@ -420,7 +427,9 @@ def _has_primary_statement_marker(table: dict[str, Any], statement_type: str) ->
 
 
 def _period_order(table: dict[str, Any], period: str, statement_type: str) -> str:
-    header_text = normalize_label(" ".join(_line_text(row) for row in (table.get("rows") or [])[:8]))
+    header_candidates = [str(column or "").strip() for column in (table.get("header_columns") or table.get("columns") or [])]
+    row_header_text = normalize_label(" ".join(_line_text(row) for row in (table.get("rows") or [])[:8]))
+    header_text = normalize_label(" ".join(part for part in [" ".join(header_candidates), row_header_text] if part))
     if statement_type == "income_statement" and (
         (period.endswith("Q2") and "for the six" in header_text)
         or (period.endswith("Q3") and "for the nine" in header_text)
@@ -484,12 +493,15 @@ def _parse_line(line: str) -> tuple[str, list[_NumberToken]] | None:
 
 
 def _candidate_lines(table: dict[str, Any]) -> list[tuple[list[str], str]]:
-    lines = [str((row or {}).get("line") or "").strip() for row in table.get("rows", []) or []]
+    rows = list(table.get("rows", []) or [])
+    rendered_lines = [_render_candidate_line(row) for row in rows]
+    source_lines = [str((row or {}).get("source_line") or (row or {}).get("line") or "").strip() for row in rows]
     candidates: list[tuple[list[str], str]] = []
-    for index, line in enumerate(lines):
+    for index, line in enumerate(rendered_lines):
         if not line:
             continue
-        candidates.append(([line], line))
+        raw_source_line = source_lines[index] or line
+        candidates.append(([raw_source_line], line))
         if _is_header_or_title_line(line):
             continue
         parsed = _parse_line(line)
@@ -497,12 +509,44 @@ def _candidate_lines(table: dict[str, Any]) -> list[tuple[list[str], str]]:
         if parsed and metric_code:
             continue
         for width in [2, 3]:
-            source_lines = lines[index : index + width]
-            if len(source_lines) != width or not all(source_lines):
+            source_line_group = source_lines[index : index + width]
+            rendered_group = rendered_lines[index : index + width]
+            if len(source_line_group) != width or len(rendered_group) != width:
                 continue
-            combined = " ".join(source_lines)
-            candidates.append((source_lines, combined))
+            if not all(source_line_group) or not all(rendered_group):
+                continue
+            combined = " ".join(rendered_group)
+            candidates.append((source_line_group, combined))
     return candidates
+
+
+def _render_candidate_line(row: Any) -> str:
+    if not isinstance(row, dict):
+        return str(row or "").strip()
+    label = str(row.get("line") or "").strip()
+    numeric_parts: list[str] = []
+    for key, value in row.items():
+        if key in {
+            "line",
+            "source_line",
+            "inline_value_recovered",
+            "inline_value_recovered_from",
+            "stitched_from_rows",
+            "stitch_warning",
+            "stitch_confidence",
+            "note_ref",
+            "source_bbox",
+        }:
+            continue
+        text = str(value or "").strip()
+        if not text:
+            continue
+        if parse_number(text) is None:
+            continue
+        numeric_parts.append(text)
+    if not numeric_parts:
+        return label
+    return " ".join([label, *numeric_parts]).strip()
 
 
 def _trailing_number_matches(line: str) -> list[re.Match[str]]:
@@ -587,6 +631,26 @@ def _is_note_reference(raw: str) -> bool:
 
 def _match_metric(raw_label: str, statement_type: str) -> tuple[str | None, float]:
     normalized = normalize_label(raw_label)
+    if statement_type == "cash_flow":
+        if contains_normalized_marker(
+            normalized,
+            "net cash provided by operating activities",
+            "net cash generated from operating activities",
+            "net cash from operating activities",
+            "чистый приток денежных средств от операционной деятельности",
+            "чистый приток денежных средств по операционной деятельности",
+            "чистые денежные средства полученные от операционной деятельности",
+        ):
+            return "operating_cash_flow", 0.9
+        if contains_normalized_marker(
+            normalized,
+            "capital expenditures",
+            "purchase of property plant and equipment",
+            "acquisition of property plant and equipment and intangible assets",
+            "приобретение основных средств",
+            "приобретение основных средств и нематериальных активов",
+        ):
+            return "capex", 0.88
     for metric_code, labels in LABELS.get(statement_type, {}).items():
         for label in labels:
             if normalized == normalize_label(label):
