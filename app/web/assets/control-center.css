@@ -66,6 +66,15 @@ h2 {
   font-size: 12px;
 }
 
+.fineprint + .fineprint {
+  margin-top: 8px;
+}
+
+.fineprint a {
+  color: var(--accent);
+  font-weight: 650;
+}
+
 .trust-strip {
   display: flex;
   flex-wrap: wrap;

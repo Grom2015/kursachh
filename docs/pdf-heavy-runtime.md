@@ -52,11 +52,10 @@ pip install -e .[dev,pdf-heavy]
 
 System dependencies expected by the reference container:
 
-- Java runtime
 - Poppler tools
 - Ghostscript
+- QPDF
 - Tesseract with `rus` and `eng` language packs
-- LibreOffice
 - image/runtime libraries needed by OCR and rendering stacks
 
 ## Reference Container
@@ -66,10 +65,9 @@ Use [Dockerfile.pdf-heavy](/abs/path/C:/Users/Lenovo/Documents/New%20project/Doc
 It installs:
 
 - `.[dev,pdf-heavy]`
-- Java
 - Poppler
 - Ghostscript
-- LibreOffice
+- QPDF
 - Tesseract `rus` + `eng`
 - required image/runtime libraries
 
