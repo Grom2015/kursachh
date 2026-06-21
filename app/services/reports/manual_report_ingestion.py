@@ -49,6 +49,7 @@ class ManualReportIngestionRequest:
     allow_text_fallback_semantic_gate: bool = False
     persist_facts: bool = False
     auto_fetch_market_data: bool = False
+    purge_superseded: bool = True
 
 
 @dataclass
@@ -169,13 +170,15 @@ class ManualReportIngestionService:
 
         duplicate = self._existing_manual_document(company, request, sha256)
         if duplicate:
-            self._purge_superseded_manual_uploads(company, keep_document_id=duplicate.id)
+            if request.purge_superseded:
+                self._purge_superseded_manual_uploads(company, keep_document_id=duplicate.id)
             document = duplicate
             duplicate_detected = True
             stored_path = self._document_storage_path(document)
             warnings.append("duplicate_manual_upload_detected")
         else:
-            self._purge_superseded_manual_uploads(company)
+            if request.purge_superseded:
+                self._purge_superseded_manual_uploads(company)
             stored_path.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(source_path, stored_path)
             document = ReportDocument(

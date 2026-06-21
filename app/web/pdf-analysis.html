@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="app-version" content="__APP_VERSION__" />
+    <meta name="app-build-id" content="__BUILD_ID__" />
+    <title>Анализ финансовой отчётности</title>
+    <link rel="stylesheet" href="/app/assets/app.css?v=__BUILD_ID__" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="app-header">
+        <div class="brand">
+          <span class="brand-mark">FR</span>
+          <div>
+            <h1>Анализ финансовой отчётности</h1>
+            <p>Загрузите PDF — система извлечёт показатели и рассчитает коэффициенты</p>
+          </div>
+        </div>
+        <nav class="tabs" role="tablist">
+          <button class="tab is-active" data-tab="analyze" role="tab">Анализ</button>
+          <button class="tab" data-tab="augment" role="tab">Дополнить анализ</button>
+          <button class="tab" data-tab="history" role="tab">История запросов</button>
+        </nav>
+      </header>
+
+      <main class="app-main">
+        <!-- ANALYZE -->
+        <section class="panel-view is-active" data-view="analyze">
+          <div class="layout">
+            <div class="layout-side">
+              <div class="card">
+                <h2>Новый анализ</h2>
+                <label class="field">
+                  <span>Тикер / компания</span>
+                  <input id="analyze-ticker" list="ticker-options" placeholder="например, SBER" value="SBER" autocomplete="off" />
+                </label>
+                <div id="source-card" class="source-card-inline"></div>
+                <datalist id="ticker-options">
+                  <option value="SBER"></option><option value="LKOH"></option>
+                  <option value="GAZP"></option><option value="ROSN"></option>
+                  <option value="TATN"></option><option value="NVTK"></option>
+                  <option value="SIBN"></option><option value="MOEX"></option>
+                </datalist>
+                <div id="dropzone" class="dropzone">
+                  <form id="stage-upload-form" action="/pdf-analysis/staged-files-form" method="post" enctype="multipart/form-data" target="stage-upload-target">
+                    <input id="file-input" name="files" type="file" accept=".pdf,.xlsx,.html,.htm,.zip" multiple hidden />
+                  </form>
+                  <div class="dropzone-inner">
+                    <div class="dropzone-icon">↑</div>
+                    <p><strong>Перетащите один или несколько PDF сюда</strong></p>
+                    <p class="muted">или нажмите, чтобы выбрать файлы</p>
+                    <p class="hint">PDF, XLSX, HTML, ZIP · можно загрузить несколько отчетов сразу</p>
+                  </div>
+                </div>
+                <div id="selected-files-card" class="selected-files-card hidden">
+                  <h3>Выбранные файлы</h3>
+                  <div id="selected-files-list" class="selected-files-list"></div>
+                  <div class="selected-files-actions">
+                    <button id="clear-analysis-files-button" class="btn-ghost" type="button">Очистить список</button>
+                  </div>
+                  <button id="start-analysis-button" class="btn-primary" type="button">Начать анализ</button>
+                </div>
+              </div>
+            </div>
+            <div class="layout-main">
+              <div id="analyze-result" class="result-area">
+                <div class="empty-state">
+                  <div class="empty-icon">📄</div>
+                  <h3>Здесь появится аналитика</h3>
+                  <p>Загрузите отчёт компании в формате PDF — слева.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- AUGMENT -->
+        <section class="panel-view" data-view="augment">
+          <div class="layout">
+            <div class="layout-side">
+              <div class="card">
+                <h2>Дополнить анализ</h2>
+                <p class="muted">Добавьте данные из второго PDF (например, за другой период) к ранее созданному анализу.</p>
+                <label class="field">
+                  <span>Базовый анализ</span>
+                  <select id="augment-select"><option value="">— выберите из истории —</option></select>
+                </label>
+                <div id="augment-dropzone" class="dropzone">
+                  <input id="augment-file-input" type="file" accept=".pdf,.xlsx,.html,.htm,.zip" hidden />
+                  <div class="dropzone-inner">
+                    <div class="dropzone-icon">＋</div>
+                    <p><strong>Перетащите второй PDF</strong></p>
+                    <p class="muted">или нажмите, чтобы выбрать файл</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="layout-main">
+              <div id="augment-result" class="result-area">
+                <div class="empty-state">
+                  <div class="empty-icon">＋</div>
+                  <h3>Объединённый анализ</h3>
+                  <p>Выберите базовый анализ и добавьте второй отчёт — данные посчитаются вместе.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- HISTORY -->
+        <section class="panel-view" data-view="history">
+          <div class="card card-wide">
+            <div class="card-head">
+              <h2>История запросов</h2>
+              <button id="history-refresh" class="btn-ghost">Обновить</button>
+            </div>
+            <div id="history-list" class="history-list">
+              <div class="empty-state small"><p>Загрузка истории…</p></div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div id="toast" class="toast"></div>
+    <iframe id="stage-upload-target" name="stage-upload-target" hidden></iframe>
+    <script src="/app/assets/app.js?v=__BUILD_ID__"></script>
+  </body>
+</html>

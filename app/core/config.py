@@ -33,7 +33,7 @@ class Settings(BaseModel):
     enable_live_source_tests: bool = False
     lkoh_ir_reports_url: str | None = None
     anthropic_api_key: str | None = None
-    llm_model: str = "claude-sonnet-4-20250514"
+    llm_model: str = "claude-sonnet-4-6"
     llm_enabled: bool = False
     disclaimer: str = (
         "Материал носит информационно-аналитический характер и не является "
@@ -72,6 +72,6 @@ def get_settings() -> Settings:
         == "true",
         lkoh_ir_reports_url=os.getenv("LKOH_IR_REPORTS_URL") or None,
         anthropic_api_key=os.getenv("ANTHROPIC_API_KEY") or None,
-        llm_model=os.getenv("LLM_MODEL", "claude-sonnet-4-20250514"),
+        llm_model=os.getenv("LLM_MODEL", "claude-sonnet-4-6"),
         llm_enabled=os.getenv("LLM_ENABLED", "false").casefold() == "true",
     )

@@ -13,6 +13,7 @@ from app.services.parsing.dataframe_statement_parser import (
     is_current_period_column,
     match_metric,
     parse_number,
+    select_current_value,
 )
 from app.services.parsing.statement_table_extractor import statement_tables_path
 
@@ -2494,6 +2495,30 @@ def test_dataframe_parser_rejects_ambiguous_period_column(db_session):
 
     assert result.facts == []
     assert result.rejected_candidates[0].reason == "ambiguous_period_column"
+
+
+def test_select_current_value_ignores_note_reference_column():
+    row = {
+        "line": "Средства клиентов",
+        "Прим.": "7",
+        "31 декабря 2025 г.": "2 143,7",
+        "31 декабря 2024 г.": "1 998,2",
+    }
+
+    value, column_name, reason = select_current_value(
+        row,
+        "2025Q4",
+        "balance_sheet",
+        table={
+            "effective_period": "2025Q4",
+            "comparative_period": "2024Q4",
+            "period_type": "annual",
+        },
+    )
+
+    assert reason is None
+    assert value == "2 143,7"
+    assert column_name == "31 декабря 2025 г."
 
 
 def test_dataframe_parser_rejects_missing_source_location(db_session):

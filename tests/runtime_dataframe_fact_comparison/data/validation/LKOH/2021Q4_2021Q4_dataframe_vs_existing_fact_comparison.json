@@ -45,7 +45,7 @@
         },
         "source_role": "financial_statements",
         "source_type": "issuer_ir_manifest",
-        "source_url": "https://www.lukoil.com/2021Q4-69f0ffdea1dd490983d54e6eb592ddb1.pdf"
+        "source_url": "https://www.lukoil.com/2021Q4-6a65202b181c48d7b3e4aaa88a5a09f0.pdf"
       },
       "dataframe": {
         "value": 100000000.0,
@@ -62,11 +62,25 @@
             "page": 1,
             "table_index": 0
           },
+          "page_number": 1,
           "column_name": "2021",
           "raw_label": "Revenue",
           "raw_value": "100",
+          "source_line": "Revenue | 100",
+          "source_lines": [
+            "Revenue | 100"
+          ],
           "extraction_method": "dataframe_statement_parser",
-          "source_table_extraction_method": "pdf_table"
+          "source_table_extraction_method": "pdf_table",
+          "fact_source_kind": "dataframe_statement_parser",
+          "source_engine": "pdf_table",
+          "source_page": 1,
+          "source_table_id": null,
+          "source_bbox": null,
+          "fusion_status": "single_engine",
+          "source_engines_involved": [
+            "pdf_table"
+          ]
         },
         "source_document_id": 2,
         "extraction_method": "dataframe_statement_parser",

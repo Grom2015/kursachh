@@ -75,7 +75,7 @@ MOEX_BASE_URL=https://iss.moex.com/iss
 MAX_REPORT_DOWNLOAD_MB=50
 LLM_ENABLED=true
 ANTHROPIC_API_KEY=your_claude_api_key_here
-LLM_MODEL=claude-sonnet-4-20250514
+LLM_MODEL=claude-sonnet-4-6
 ```
 
 Если `ANTHROPIC_API_KEY` не задан, парсер все равно работает, но Claude-анализ будет пропущен.
@@ -283,7 +283,7 @@ MOEX_BASE_URL=https://iss.moex.com/iss
 MAX_REPORT_DOWNLOAD_MB=50
 LLM_ENABLED=true
 ANTHROPIC_API_KEY=your_claude_api_key_here
-LLM_MODEL=claude-sonnet-4-20250514
+LLM_MODEL=claude-sonnet-4-6
 ```
 
 ### 7. Проверить runtime

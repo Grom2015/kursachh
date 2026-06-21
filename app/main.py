@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
-from app.api.routes import analysis, companies, health, market, pipeline, report_sources, reports, ui
+from app.api.routes import analysis, companies, health, market, pdf_analysis, pipeline, report_sources, reports, ui
 from app.core.config import get_settings
 from app.core.logging import configure_logging
 from app.db.base import Base
@@ -31,6 +31,7 @@ def create_app() -> FastAPI:
     app.include_router(report_sources.router)
     app.include_router(market.router)
     app.include_router(pipeline.router)
+    app.include_router(pdf_analysis.router)
     app.include_router(ui.router)
     assets_dir = ui.static_assets_dir()
     assets_dir.mkdir(parents=True, exist_ok=True)

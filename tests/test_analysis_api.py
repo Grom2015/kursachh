@@ -62,6 +62,8 @@ def test_analysis_report_endpoint_returns_sections(client, db_session):
                 "recommendation": "HOLD",
                 "llm_model": "claude-test",
                 "token_usage": {"total_tokens": 123},
+                "memo_markdown_path": "C:/Users/Lenovo/Documents/New project/data/validation/LKOH/2021Q1_2021Q4_llm_memo.md",
+                "summary_json_path": "C:/Users/Lenovo/Documents/New project/data/validation/LKOH/2021Q1_2021Q4_llm_summary.json",
             }
         },
         llm_payload_json={},
@@ -78,6 +80,8 @@ def test_analysis_report_endpoint_returns_sections(client, db_session):
     assert payload["report_markdown"] == "# Report"
     assert payload["recommendation"] == "HOLD"
     assert payload["llm_model"] == "claude-test"
+    assert payload["memo_markdown_path"] == "data/validation/LKOH/2021Q1_2021Q4_llm_memo.md"
+    assert payload["summary_json_path"] == "data/validation/LKOH/2021Q1_2021Q4_llm_summary.json"
 
 
 def test_invalid_period_api_error_is_clear(client):

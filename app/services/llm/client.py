@@ -90,7 +90,7 @@ class LLMClient:
 
     def __init__(self, api_key: str | None = None, model: str | None = None):
         self._api_key = api_key
-        self._model = model or "claude-sonnet-4-20250514"
+        self._model = model or "claude-sonnet-4-6"
         self._client = None
 
     # -- lazy init ----------------------------------------------------------

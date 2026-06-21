@@ -1,0 +1,911 @@
+{
+  "registry_type": "moex_top100_edisclosure_registry",
+  "as_of_date": "2026-06-19",
+  "source_workbook": "C:\\Users\\Lenovo\\Downloads\\moex_top100_edisclosure_2026-06-19.xlsx",
+  "sheets_used": [
+    "100 бумаг"
+  ],
+  "items_count": 100,
+  "items": [
+    {
+      "rank": 1,
+      "ticker": "LKOH",
+      "company_name": "ПАО \"ЛУКОЙЛ\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "17",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=17",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 2,
+      "ticker": "SBER",
+      "company_name": "ПАО Сбербанк",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "3043",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=3043",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 3,
+      "ticker": "GAZP",
+      "company_name": "ПАО \"Газпром\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "934",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=934",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 4,
+      "ticker": "YDEX",
+      "company_name": "МКПАО \"ЯНДЕКС\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "39059",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=39059",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 5,
+      "ticker": "TATN",
+      "company_name": "ПАО \"Татнефть\" им. В.Д. Шашина",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "118",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=118",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 6,
+      "ticker": "T",
+      "company_name": "МКПАО \"Т-Технологии\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "39055",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=39055",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 7,
+      "ticker": "NVTK",
+      "company_name": "ПАО \"НОВАТЭК\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "225",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=225",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 8,
+      "ticker": "GMKN",
+      "company_name": "ПАО \"ГМК \"Норильский никель\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "564",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=564",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 9,
+      "ticker": "PLZL",
+      "company_name": "ПАО \"Полюс\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "7832",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=7832",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 10,
+      "ticker": "OZON",
+      "company_name": "МКПАО \"Озон\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "39583",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=39583",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 11,
+      "ticker": "VTBR",
+      "company_name": "Банк ВТБ (ПАО)",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "1210",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=1210",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 12,
+      "ticker": "X5",
+      "company_name": "ПАО \"Корпоративный центр ИКС 5\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "39008",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=39008",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 13,
+      "ticker": "ROSN",
+      "company_name": "ПАО \"НК \"Роснефть\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "6505",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=6505",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 14,
+      "ticker": "SBERP",
+      "company_name": "ПАО Сбербанк",
+      "share_type": "Привилегированные",
+      "edisclosure_company_id": "3043",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=3043",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 15,
+      "ticker": "SNGS",
+      "company_name": "ПАО \"Сургутнефтегаз\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "312",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=312",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 16,
+      "ticker": "SNGSP",
+      "company_name": "ПАО \"Сургутнефтегаз\"",
+      "share_type": "Привилегированные",
+      "edisclosure_company_id": "312",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=312",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 17,
+      "ticker": "MTSS",
+      "company_name": "ПАО \"МТС\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "236",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=236",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 18,
+      "ticker": "IRAO",
+      "company_name": "ПАО \"Интер РАО\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "12213",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=12213",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 19,
+      "ticker": "MOEX",
+      "company_name": "ПАО Московская Биржа",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "43",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=43",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 20,
+      "ticker": "HEAD",
+      "company_name": "МКПАО \"Хэдхантер\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "39017",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=39017",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 21,
+      "ticker": "RUAL",
+      "company_name": "МКПАО \"Объединенная компания \"РУСАЛ\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "38288",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=38288",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 22,
+      "ticker": "TATNP",
+      "company_name": "ПАО \"Татнефть\" им. В.Д. Шашина",
+      "share_type": "Привилегированные",
+      "edisclosure_company_id": "118",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=118",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 23,
+      "ticker": "PIKK",
+      "company_name": "ПАО \"Группа Компаний ПИК\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "44",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=44",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 24,
+      "ticker": "CHMF",
+      "company_name": "ПАО \"Северсталь\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "30",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=30",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 25,
+      "ticker": "NLMK",
+      "company_name": "ПАО \"НЛМК\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "2509",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=2509",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 26,
+      "ticker": "DOMRF",
+      "company_name": "ПАО \"ДОМ.РФ\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "1263",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=1263",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 27,
+      "ticker": "PHOR",
+      "company_name": "ПАО \"ФосАгро\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "573",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=573",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 28,
+      "ticker": "AFLT",
+      "company_name": "ПАО \"Аэрофлот\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "1480",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=1480",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 29,
+      "ticker": "CBOM",
+      "company_name": "ПАО \"МОСКОВСКИЙ КРЕДИТНЫЙ БАНК\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "202",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=202",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 30,
+      "ticker": "SVCB",
+      "company_name": "ПАО \"Совкомбанк\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "30052",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=30052",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 31,
+      "ticker": "AKRN",
+      "company_name": "ПАО \"Акрон\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "357",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=357",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 32,
+      "ticker": "RTKM",
+      "company_name": "ПАО \"Ростелеком\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "141",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=141",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 33,
+      "ticker": "TRNFP",
+      "company_name": "ПАО \"Транснефть\"",
+      "share_type": "Привилегированные",
+      "edisclosure_company_id": "636",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=636",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 34,
+      "ticker": "ENPG",
+      "company_name": "МКПАО \"ЭН+ ГРУП\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "37955",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=37955",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 35,
+      "ticker": "MAGN",
+      "company_name": "ПАО \"ММК\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "9",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=9",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 36,
+      "ticker": "MGNT",
+      "company_name": "ПАО \"Магнит\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "7671",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=7671",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 37,
+      "ticker": "ALRS",
+      "company_name": "АК \"АЛРОСА\" (ПАО)",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "199",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=199",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 38,
+      "ticker": "VKCO",
+      "company_name": "МКПАО \"ВК\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "38965",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=38965",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 39,
+      "ticker": "LSNGP",
+      "company_name": "ПАО \"Ленэнерго\"",
+      "share_type": "Привилегированные",
+      "edisclosure_company_id": "65",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=65",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 40,
+      "ticker": "AFKS",
+      "company_name": "ПАО АФК \"Система\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "4772",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=4772",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 41,
+      "ticker": "MDMG",
+      "company_name": "МКПАО \"МД Медикал Груп\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "39129",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=39129",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 42,
+      "ticker": "BSPB",
+      "company_name": "ПАО \"Банк \"Санкт-Петербург\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "3935",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=3935",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 43,
+      "ticker": "FLOT",
+      "company_name": "ПАО \"Совкомфлот\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "11967",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=11967",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 44,
+      "ticker": "CNRU",
+      "company_name": "МКПАО \"ЦИАН\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "39286",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=39286",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 45,
+      "ticker": "RAGR",
+      "company_name": "ПАО \"Группа \"Русагро\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "25660",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=25660",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 46,
+      "ticker": "LENT",
+      "company_name": "МКПАО \"Лента\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "38380",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=38380",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 47,
+      "ticker": "VSMO",
+      "company_name": "ПАО \"Корпорация ВСМПО-АВИСМА\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "1641",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=1641",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 48,
+      "ticker": "BANEP",
+      "company_name": "ПАО АНК \"Башнефть\"",
+      "share_type": "Привилегированные",
+      "edisclosure_company_id": "1976",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=1976",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 49,
+      "ticker": "POSI",
+      "company_name": "ПАО \"Группа Позитив\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "38196",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=38196",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 50,
+      "ticker": "UGLD",
+      "company_name": "ПАО \"ЮГК\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "11794",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=11794",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 51,
+      "ticker": "FESH",
+      "company_name": "ПАО \"ДВМП\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "83",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=83",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 52,
+      "ticker": "MRKP",
+      "company_name": "ПАО \"Россети Центр и Приволжье\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "12093",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=12093",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 53,
+      "ticker": "RENI",
+      "company_name": "ПАО Группа Ренессанс Страхование",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "37468",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=37468",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 54,
+      "ticker": "NMTP",
+      "company_name": "ПАО \"НМТП\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "3900",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=3900",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 55,
+      "ticker": "GEMC",
+      "company_name": "МКПАО ЮМГ",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "39022",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=39022",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 56,
+      "ticker": "OZPH",
+      "company_name": "ПАО \"Озон Фармацевтика\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "39126",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=39126",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 57,
+      "ticker": "SELG",
+      "company_name": "ПАО \"Селигдар\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "12557",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=12557",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 58,
+      "ticker": "MSNG",
+      "company_name": "ПАО \"Мосэнерго\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "936",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=936",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 59,
+      "ticker": "HYDR",
+      "company_name": "ПАО \"РусГидро\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "8580",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=8580",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 60,
+      "ticker": "UPRO",
+      "company_name": "ПАО \"Юнипро\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "7878",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=7878",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 61,
+      "ticker": "ASTR",
+      "company_name": "ПАО \"Группа Астра\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "38906",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=38906",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 62,
+      "ticker": "MSRS",
+      "company_name": "ПАО \"МОЭСК\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "5563",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=5563",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 63,
+      "ticker": "LSRG",
+      "company_name": "ПАО \"Группа ЛСР\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "4834",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=4834",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 64,
+      "ticker": "FEES",
+      "company_name": "ПАО \"ФСК - Россети\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "379",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=379",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 65,
+      "ticker": "APTK",
+      "company_name": "ПАО \"Аптечная сеть 36,6\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "1216",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=1216",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 66,
+      "ticker": "SMLT",
+      "company_name": "ПАО \"ГК \"Самолет\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "36419",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=36419",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 67,
+      "ticker": "UWGN",
+      "company_name": "ПАО \"НПК ОВК\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "35102",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=35102",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 68,
+      "ticker": "FIXR",
+      "company_name": "ПАО \"Фикс Прайс\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "39347",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=39347",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 69,
+      "ticker": "PRMD",
+      "company_name": "ПАО \"ПРОМОМЕД\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "38533",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=38533",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 70,
+      "ticker": "RTKMP",
+      "company_name": "ПАО \"Ростелеком\"",
+      "share_type": "Привилегированные",
+      "edisclosure_company_id": "141",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=141",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 71,
+      "ticker": "AQUA",
+      "company_name": "ПАО \"ИНАРКТИКА\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "17531",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=17531",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 72,
+      "ticker": "NKNCP",
+      "company_name": "ПАО \"Нижнекамскнефтехим\"",
+      "share_type": "Привилегированные",
+      "edisclosure_company_id": "197",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=197",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 73,
+      "ticker": "RNFT",
+      "company_name": "ПАО \"НК \"РуссНефть\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "534",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=534",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 74,
+      "ticker": "MRKV",
+      "company_name": "ПАО \"Россети Волга\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "12131",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=12131",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 75,
+      "ticker": "MRKU",
+      "company_name": "ПАО \"Россети Урал\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "12105",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=12105",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 76,
+      "ticker": "MRKC",
+      "company_name": "ПАО \"Россети Центр\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "7985",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=7985",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 77,
+      "ticker": "MBNK",
+      "company_name": "ПАО \"МТС-Банк\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "1285",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=1285",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 78,
+      "ticker": "TRMK",
+      "company_name": "ПАО \"ТМК\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "274",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=274",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 79,
+      "ticker": "MTLR",
+      "company_name": "ПАО \"Мечел\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "1942",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=1942",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 80,
+      "ticker": "BELU",
+      "company_name": "ПАО \"НоваБев Групп\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "7380",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=7380",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 81,
+      "ticker": "VSEH",
+      "company_name": "ПАО \"ВИ.ру\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "39131",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=39131",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 82,
+      "ticker": "NKHP",
+      "company_name": "ПАО \"Новороссийский комбинат хлебопродуктов\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "10198",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=10198",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 83,
+      "ticker": "SOFL",
+      "company_name": "ПАО \"Софтлайн\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "37065",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=37065",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 84,
+      "ticker": "SGZH",
+      "company_name": "ПАО ГК \"Сегежа\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "38038",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=38038",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 85,
+      "ticker": "ETLN",
+      "company_name": "МКПАО \"Эталон Груп\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "39517",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=39517",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 86,
+      "ticker": "DATA",
+      "company_name": "ПАО \"Группа Аренадата\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "39154",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=39154",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 87,
+      "ticker": "RASP",
+      "company_name": "ПАО \"Распадская\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "942",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=942",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 88,
+      "ticker": "SPBE",
+      "company_name": "ПАО \"СПБ Биржа\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "4566",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=4566",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 89,
+      "ticker": "EUTR",
+      "company_name": "ПАО \"ЕвроТранс\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "38758",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=38758",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 90,
+      "ticker": "TGKA",
+      "company_name": "ПАО \"ТГК-1\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "7263",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=7263",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 91,
+      "ticker": "BAZA",
+      "company_name": "ПАО \"ГК \"БАЗИС\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "39611",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=39611",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 92,
+      "ticker": "OGKB",
+      "company_name": "ПАО \"ОГК-2\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "7234",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=7234",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 93,
+      "ticker": "ELFV",
+      "company_name": "ПАО \"ЭЛ5-Энерго\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "5732",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=5732",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 94,
+      "ticker": "MTLRP",
+      "company_name": "ПАО \"Мечел\"",
+      "share_type": "Привилегированные",
+      "edisclosure_company_id": "1942",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=1942",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 95,
+      "ticker": "WUSH",
+      "company_name": "ПАО \"ВУШ Холдинг\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "38772",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=38772",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 96,
+      "ticker": "SFIN",
+      "company_name": "ПАО \"ЭсЭфАй\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "11328",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=11328",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 97,
+      "ticker": "GLRX",
+      "company_name": "ПАО \"ГЛОРАКС\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "38535",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=38535",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 98,
+      "ticker": "SVAV",
+      "company_name": "ПАО \"СОЛЛЕРС\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "1324",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=1324",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 99,
+      "ticker": "HNFG",
+      "company_name": "ПАО \"ЭЙЧ ЭФ ДЖИ\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "38967",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=38967",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    },
+    {
+      "rank": 100,
+      "ticker": "DIAS",
+      "company_name": "ПАО \"Диасофт\"",
+      "share_type": "Обыкновенные",
+      "edisclosure_company_id": "38975",
+      "edisclosure_url": "https://www.e-disclosure.ru/portal/company.aspx?id=38975",
+      "moex_source_url": "https://fs.moex.com/f/23846/novye-bazy-indeksov-4-ijunja.xlsx"
+    }
+  ]
+}

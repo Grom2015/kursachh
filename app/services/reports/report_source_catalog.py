@@ -84,13 +84,15 @@ class ReportSourceCatalog:
     def __post_init__(self) -> None:
         self.root = (self.root or get_settings().root_dir).resolve()
         self.catalog_path = self.root / "data" / "reference" / "moex_top50_report_sources.json"
+        self.top100_registry_path = self.root / "data" / "reference" / "moex_top100_edisclosure_registry.json"
         self.bank_catalog_path = bank_catalog_path(self.root)
 
     def all_sources(self) -> dict[str, Any]:
         payload = self._load()
         bank_payload = self._load_bank_catalog()
+        active_catalog_path = self.top100_registry_path if self.top100_registry_path.exists() else self.catalog_path
         return {
-            "catalog_path": self._relative(self.catalog_path),
+            "catalog_path": self._relative(active_catalog_path),
             "bank_catalog_path": self._relative(self.bank_catalog_path) if self.bank_catalog_path.exists() else None,
             "companies_count": payload.get("companies_count", 0),
             "universe": payload.get("universe"),
@@ -103,12 +105,13 @@ class ReportSourceCatalog:
     def source_for_ticker(self, ticker: str) -> dict[str, Any]:
         ticker = ticker.upper()
         payload = self._load()
+        active_catalog_path = self.top100_registry_path if self.top100_registry_path.exists() else self.catalog_path
         for item in payload.get("companies", []):
             if str(item.get("ticker", "")).upper() == ticker:
                 bank_item = self._bank_item(ticker)
                 return {
                     "found": True,
-                    "catalog_path": self._relative(self.catalog_path),
+                    "catalog_path": self._relative(active_catalog_path),
                     "bank_catalog_path": self._relative(self.bank_catalog_path) if bank_item else None,
                     "item": self._public_item(item),
                     "banking_policy": self._banking_policy_payload(bank_item),
@@ -117,7 +120,7 @@ class ReportSourceCatalog:
         return {
             "found": False,
             "ticker": ticker,
-            "catalog_path": self._relative(self.catalog_path),
+            "catalog_path": self._relative(active_catalog_path),
             "manual_upload_guidance": {
                 **self._edisclosure_manual_upload_guidance(ticker),
                 "status": "ticker_not_in_top50_catalog",
@@ -126,6 +129,50 @@ class ReportSourceCatalog:
         }
 
     def _load(self) -> dict[str, Any]:
+        if self.top100_registry_path.exists():
+            payload = json.loads(self.top100_registry_path.read_text(encoding="utf-8"))
+            items = []
+            for item in payload.get("items", []):
+                ticker = str(item.get("ticker") or "").upper()
+                company_name = str(item.get("company_name") or ticker)
+                company_id = str(item.get("edisclosure_company_id") or "").strip()
+                items.append(
+                    {
+                        "rank": item.get("rank"),
+                        "ticker": ticker,
+                        "company_name": company_name,
+                        "sector": None,
+                        "issuer_website": None,
+                        "investor_relations_url": None,
+                        "reports_url": None,
+                        "edisclosure_url": item.get("edisclosure_url"),
+                        "edisclosure_company_id": company_id,
+                        "edisclosure_search_url": self._edisclosure_search_url(ticker),
+                        "edisclosure_direct_links": self._edisclosure_direct_links(ticker, company_id),
+                        "edisclosure_search_terms": self._edisclosure_search_terms(ticker, company_name),
+                        "reporting_standards": ["IFRS", "RAS"],
+                        "document_types": ["financial_statements", "annual_report"],
+                        "suitable_for_analysis": True,
+                        "source_trust_level": "regulated disclosure portal",
+                        "verification_status": "imported_from_user_workbook",
+                        "source_page_status": "direct_company_card",
+                        "preferred_acquisition_method": "manual_upload_from_edisclosure",
+                        "notes": f"Imported from MOEX top-100 workbook; share_type={item.get('share_type') or 'unknown'}",
+                    }
+                )
+            return {
+                "companies_count": len(items),
+                "universe": "MOEX top 100 workbook (direct e-disclosure mapping)",
+                "trust_policy": {
+                    "manual_upload_lower_trust": True,
+                    "official_source_verified_after_manual_upload": False,
+                },
+                "acquisition_policy": {
+                    "preferred_source": "e-disclosure direct company card",
+                    "document_must_pass_validation": True,
+                },
+                "companies": items,
+            }
         return json.loads(self.catalog_path.read_text(encoding="utf-8"))
 
     def _load_bank_catalog(self) -> dict[str, Any]:
@@ -249,8 +296,8 @@ class ReportSourceCatalog:
     def _edisclosure_search_url(self, query: str) -> str:
         return "https://e-disclosure.ru/poisk-po-kompaniyam"
 
-    def _edisclosure_direct_links(self, ticker: str) -> list[dict[str, str]]:
-        company_id = EDISCLOSURE_COMPANY_IDS.get(ticker.upper())
+    def _edisclosure_direct_links(self, ticker: str, company_id: str | None = None) -> list[dict[str, str]]:
+        company_id = company_id or EDISCLOSURE_COMPANY_IDS.get(ticker.upper())
         if not company_id:
             return []
         base = "https://e-disclosure.ru/portal"

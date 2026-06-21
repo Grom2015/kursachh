@@ -23,11 +23,39 @@ class MoexClient:
             f"{self.base_url}/engines/stock/markets/shares/boards/{board}/"
             f"securities/{ticker}/candles.json"
         )
-        return self._request_table(
-            url,
-            {"from": from_date, "till": to_date, "interval": interval},
-            table="candles",
-        )
+        page_size = 500
+        max_pages = 40
+        frames: list[pd.DataFrame] = []
+        attrs: dict[str, Any] = {}
+        empty_frame: pd.DataFrame | None = None
+        start = 0
+        for page in range(max_pages):
+            try:
+                df = self._request_table(
+                    url,
+                    {"from": from_date, "till": to_date, "interval": interval, "start": start},
+                    table="candles",
+                )
+            except Exception:
+                if page == 0:
+                    raise
+                break
+            if df.empty:
+                if empty_frame is None:
+                    empty_frame = df
+                break
+            frames.append(df)
+            attrs = dict(df.attrs)
+            if len(df) < page_size:
+                break
+            start += len(df)
+        if not frames:
+            return empty_frame if empty_frame is not None else pd.DataFrame()
+        out = pd.concat(frames, ignore_index=True)
+        out.attrs.update(attrs)
+        if "date" in out.columns:
+            out = out.drop_duplicates(subset=["date"]).reset_index(drop=True)
+        return out
 
     def get_security_history(self, ticker: str, board: str, from_date: str, to_date: str) -> pd.DataFrame:
         url = (

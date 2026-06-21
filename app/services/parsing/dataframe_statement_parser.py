@@ -5691,6 +5691,12 @@ def infer_rejection_extraction_method(reason: str) -> str:
     return "dataframe_statement_parser"
 
 
+def _looks_like_note_reference(value: Any) -> bool:
+    """Detect a small bare integer from a `Прим.` column, not a monetary amount."""
+    text = str(value if value is not None else "").strip()
+    return bool(re.fullmatch(r"\d{1,2}", text))
+
+
 def select_current_value(
     row: dict[str, Any],
     period: str,
@@ -5702,6 +5708,9 @@ def select_current_value(
     numeric_cells = row_numeric_items(row)
     if not numeric_cells:
         return None, None, "numeric_value_not_detected"
+    monetary_cells = [cell for cell in numeric_cells if not _looks_like_note_reference(cell[1])]
+    if monetary_cells and len(monetary_cells) < len(numeric_cells):
+        numeric_cells = monetary_cells
     recovered_current = current_period_value_from_change_percent_line(row, row_block)
     if recovered_current is not None:
         return recovered_current, "source_line_current_period", None

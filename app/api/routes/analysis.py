@@ -17,6 +17,7 @@ from app.schemas.analysis import (
 )
 from app.services.analysis.extend_service import ExtendAnalysisService, run_extend_job
 from app.services.analysis.orchestrator import run_analysis_job
+from app.services.analysis.pdf_insight_service import _artifact_relative_path
 from app.services.periods import ensure_period_range
 
 router = APIRouter(tags=["analysis"])
@@ -170,12 +171,15 @@ def get_analysis_report(result_id: str, db: Session = Depends(get_db)) -> dict:
         "period_from": result.period_from,
         "period_to": result.period_to,
         "report_markdown": result.report_markdown,
+        "structured_summary": llm_report.get("structured_summary"),
+        "summary_json_path": _artifact_relative_path(llm_report.get("summary_json_path")),
+        "memo_markdown_path": _artifact_relative_path(llm_report.get("memo_markdown_path")),
         "fundamental_note": llm_report.get("fundamental_note"),
         "technical_note": llm_report.get("technical_note"),
         "peer_note": llm_report.get("peer_note"),
         "overall_summary": llm_report.get("overall_summary"),
         "recommendation": llm_report.get("recommendation"),
-        "llm_model": llm_report.get("llm_model"),
+        "llm_model": llm_report.get("llm_model") or llm_report.get("model"),
         "token_usage": llm_report.get("token_usage"),
         "disclaimer": result.disclaimer,
     }

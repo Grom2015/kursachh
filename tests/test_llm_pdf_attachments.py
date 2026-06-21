@@ -56,8 +56,62 @@ def test_llm_service_passes_source_pdf_to_fundamental_call(tmp_path):
         warnings=[],
     )
 
+    assert len(client.calls) == 5
     assert client.calls[0]["pdf_attachments"][0]["path"] == str(pdf_path)
-    assert all("pdf_attachments" not in call for call in client.calls[1:])
+    assert "pdf_attachments" not in client.calls[1]
+    assert client.calls[2]["pdf_attachments"][0]["path"] == str(pdf_path)
+    assert client.calls[0]["max_tokens"] == 2200
+    assert client.calls[1]["max_tokens"] == 1200
+    assert client.calls[2]["max_tokens"] == 1600
+    assert client.calls[3]["max_tokens"] == 1400
+    assert client.calls[4]["pdf_attachments"][0]["path"] == str(pdf_path)
+    assert client.calls[4]["max_tokens"] == 5000
+
+
+def test_fundamental_prompt_instructs_llm_to_cross_check_pdf():
+    from app.services.llm.prompts import fundamental_analysis_prompt
+
+    system, user = fundamental_analysis_prompt(
+        company={"ticker": "X5"},
+        period={"from": "2023Q4", "to": "2023Q4"},
+        financial_metrics=[],
+        structured_facts=[],
+        derived_safe_facts=[],
+        analysis_readiness_summary={},
+        top_blockers=[],
+        unresolved_evidence_summary={},
+        parser_risk_summary={"suspicious_fact_count": 2},
+        source_documents={"source_pdf_attachments": [{"path": "report.pdf"}]},
+        data_quality={},
+        warnings=[],
+    )
+
+    merged = f"{system}\n{user}"
+    assert "PDF" in merged
+    assert "сверяй" in merged
+    assert "structured_facts" in merged
+    assert "не называй подтвержденным фактом" in merged
+    assert "parser_risk_summary" in merged
+
+
+def test_overall_prompt_requires_concise_output():
+    from app.services.llm.prompts import overall_summary_prompt
+
+    system, user = overall_summary_prompt(
+        company={"ticker": "X5"},
+        period={"from": "2023Q4", "to": "2023Q4"},
+        fundamental_note="fund",
+        technical_note="tech",
+        peer_note="peer",
+        source_documents={},
+        data_quality={},
+        warnings=[],
+    )
+
+    merged = f"{system}\n{user}".lower()
+    assert "executive summary" in merged
+    assert "не пиши длинный текст" in merged
+    assert "до 350-500 слов" in merged
 
 
 def test_llm_client_ignores_missing_or_non_pdf_attachments(tmp_path):
