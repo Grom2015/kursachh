@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+from urllib.parse import quote
 
 from app.db.models import ReportDocument
 from app.services.parsing.audit import audit_path, write_parse_audit
@@ -85,6 +86,17 @@ def test_artifact_endpoint_serves_machine_report_json(client):
 
     assert response.status_code == 200
     assert response.json()["machine_report_schema_version"] == "1.0"
+
+
+def test_artifact_endpoint_serves_absolute_path_inside_allowed_roots(client):
+    path = Path("data/validation/LKOH/2021Q4_llm_memo.md").resolve()
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text("# memo", encoding="utf-8")
+
+    response = client.get(f"/reports/artifact/{quote(path.as_posix(), safe=':/')}")
+
+    assert response.status_code == 200
+    assert "# memo" in response.text
 
 
 def test_artifact_endpoint_rejects_path_escape(client):

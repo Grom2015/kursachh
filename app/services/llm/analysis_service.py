@@ -429,7 +429,7 @@ class LLMAnalysisService:
             system=system,
             user_message=user,
             pdf_attachments=self._pdf_attachments_from_source_documents(docs),
-            max_tokens=5000,
+            max_tokens=9000,
         )
         self._track(resp)
         return resp.text

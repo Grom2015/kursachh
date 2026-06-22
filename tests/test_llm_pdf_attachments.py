@@ -65,7 +65,7 @@ def test_llm_service_passes_source_pdf_to_fundamental_call(tmp_path):
     assert client.calls[2]["max_tokens"] == 1600
     assert client.calls[3]["max_tokens"] == 1400
     assert client.calls[4]["pdf_attachments"][0]["path"] == str(pdf_path)
-    assert client.calls[4]["max_tokens"] == 5000
+    assert client.calls[4]["max_tokens"] == 9000
 
 
 def test_fundamental_prompt_instructs_llm_to_cross_check_pdf():
@@ -112,6 +112,32 @@ def test_overall_prompt_requires_concise_output():
     assert "executive summary" in merged
     assert "не пиши длинный текст" in merged
     assert "до 350-500 слов" in merged
+
+
+def test_detailed_memo_prompt_requires_full_markdown_report():
+    from app.services.llm.prompts import detailed_memo_prompt
+
+    system, user = detailed_memo_prompt(
+        company={"ticker": "X5"},
+        period={"from": "2023Q4", "to": "2023Q4"},
+        financial_metrics=[],
+        structured_facts=[],
+        derived_safe_facts=[],
+        analysis_readiness_summary={},
+        top_blockers=[],
+        unresolved_evidence_summary={},
+        parser_risk_summary={},
+        market_analysis={},
+        source_documents={"source_pdf_attachments": [{"path": "report.pdf"}]},
+        data_quality={},
+        warnings=[],
+    )
+
+    merged = f"{system}\n{user}"
+    assert "полноценный финальный аналитический отчет" in merged
+    assert "1200-2200 слов" in merged
+    assert "таблицы Markdown" in merged
+    assert "не возвращай JSON" in merged
 
 
 def test_llm_client_ignores_missing_or_non_pdf_attachments(tmp_path):

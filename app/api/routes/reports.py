@@ -245,10 +245,13 @@ def get_statement_tables(document_id: int, db: Session = Depends(get_db)) -> dic
 def open_artifact_file(artifact_path: str) -> FileResponse:
     settings = get_settings()
     root = settings.root_dir.resolve()
-    relative = Path(artifact_path)
-    if relative.is_absolute() or ".." in relative.parts:
-        raise HTTPException(status_code=400, detail="artifact_path_not_allowed")
-    full_path = (root / relative).resolve()
+    requested = Path(artifact_path)
+    if requested.is_absolute():
+        full_path = requested.resolve()
+    else:
+        if ".." in requested.parts:
+            raise HTTPException(status_code=400, detail="artifact_path_not_allowed")
+        full_path = (root / requested).resolve()
     allowed_roots = [
         (root / "data" / "validation").resolve(),
         (root / "data" / "parsed").resolve(),
